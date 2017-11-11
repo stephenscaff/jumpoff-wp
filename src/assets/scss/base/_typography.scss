@@ -1,0 +1,98 @@
+//----------------------------------------------
+// Typography
+//----------------------------------------------
+body {
+  font-family: $font-paragraph;
+  line-height: $base-lineheight;
+  color: $color-dark;
+  background-color: #fff;
+}
+
+//----------------------------------------------
+// Fluid body sizing
+//----------------------------------------------
+body {
+  font-size: 100%;
+
+  @media (min-width: $mq-sm) {
+    font-size: 101%;
+  }
+  @media (min-width: $mq-med) {
+    font-size: 102%;
+  }
+  @media (min-width: $mq-lg) {
+    font-size: 103%;
+  }
+  @media (min-width: 75em) {
+    font-size: 120%;
+  }
+  @media (min-width: $mq-xl) {
+    font-size: 125%;
+  }
+  @media (min-width: $mq-xxl) {
+    font-size: 130%;
+  }
+  @media (min-width: $mq-xxxl) {
+    font-size: 155%;
+  }
+}
+
+//----------------------------------------------
+//  Headings
+//----------------------------------------------
+%font-h1, h1 {
+  margin-bottom: 0.1em;
+  line-height: 1.25;
+  @include font-rwd($font-xl, $font-xl + $font-scale)
+}
+
+%font-h2, h2 {
+  margin-bottom: 0.1em;
+  line-height: 1.25;
+  @include font-rwd($font-lg, $font-lg + $font-scale)
+}
+
+%font-h3, h3, %font-h4, h4 {
+  margin-bottom: $mb/2;
+  line-height: 1.25;
+  @include font-rwd($font-med, $font-med + $font-scale)
+}
+
+%font-h5, h5{
+  margin-bottom: $mb/2;
+  line-height: 1.25;
+  @include font-rwd($font-base, $font-base + $font-scale)
+}
+
+h1,h2,h3,h4,h5{
+  font-family: $font-header;
+}
+
+//----------------------------------------------
+//  paragraphs
+//----------------------------------------------
+p {
+  margin-top: 0;
+  margin-bottom: .75em;
+  @media (min-width: $mq-xxl){
+    //font-size: $font-sma;
+  }
+}
+
+small {
+  display: block;
+  margin-bottom: 1em;
+  font-size: $font-xs;
+}
+
+b, strong{
+  font-weight: 700;
+}
+
+//----------------------------------------------
+//  Selection
+//----------------------------------------------
+::selection {
+  color: white;
+  background: $color-alpha;
+}

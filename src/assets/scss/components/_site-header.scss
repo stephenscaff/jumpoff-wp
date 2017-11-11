@@ -1,0 +1,14 @@
+//-------------------------------------------- 
+// Site Header
+//--------------------------------------------
+.site-header{
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 3.5em;
+
+  &__logo{
+    @extend %font-links;
+    color: $color-grey;
+  }
+}

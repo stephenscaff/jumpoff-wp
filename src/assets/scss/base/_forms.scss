@@ -1,0 +1,53 @@
+//----------------------------------------------
+//  Text-based inputs
+//----------------------------------------------
+input[type="text"], 
+input[type="email"],
+input[type="tel"],
+
+textarea, select {
+  display: block;
+  width: 100%;
+  padding: $form-pad;
+  font-family: $font-header;
+  font-size: $font-sm;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: $color-dark;
+  background: $color-white;
+  border: $form-borderwidth solid $form-bordercolor;
+  border-radius: $base-borderradius;
+  box-shadow: none;
+  outline: 0;
+  transition: all .25s ease-in;
+  -webkit-appearance: none;
+
+  &:focus {
+    border-color: $color-alpha !important;
+    transition: 0.4s ease;
+  }
+}
+
+
+//----------------------------------------------
+//  Selects
+//----------------------------------------------
+select{
+  padding: $form-pad;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAOCAYAAADaOrdAAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAU1JREFUeNqsk08rRFEUwO/c5BPYsrBULFho/BniOzBEw4xPYPZKWSkblgwi/z4HGTb+TKEUFiyEMhYiG35H59Xr5b73Zsyp3zv17j397jvv3IRpnW43xnTDkqkivksLzrVEW36WdGR5TMAi7JkaBoJt0gykRTIPFzAEuzUUjMAB5Ot4PEAv7MOw7kv/Q7Cj9YcwSDu/rK69Qj9cqWirSsGGCoqeQN5b354X6INrGIXNCgXrpHE4hgEEn96aDex91km7gTFYiykokDJwIh3xC37XGeG/6hr0RM2wCrkQxzJMwRl0IfgIbrCOQmldJ9xCFlYiBOcuQZjEEyW1dTn9In8UVHAqLXYJoiQSTzoMdzCpl7Zec1ZblELwHvrPHP8kGI16sZrgElqgJAdAUI4qtjEn9B564FEFMuYpKMcpthVcBRF1wJyO+Vvcwh8BBgBKvGGZVv80xwAAAABJRU5ErkJggg==');
+  background-position: 97% center;
+  background-repeat: no-repeat;
+  background-size: 10px;
+  cursor: pointer;
+  background-color: #eee;
+  font-size: $font-sm;
+}
+
+
+//----------------------------------------------
+//  Placeholders
+//----------------------------------------------
+::placeholder {
+  color: $form-placeholdercolor;
+  //font-size: 0.8em;
+}

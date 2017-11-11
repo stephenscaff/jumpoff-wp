@@ -1,0 +1,20 @@
+//----------------------------------------------
+//  Button Theme
+//  Default Button
+//----------------------------------------------
+.mast{
+  position: relative;
+  display:flex;
+  align-items:center;
+  width: 100%;
+  margin: 0 auto;
+
+  @media (min-width: $mq-med){
+    display: flex;
+    align-items: center;
+  }
+
+  &__title,  &__subtitle{
+    @include font-rwd($font-xl, $font-xxl );
+  }
+}

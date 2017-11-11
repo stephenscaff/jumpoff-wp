@@ -1,0 +1,100 @@
+//--------------------------------------------
+// Padding Helpers
+//--------------------------------------------
+.pad {
+  padding: $pad 0;
+}
+
+.pad-sm {
+  padding: $pad-sm 0;
+}
+
+.pad-lg {
+  padding: $pad-lg 0;
+}
+
+.pad-b {
+  padding-bottom: $pad;
+}
+
+.pad-b-lg {
+  padding-bottom: $pad-lg;
+}
+
+.pad-t {
+  padding-top: $pad;
+}
+
+.pad-t-lg {
+  padding-top: $pad-lg;
+}
+
+.no-pad {
+  padding: 0;
+}
+
+
+//--------------------------------------------
+// Color Helpers
+//--------------------------------------------
+.color-alpha {
+  color: $color-alpha;
+}
+
+.bg-grey-light {
+  background-color: $color-grey-light;
+}
+
+.bg-grey-dark {
+  background-color: $color-grey-dark;
+}
+
+//--------------------------------------------
+// Alignment Helpers
+//--------------------------------------------
+.text-center{
+  text-align: center;
+}
+
+//--------------------------------------------
+// Visibility Helpers
+//--------------------------------------------
+.is-hidden {
+  display: none !important;
+}
+
+.is-visually-hidden {
+  position: absolute !important;
+  left: -9999px !important;
+  height: 1px;
+  width: 1px;
+  clip: rect(0,0,0,0);
+  overflow: hidden;
+}
+
+.no-interaction {
+  pointer-events: none !important;
+}
+
+//--------------------------------------------
+// Hide Line Breaks
+//--------------------------------------------
+%no-breaks,
+.no-breaks {
+
+  br {
+    display: none;
+  }
+}
+
+//--------------------------------------------
+// Lines / Seperators
+//--------------------------------------------
+.sep{
+  display: block;
+  border:0;
+  height: 1px;
+  width: 8em;
+  background-color: $color-dark;
+  margin: 3em 0;
+}

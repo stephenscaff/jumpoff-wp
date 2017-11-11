@@ -1,0 +1,30 @@
+//---------------------------------------------- 
+//  Family: [family name]
+//  Weights: 400=reg, 700=bold
+//  Base64 embedding for out font-face.
+//  Convert ttf/otf to woff, then base64 that shit.
+//----------------------------------------------
+
+// Regular
+@font-face {
+  font-family: "font-name";
+  src: url(data:application/x-font-woff;charset=utf-8;base64,PASTE-BASE64-HERE);
+  font-style: normal;
+  font-weight: 400;
+}
+
+// Italic
+@font-face {
+  font-family: "font-name";
+  src: url(data:application/x-font-woff;charset=utf-8;base64,PASTE-BASE64-HERE);
+  font-style: italic;
+  font-weight: 400;
+}
+
+// Bold
+@font-face {
+  font-family: "font-name";
+  src: url(data:application/x-font-woff;charset=utf-8;base64,PASTE-BASE64-HERE);
+  font-style: normal;
+  font-weight: 700;
+}

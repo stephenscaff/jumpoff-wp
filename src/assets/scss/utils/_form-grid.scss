@@ -1,0 +1,18 @@
+//----------------------------------------------
+//  Form Grid
+//----------------------------------------------
+.form-grid {
+  @include flex-grid(1,2, $pad-horz: $pad-col/2);
+
+  & + & {
+    display: flex;
+  }
+
+  &__col {
+    @include flex-col(50%);
+  }
+
+  &__col &__col {
+    @include flex-col(50%, $mobile:true);
+  }
+}

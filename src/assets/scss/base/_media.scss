@@ -1,0 +1,74 @@
+
+//----------------------------------------------
+//  Media
+//----------------------------------------------
+img, svg, figure, picture, object, embed, iframe, video {
+  max-width: 100%;
+  height: auto;
+  border: 0;
+}
+
+//----------------------------------------------
+//  FLex Vid
+//----------------------------------------------
+.flex-vid {
+  position:relative;
+  height: 0;
+  margin-bottom: 1em;
+  padding-bottom: 56.5%; // Widescreen
+  overflow: hidden;
+
+  iframe, object, embed, video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+
+//----------------------------------------------
+//  Background Vids
+//  Pure css approach to scaling background vids
+//----------------------------------------------
+// pure css to full viewport vids, that scale.
+.bg-vid{
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow:hidden;
+  transform: scale(1);
+  transition: transform 0.5s ease;
+  //@include bg_overlay(#111, 0.4);
+
+  // Overlay, that fades out
+  &__cover{
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $color-dark;
+    animation: fade-out 1.5s 1s ease both;
+  }
+
+  &__vid{
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: auto;
+    min-width: 100%;
+    max-width: none;
+    height: auto;
+    min-height: 100%;
+    object-fit:cover; // if it's available, hey.
+  }
+}

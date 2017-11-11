@@ -1,0 +1,207 @@
+//----------------------------------------------
+//  flex-grid();
+//  Creates grid blocks via flexbox
+
+//  @param: $xsm, $sm, $med, $lg, $xl - @media sizes
+//  @param: $pad - item padding
+//  @useage: @include flex-grid(1, 2, 3, 4, 1%);
+
+//  @note: Can replace universal selector with '& > #{$item}''  ($item:'article')
+//----------------------------------------------
+@mixin flex-grid($xs:null, $sm:null, $med:null, $lg:null, $xl:null, $xxl:null, $pad:0, $align:null) {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  @if $align {
+    align-items: $align;
+  }
+  margin-left: -$pad;
+  margin-right: -$pad;
+
+  & > * {
+    padding:$pad;
+    flex-basis: 100%/$xs;
+    max-width: 100%/$xs;
+
+    @if $sm {
+      @media(min-width: $mq-sm){
+        flex-basis: 100%/$sm;
+        max-width: 100%/$sm;
+      }
+    }
+
+    @if $med {
+      @media(min-width: $mq-med){
+        flex-basis: 100%/$med;
+        max-width: 100%/$med;
+      }
+    }
+
+    @if $lg {
+      @media(min-width: $mq-lg){
+        flex-basis: 100%/$lg;
+        max-width: 100%/$lg;
+      }
+    }
+
+    @if $xl {
+      @media(min-width: $mq-xl){
+        flex-basis: 100%/$xl;
+        max-width: 100%/$xl;
+      }
+    }
+
+    @if $xxl {
+      @media(min-width: $mq-xxl){
+        flex-basis: 100%/$xxl;
+        max-width: 100%/$xxl;
+      }
+    }
+  }
+  &.grid--center{
+    justify-content: center;
+  }
+}
+
+//----------------------------------------------
+//  Flex Row
+//  A helper to create flex rows
+//
+//  @param align - vert alignment
+//  @param $justify - horx positioning
+//  @param $wrap - wrap / no-wrap
+//  @mobile $mobile (boolean) - start row on mobile
+//----------------------------------------------
+@mixin flex-row($align: null, $justify:null, $wrap: wrap, $col-pad:null, $mobile:false){
+  @if $align {
+    align-items: $align;
+  }
+  @if $justify{
+    justify-content: $justify;
+  }
+  @if $mobile == true {
+    display: flex;
+    flex-wrap: wrap;
+
+  } @else {
+
+    @media (min-width: $mq-med){
+      display: flex;
+      flex-wrap: $wrap;
+    }
+  }
+  @if $col-pad {
+    @media (min-width: $mq-med) {
+      margin-left: -$col-pad;
+      margin-right: -$col-pad;
+    }
+    & > * {
+      @media (min-width: $mq-med) {
+        padding-left: $col-pad;
+        padding-right: $col-pad
+      }
+    }
+  }
+}
+
+
+//----------------------------------------------
+//  Flex Column
+//  A helper to output cross browser requirements for
+//  columns inside a flexbox parent. flex-basis isn't
+//  enough in all cases.
+//
+//  @param $width (size), $mobile (boolean)
+//----------------------------------------------
+@mixin flex-col($width, $mobile:false){
+  @if $mobile == true {
+    flex-basis: $width;
+    width: $width;
+    max-width: $width;
+
+  } @else {
+
+    @media (min-width: $mq-med){
+      flex-basis: $width;
+      width: $width;
+      max-width: $width;
+    }
+  }
+}
+
+
+//----------------------------------------------
+//  flex-order()
+//  A helper to change an elements order at various
+//  breaks, via flex.
+//
+//  @param $sm, $med, $lg, $xl (breaks)
+//----------------------------------------------
+@mixin flex-order($sm:null, $med: null, $lg: null, $xl:null){
+  order: $sm;
+
+  @if $med {
+    @media (min-width: $mq-med) {
+      order: $med;
+    }
+  }
+
+  @if $lg {
+    @media (min-width: $mq-lg) {
+      order: $lg;
+    }
+  }
+
+  @if $xl {
+    @media (min-width: $mq-xl) {
+      order: $xl;
+    }
+  }
+}
+
+//----------------------------------------------
+//  CSS Columns helper
+//  A helper to output cross browser requirements for
+//  columns inside a flexbox parent. flex-basis isn't
+//  enough in all cases.
+//
+//  @param $sm - $xl Breakpoints
+//  @param $gam - gab between cols
+//  @param $pad - col padding
+//----------------------------------------------
+@mixin col-grid($sm:null, $med:null, $lg:null, $xl:null, $gap:0,$pad:0){
+  position: relative;
+  display: block;
+  margin-left: -$pad;
+  margin-right: -$pad;
+  column-count: $sm;
+  column-gap: $gap;
+  -webkit-perspective: 1;
+
+  @if $med {
+    @media(min-width: $mq-med){
+      column-count: $med;
+    }
+  }
+
+  @if $lg {
+    @media(min-width: $mq-lg){
+      column-count: $lg
+    }
+  }
+
+  @if $xl {
+    @media(min-width: $mq-xl){
+      column-count: $xl
+    }
+  }
+
+  & > *{
+    @media (min-width: $mq-med){
+      // Ensure columns break at parent
+      break-inside: avoid-column;
+      padding-left: $pad;
+      padding-right: $pad;
+    }
+  }
+}
