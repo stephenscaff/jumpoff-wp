@@ -1,0 +1,114 @@
+//--------------------------------------------
+// Menu Toggle
+// Hamburger style menu toggle element
+// @see js/components/_mobile-menu.js
+//--------------------------------------------
+
+$menu-lines-height: 2px;
+$menu-width: 1.8em;
+
+.u-menu-toggle{
+  z-index: $z-menu-toggle;
+  position: relative;
+  height: 1.25em;
+  width: $menu-width;
+  display: inline-block;
+  padding: 0.5em 0;
+  align-self: center;
+  cursor: pointer;
+  -webkit-appearance: none;
+  border: 0;
+
+  &__bars {
+    transition: background-color 0.4s ease, transform 0.4s ease;
+    transform: rotate(0);
+
+    &, &:after, &:before {
+      position: absolute;
+      width: 100%;
+      height: $menu-lines-height;
+      background: $color-grey-dark;
+    }
+
+    &:after, &:before {
+      content: '';
+      display: block;
+      transition: all 0.4s ease-in-out;
+    }
+
+    &:before {
+      top: -7px;
+    }
+
+    &:after {
+      top: 7px;
+    }
+
+    &:hover {
+      cursor:pointer;
+    }
+
+    &:hover:after {
+      width: 100%;
+    }
+
+    // Menu Toggle - Open State
+    .menu-is-open:not(.menu-is-closing) &, .menu-is-opening &, .is-open &, &.is-open {
+      background: transparent !important;
+      transition: background-color 0.4s ease, transform 0.4s ease;
+      transform: rotate(180deg);
+
+      &:after, &:before {
+        top: 0 !important;
+        zoom: 1;
+        width: 100%;
+      }
+      &:after {
+        transform: rotate(45deg);
+      }
+      &:before {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
+
+
+//----------------------------------------------
+// Control - Close X
+// Created from the burger styles
+//----------------------------------------------
+%u-close-x,
+.u-close-x{
+  z-index: $z-close-x;
+  position: relative;
+  display: block;
+  height: 3em;
+  width: 3em;
+
+  &:after, &:before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: 0 !important;
+    width: 1.855555rem;
+    height: 1px;
+    display: block;
+    background: $color-beta;
+    transition: background-color 0.4s ease-in-out, transform 0.4s ease-in-out;
+  }
+  &:after{
+    transform: rotate(45deg);
+  }
+  &:before {
+    transform: rotate(-45deg);
+  }
+
+  &.-white:before, &.-white:after {
+    background-color: #fff;
+  }
+
+  &:hover{
+    cursor: pointer;
+  }
+}

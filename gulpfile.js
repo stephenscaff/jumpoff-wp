@@ -24,10 +24,8 @@ const
 
 const buildInclude  = [
   // include common file types
-  'src/**/*.php',
+  'src/**/*',
   'src/acf-json/',
-  'src/inc/*.js',
-
   // include specific files and folders
   'src/screenshot.png',
   'src/style.css',
@@ -79,7 +77,7 @@ gulp.task('svg2php', () => {
  */
 gulp.task('scss', () => {
 
-  var onError = (err) =>  {
+  var onError = function(err) {
     notify.onError({
       title:    "CSS Error",
       subtitle: "Nah Bruv!",
@@ -114,7 +112,7 @@ gulp.task('scss', () => {
  * Admin Theme SCSS Tasks
  */
 gulp.task('wp_admin_scss', () => {
-  const onError = (err) => {
+  const onError = function(err) {
     notify.onError({
         title:    "CSS Error",
         subtitle: "Nah Bruv!",
@@ -137,7 +135,7 @@ gulp.task('wp_admin_scss', () => {
   .pipe(sourcemaps.init())
   .pipe(autoprefixer())
   .pipe(rename({ suffix: '.min' }))
-  .pipe(sourcemaps.write('.'))
+  //.pipe(sourcemaps.write('.'))
   .pipe(gulp.dest(folder.build + 'inc/admin/admin-theme/assets/css/'))
 });
 
@@ -147,7 +145,7 @@ gulp.task('wp_admin_scss', () => {
  */
 gulp.task('js', () => {
 
-  var onError = (err) =>  {
+  var onError = function(err) {
     notify.onError({
       title:    "JS Error",
       subtitle: "Nah Bruv!",
@@ -163,12 +161,12 @@ gulp.task('js', () => {
     .pipe(sourcemaps.init())
     .pipe(include())
     .pipe (uglify ({
-      mangle: true,
-      compress: true,
-      output: { beautify: false }
+      mangle: false,
+      compress: false,
+      output: { beautify: true }
     }))
     .pipe(rename({ suffix: '.min' }))
-    .pipe(sourcemaps.write('.'))
+    //.pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(folder.build + 'assets/js/'));
 });
 
@@ -177,11 +175,11 @@ gulp.task('js', () => {
  */
 gulp.task('jquery', () => {
 
- return gulp.src(folder.src + 'assets/js/jquery.js')
-   .pipe(include())
-   .pipe(uglify())
-   .pipe(rename({ suffix: '.min' }))
-   .pipe(gulp.dest(folder.build + 'assets/js/'));
+  return gulp.src(folder.src + 'assets/js/jquery.js')
+    .pipe(include())
+    .pipe(uglify())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(gulp.dest(folder.build + 'assets/js/'));
 });
 
 /**
@@ -225,7 +223,6 @@ gulp.task('run', [
   'videos',
   'scss',
   'js',
-  'jquery',
   'wp',
   'svg2php',
   'wp_admin_scss'
@@ -237,19 +234,12 @@ gulp.task('run', [
 gulp.task('watch', () => {
 
   gulp.watch(folder.src + 'assets/images/**/*', ['images']);
-
   gulp.watch(folder.src + 'assets/scss/**/*', ['scss']);
-
   gulp.watch(folder.src + 'inc/admin/admin-theme/assets/scss/**/*', ['wp_admin_scss']);
-
   gulp.watch(folder.src + 'assets/js/**/*', ['js']);
-
   gulp.watch(folder.src + 'assets/js/**/*', ['jquery']);
-
   gulp.watch(folder.src + '**', ['wp']);
-
   gulp.watch(folder.src + 'assets/images/**/*', ['svg2php']);
-
   gulp.watch(folder.src + 'assets/videos/**/*', ['videos']);
 
 });

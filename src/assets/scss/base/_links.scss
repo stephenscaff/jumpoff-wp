@@ -1,21 +1,21 @@
-//---------------------------------------------- 
+//----------------------------------------------
 //  Link Styles
 //  Basic global link styles
 //  @param: $mainColor: [$color-darkgrey] - initial color
 //  @param: $hoverColor:[$color-alpha]    - hover color
 //----------------------------------------------
-@mixin link-styles($mainColor: $color-darkgrey, $hoverColor: $color-alpha){
- color: $mainColor;
- text-decoration: none; 
+@mixin links($color: $color-alpha, $hover: $color-beta){
+ color: $color;
+ text-decoration: none;
  line-height:inherit;
  transition: color 0.4s ease-in-out;
 
   &:hover, &:focus, a:hover &{
-    color: $hoverColor;
+    color: $hover;
     transition: color 0.4s ease-in-out;
   }
   &:active{
-    color: darken($hoverColor, 25);
+    color: darken($hover, 25);
   }
 }
 
@@ -24,5 +24,5 @@
 //  Global Links
 //----------------------------------------------
 a{
-  @include link-styles($color-alpha, lighten($color-alpha, 20))
+  @include links($color-alpha, lighten($color-alpha, 20))
 }

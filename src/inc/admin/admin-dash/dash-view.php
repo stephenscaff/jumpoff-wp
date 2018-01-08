@@ -23,11 +23,23 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 <section class="dash">
 
   <header class="dash-header">
-    <h1 class="dash-header__title">Welcome to the Jumpoff</h1>
+    <h1 class="dash-header__title">Welcome to your Site Punk</h1>
     <p class="dash-header__text">From here you can create and manage the font-end experience.</p>
   </header>
 
   <section class="dash-cards">
+
+    <article class="dash-card">
+      <a class="dash-card__link" href="<?php echo admin_url( 'admin.php?page=company-contacts' ); ?>">
+        <div class="dash-card__content">
+          <i class="dash-card__icon icon-phone-handset"></i>
+
+          <h3 class="dash-card__title">Edit Contacts</h3>
+
+          <p class="dash-card__text">Edit global links, contacts, socials, etc. </p>
+        </div>
+      </a>
+    </article>
 
     <article class="dash-card">
       <a class="dash-card__link" href="<?php echo admin_url( 'edit.php?post_type=page' ); ?>">
@@ -46,21 +58,9 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
         <div class="dash-card__content">
           <i class="dash-card__icon icon-tag"></i>
 
-          <h3 class="dash-card__title">Manage Posts / News</h3>
+          <h3 class="dash-card__title">Articles</h3>
 
           <p class="dash-card__text">Add new posts / news stories</p>
-        </div>
-      </a>
-    </article>
-
-    <article class="dash-card">
-      <a class="dash-card__link" href="<?php echo admin_url( 'admin.php?page=company-contacts' ); ?>">
-        <div class="dash-card__content">
-          <i class="dash-card__icon icon-phone-handset"></i>
-
-          <h3 class="dash-card__title">Edit Company Contacts</h3>
-
-          <p class="dash-card__text">Edit global company phone numbers, socials, etc. </p>
         </div>
       </a>
     </article>

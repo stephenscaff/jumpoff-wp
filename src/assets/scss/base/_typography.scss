@@ -1,71 +1,80 @@
-//----------------------------------------------
-// Typography
-//----------------------------------------------
-body {
-  font-family: $font-paragraph;
-  line-height: $base-lineheight;
-  color: $color-dark;
-  background-color: #fff;
-}
-
-//----------------------------------------------
-// Fluid body sizing
-//----------------------------------------------
-body {
-  font-size: 100%;
-
-  @media (min-width: $mq-sm) {
-    font-size: 101%;
-  }
-  @media (min-width: $mq-med) {
-    font-size: 102%;
-  }
-  @media (min-width: $mq-lg) {
-    font-size: 103%;
-  }
-  @media (min-width: 75em) {
-    font-size: 120%;
-  }
-  @media (min-width: $mq-xl) {
-    font-size: 125%;
-  }
-  @media (min-width: $mq-xxl) {
-    font-size: 130%;
-  }
-  @media (min-width: $mq-xxxl) {
-    font-size: 155%;
-  }
+h1,h2,h3,h4,h5{
+  font-family: $font-header;
+  font-weight: 700;
+  color: $color-grey;
 }
 
 //----------------------------------------------
 //  Headings
 //----------------------------------------------
-%font-h1, h1 {
-  margin-bottom: 0.1em;
+%font-xxl, h1 {
+  margin-bottom: $pad-xxs;
+  line-height: 1.25;
+  @include font-rwd($font-xxl, $font-xxl + $font-scale)
+}
+
+%font-xl, h2 {
+  margin-bottom: $pad-xxs;
   line-height: 1.25;
   @include font-rwd($font-xl, $font-xl + $font-scale)
 }
 
-%font-h2, h2 {
-  margin-bottom: 0.1em;
+%font-lg, h3 {
+  margin-bottom: $pad-xxs;
   line-height: 1.25;
   @include font-rwd($font-lg, $font-lg + $font-scale)
 }
 
-%font-h3, h3, %font-h4, h4 {
-  margin-bottom: $mb/2;
+%font-med, h4 {
+  margin-bottom: $pad-xxs;
   line-height: 1.25;
   @include font-rwd($font-med, $font-med + $font-scale)
 }
 
-%font-h5, h5{
-  margin-bottom: $mb/2;
+%font-base, h5{
+  margin-bottom: $pad-xxs;
   line-height: 1.25;
   @include font-rwd($font-base, $font-base + $font-scale)
 }
 
-h1,h2,h3,h4,h5{
+//----------------------------------------------
+//  Font Styles
+//----------------------------------------------
+// Metas & Cats
+%font-meta,
+.font-meta {
+  display: block;
+  margin-bottom: $pad-xs;
   font-family: $font-header;
+  font-weight: 700;
+  font-size: $font-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+// Titles
+%font-title,
+.font-title{
+  font-family: $font-header;
+  font-size: $font-lg;
+  font-weight: 700;
+}
+
+
+%font-pretitle,
+.font-pretitle {
+  display: block;
+  margin-bottom: $pad-xs;
+  font-family: $font-header;
+  //font-size: $font-sm;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  @include font-rwd($font-sm, $font-xs);
+}
+
+.font-bold{
+  font-weight: 700;
 }
 
 //----------------------------------------------
@@ -73,7 +82,7 @@ h1,h2,h3,h4,h5{
 //----------------------------------------------
 p {
   margin-top: 0;
-  margin-bottom: .75em;
+  margin-bottom: $pad-xs;
   @media (min-width: $mq-xxl){
     //font-size: $font-sma;
   }
@@ -95,4 +104,15 @@ b, strong{
 ::selection {
   color: white;
   background: $color-alpha;
+}
+
+%type-single-line {
+  word-spacing: 9999px;
+  display: block;
+}
+
+%list-reset {
+  margin: 0 auto;
+  padding-left: 0;
+  list-style-type: none;
 }

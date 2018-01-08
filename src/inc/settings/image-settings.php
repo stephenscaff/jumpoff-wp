@@ -3,9 +3,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
 
 /**
  *  JumpoffImageSettings
- *  
+ *
  *  Class to handle various image settings and handling.
- *  
+ *
  *  Image Sizes (All ratios of 2000x1200, and hard set)
  *  Full : 2000 x 1200 (ideally)
  *  Medium: 1250 x 750
@@ -14,6 +14,33 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
 if (!class_exists('WpImageSettings ')) {
 
  class WpImageSettings {
+
+
+   /**
+    * Medium Size
+    */
+   const THUMB_WIDTH = 500;
+   const THUMB_HEIGHT = 500;
+
+   /**
+    * Medium Size
+    */
+   const MED_WIDTH = 1250;
+   const MED_HEIGHT = 750;
+
+   /**
+    * Large Size
+    */
+   const LG_WIDTH = 1500;
+   const LG_HEIGHT = 900;
+
+
+
+   /**
+    * Masthead Size
+    */
+   const MAST_WIDTH = 2000;
+   const MAST_HEIGHT = 1200;
 
   // Constructor
   function __construct() {
@@ -36,10 +63,26 @@ if (!class_exists('WpImageSettings ')) {
  *  @return $sizes
  */
   function remove_image_sizes( $sizes) {
-    unset( $sizes['thumbnail'] );
+    //unset( $sizes['thumbnail'] );
     return $sizes;
   }
 
+  /**
+   *  Set Med sizes
+   *
+   *  1250x750
+   */
+    function thumb_images(){
+      update_option( 'thumb_size_w', THUMB_WIDTH );
+      update_option( 'thumb_size_h', THUMB_HEIGHT );
+
+      // Add cropping capability
+      if (false === get_option('thumb_crop')) {
+        add_option('thumb_crop', '1');
+      } else {
+        update_option('thumb_crop', '1');
+      }
+    }
 
 /**
  *  Set Med sizes
@@ -47,12 +90,12 @@ if (!class_exists('WpImageSettings ')) {
  *  1250x750
  */
   function medium_images(){
-    update_option( 'medium_size_w', 1250 );
-    update_option( 'medium_size_h', 750 );
+    update_option( 'medium_size_w', MED_WIDTH );
+    update_option( 'medium_size_h', MED_HEIGHT );
 
     // Add cropping capability
     if(false === get_option('medium_crop')) {
-      add_option('medium_crop', '1'); 
+      add_option('medium_crop', '1');
     } else {
       update_option('medium_crop', '1');
     }
@@ -64,11 +107,11 @@ if (!class_exists('WpImageSettings ')) {
  *  1500x900
  */
   function large_images(){
-    update_option( 'large_size_w', 1500 );
-    update_option( 'large_size_h', 900 );
+    update_option( 'large_size_w', LG_WIDTH );
+    update_option( 'large_size_h', LG_HEIGHT );
 
     if(false === get_option("large_crop")) {
-         add_option('large_crop', '1'); 
+         add_option('large_crop', '1');
     } else {
       update_option('large_crop', '1');
     }
@@ -80,26 +123,24 @@ if (!class_exists('WpImageSettings ')) {
  *  Used for Mastheads and full width images.
  *  Duplicate add_image_size for additional custom sizes.
  *
- *  Name: "Mast" 
+ *  Name: "Mast"
  *  Size: 2000x1200
  */
   function add_image_sizes(){
     // New Image: 'Mast'
-    add_image_size( 'mast', 2000, 1200, true );
-    add_image_size( 'team', 1250, 1000, true );
+    add_image_size( 'mast', MAST_WIDTH, MAST_HEIGHT, true );
   }
 
 /**
  *  Add our custom image, "Mast" to the admin / media gal.
  *  Continue array with additional custom sizes.
  *
- *  @return $sizes 
+ *  @return $sizes
  */
   function add_images_to_admin( $sizes ) {
 
     return array_merge( $sizes, array(
       'mast' => __('Mastheads'),
-      'team' => __('Team'),
     ));
   }
 
@@ -107,7 +148,7 @@ if (!class_exists('WpImageSettings ')) {
  *  Remove wxh attributes
  *  Prevent Wp from injecting height and width for images in the_content
  *
- *  @return $html 
+ *  @return $html
  */
   function remove_wxh_attribute( $html ) {
     $html = preg_replace( '/(width|height)="\d*"\s/', "", $html );
@@ -118,7 +159,7 @@ if (!class_exists('WpImageSettings ')) {
  *  Image Output Settings
  *  Additional cleanups for images added to the_content
  *
- *  @return $html 
+ *  @return $html
  */
   function image_output_settings() {
 
@@ -135,7 +176,7 @@ if (!class_exists('WpImageSettings ')) {
    * Wraps post images in a figure/figcaption
    */
   function image_output(){
-  
+
     add_filter( 'image_send_to_editor', 'image_wrapper', 10, 9 );
 
     function image_wrapper($html, $id, $caption, $title, $align, $url, $size, $alt) {

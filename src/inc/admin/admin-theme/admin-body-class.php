@@ -12,16 +12,13 @@ class AdminBodyClass {
     add_filter( 'admin_body_class', array( $this, 'admin_body_class' ) );
   }
 
-
   /**
    *  Body Class for admin
    *  Adding a body class allows us to target
    *  and style desired elements
    */
   function admin_body_class(){
-
     global $post;
-
 
     if( !is_object($post) ) {
       return;
@@ -33,10 +30,7 @@ class AdminBodyClass {
     // @see https://developer.wordpress.org/reference/functions/get_current_screen
     $screen = get_current_screen();
 
-    // Construct class from post id
     $post_id = 'admin-post-'.$post->ID;
-
-    // Page Name
     $page_name = 'admin-'.$post->post_name;
     $page_template = $page_template_name;
     $classes;

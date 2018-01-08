@@ -17,7 +17,6 @@ class FeaturedImageColumn{
     //add_action('manage_test_posts_custom_column', array( $this, 'posts_custom_columns'), 5, 2 );
   }
 
-
   /**
    * Order Remaining Menu Items
    */
@@ -25,7 +24,6 @@ class FeaturedImageColumn{
     $defaults['column_post_thumbs'] = __('Featured Image');
     return $defaults;
   }
-
 
   /**
    * Order Remaining Menu Items

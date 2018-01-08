@@ -14,7 +14,6 @@
 //----------------------------------------------
 $font-header: sectra, Helvetica, sans-serif;
 $font-paragraph: apercu-mono, Georgia, serif;
-$font-mono: apercu-mono, monospace;
 
 //----------------------------------------------
 // Fonts: Lineheight
@@ -24,17 +23,17 @@ $base-lineheight: 1.6;
 //----------------------------------------------
 // Fonts: Size variables
 //----------------------------------------------
-$font-xxl: 4em;
-$font-xl: 3.25em;
-$font-lg: 2.5em;
-$font-med: 1.4em;
+$font-xxxl: 4em;
+$font-xxl: 2.5em;
+$font-xl: 2em;
+$font-lg: 1.5em;
+$font-med: 1.15em;
 $font-base: 1em;
-
 $font-sm: 0.9em;
-$font-xs: 0.8em;
-$font-xxs: 0.7em;
-
+$font-xs: 0.7em;
+$font-xxs: 0.7rem;
 $font-scale: 0.15em;
+
 
 //----------------------------------------------
 // Media Queries
@@ -59,21 +58,24 @@ $mq-xxxl: 130em;
 //----------------------------------------------
 $grid-width:          90%;
 $grid-max-width:      60em;
-$grid-max-width-sm:   42em;
-$grid-max-width-lg:   85%;
+$grid-max-width-sm:   47em;
+$grid-max-width-lg:   72em;
 $grid-max-width-xl:   95%;
 
 //----------------------------------------------
 // Spacings (pad/margin)
 //----------------------------------------------
 $pad-scale: 1em;
+$pad-xxs:   $pad-scale / 2;
 $pad-xs:    $pad-scale;
 $pad-sm:    $pad-xs + $pad-xs;
+$pad-med:   $pad-sm + $pad-xs;
 $pad:       $pad-sm + $pad-sm;
 $pad-lg:    $pad + $pad-sm;
 $pad-xl:    $pad + $pad;
 $pad-col:   $pad-xs;
-$mb:      1.5em;
+$pad-col-med: $pad-sm;
+$pad-col-lg: $pad-med;
 
 //----------------------------------------------
 // Colors
@@ -95,16 +97,62 @@ $color-success:   #1ABC9C;
 //----------------------------------------------
 // Base UI
 //----------------------------------------------
-$base-borderradius: 0px;
+$base-border-radius: 0px;
 $base-border-width: 1px;
 
 //----------------------------------------------
 // Forms
 //----------------------------------------------
-$form-borderwidth: 1px;
-$form-placeholdercolor: $color-dark;
-$form-bordercolor: $color-grey;
-$form-pad:  0.85em 0.5em 0.9em;
+$form-border-width: 1px;
+$form-color: $color-grey-dark;
+$form-color-placeholder: $color-grey;
+$form-color-border: $color-grey;
+$form-pad:  $pad-xs;
+
+//----------------------------------------------
+// Box Shadow scale
+//----------------------------------------------
+$box-shadow-sm: 0 0px 1px 1px rgba(0,0,0,.1);
+$box-shadow-card: 0px 1px 2px 1px rgba(0,0,0,0.05);
+$box-shadow-med: 0 1px 15px 2px rgba(0,0,0,0.05);
+$box-shadow-lg: 0 1px 17px 1px rgba(0,0,0,.1);
+$box-shadow-lg-hover: 0 6px 1em 0.5em rgba(0,0,0,.1);
+$box-shadow-xl: 0 19px 57px 0px rgba(0,0,0,0.1);
+
+
+//----------------------------------------------
+// Z-Index Scale
+//----------------------------------------------
+$z-10: 10;
+$z-9: 9;
+$z-8: 8;
+$z-7: 7;
+$z-6: 6;
+$z-5: 5;
+$z-4: 4;
+$z-3: 3;
+$z-2: 2;
+$z-1: 1;
+$z-0: 0;
+
+//----------------------------------------------
+// Z-Index Application
+//----------------------------------------------
+$z-close-x: $z-10;
+$z-panel: $z-9;
+$z-menu-toggle: $z-8;
+$z-sticky: $z-8;
+$z-site-header: $z-8;
+$z-popup: $z-9;
+$z-popup-overlay: $z-8;
+$z-header: $z-7;
+$z-menu: $z-7;
+$z-filter-nav : $z-9;
+$z-content: $z-5;
+$z-bg-img: $z-1;
+$z-abs-bg: $z-1;
+$z-bg-el: $z-1;
+$z-el-under: $z-1;
 
 //----------------------------------------------
 // easings

@@ -1,7 +1,7 @@
 //----------------------------------------------
 //  Text-based inputs
 //----------------------------------------------
-input[type="text"], 
+input[type="text"],
 input[type="email"],
 input[type="tel"],
 
@@ -13,10 +13,10 @@ textarea, select {
   font-size: $font-sm;
   font-weight: 400;
   letter-spacing: 0.05em;
-  color: $color-dark;
+  color: $form-color;
   background: $color-white;
-  border: $form-borderwidth solid $form-bordercolor;
-  border-radius: $base-borderradius;
+  border: $form-border-width solid $form-color-border;
+  border-radius: $base-border-radius;
   box-shadow: none;
   outline: 0;
   transition: all .25s ease-in;
@@ -48,6 +48,5 @@ select{
 //  Placeholders
 //----------------------------------------------
 ::placeholder {
-  color: $form-placeholdercolor;
-  //font-size: 0.8em;
+  color: $form-color-placeholder;
 }

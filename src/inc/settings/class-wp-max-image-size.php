@@ -1,4 +1,4 @@
-<?php
+1<?php
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
@@ -16,10 +16,10 @@ class WP_Max_Image_Size {
   /**
    * Constructor
    */
-  public function __construct()  {  
+  public function __construct()  {
     // https://codex.wordpress.org/Plugin_API/Filter_Reference/wp_handle_upload_prefilter
     add_filter('wp_handle_upload_prefilter', array($this, 'error_message'));
-  }  
+  }
 
   /**
    * Image Limit
@@ -28,11 +28,11 @@ class WP_Max_Image_Size {
    */
   public function img_limit() {
     $limit = self::UPLOAD_MAX_SIZE;
-    
+
     return $limit;
   }
 
-  /** 
+  /**
    * Error Message
    */
   public function error_message($file) {
@@ -41,7 +41,7 @@ class WP_Max_Image_Size {
     $type = $file['type'];
     $is_image = strpos($type, 'image');
     $limit = $this->img_limit();
-    
+
     // If size of image is greater than our const, no go
     if ( ( $size > $limit ) && ($is_image !== false) ) {
        $file['error'] = 'Whoa! Images must be smaller '.$limit;

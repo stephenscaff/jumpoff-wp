@@ -1,4 +1,4 @@
-//-------------------------------------------- 
+//--------------------------------------------
 // Site Header
 //--------------------------------------------
 .site-header{
@@ -6,9 +6,4 @@
   display: flex;
   align-items: center;
   height: 3.5em;
-
-  &__logo{
-    @extend %font-links;
-    color: $color-grey;
-  }
 }

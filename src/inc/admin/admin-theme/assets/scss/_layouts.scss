@@ -1,0 +1,29 @@
+//----------------------------------------------
+// Main PageWrapper
+//----------------------------------------------
+#wpwrap{
+  margin-top: 1.3em;
+}
+
+//----------------------------------------------
+// Main Content Wrapper
+//----------------------------------------------
+#wpcontent{
+  margin-left: $sidebar-width;
+}
+
+//----------------------------------------------
+// Footer Wrapper
+//----------------------------------------------
+#wpfooter{
+  padding-left: 5em;
+  padding-bottom: 1em;
+}
+
+//----------------------------------------------
+// Admin Columns - Show ft image on all posts view
+//----------------------------------------------
+img.attachment-featured-thumbnail.size-featured-thumbnail.wp-post-image {
+    max-width: 100%;
+    width: 7em;
+}

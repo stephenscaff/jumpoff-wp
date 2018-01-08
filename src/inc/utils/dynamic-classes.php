@@ -2,13 +2,18 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
 
-/** 
+/**
  *  jumpoff_body_class
  *  Cleans up body classes, then adds custom, based on page or cpt names
  *  @return: $classes (string)
  */
 function jumpoff_body_class($classes) {
   global $post, $page;
+
+  $id = jumpoff_ids();
+
+  // Get field for Page Theme
+  $bg_color = get_field('bg_color', $id);
 
   if(basename(get_page_template()) === 'page.php'){
     $classes[] = 'page-default';
@@ -17,12 +22,15 @@ function jumpoff_body_class($classes) {
     $classes[] = 'page-' . basename(get_permalink());
   }
   if (is_home() || is_singular('post') || is_post_type_archive( 'post' )) {
-    $classes[] = 'page-news';
+    $classes[] = 'page-stories';
   }
   //Example for CPTs
   if (is_post_type_archive()) {
     $post_type_name = $post->post_type;
     $classes[] = 'page-' . $post_type_name;
+  }
+  if ($bg_color) {
+    $classes[] = 'page-' . $bg_color;
   }
 
   // Remove Classes
@@ -31,11 +39,11 @@ function jumpoff_body_class($classes) {
   $post_id_class = 'postid-' . get_the_ID();
   $page_template_name_class = 'page-template-page-' . basename(get_permalink());
   $page_template_name_php = 'page-template-page-' . basename(get_permalink()) . '-php';
- 
+
   // Remove Classes Array
   $remove_classes = array(
-    'page-template-default', 
-    'page-template', 
+    'page-template-default',
+    'page-template',
     'single-format-standard',
     $home_id_class,
     $page_id_class,
@@ -53,7 +61,7 @@ function jumpoff_body_class($classes) {
 add_filter('body_class', 'jumpoff_body_class');
 
 
-/** 
+/**
  *  jumpoff_ids()
  *  Retrieves IDs to use in calling fields.
  *  @return: $id (the id of the post)
@@ -61,19 +69,19 @@ add_filter('body_class', 'jumpoff_body_class');
  */
 function jumpoff_ids() {
   global $post;
+
+  $id;
   $page_for_posts = get_option( 'page_for_posts' );
-  $id="";
-  
-  if( !is_object( $post ) ) 
-     return;
-  
-  if (is_post_type_archive()){
+
+  if( !is_object( $post ) ) return;
+
+  if (is_post_type_archive() OR  is_tax()){
     //$post_type = get_queried_object();
     $post_type = get_post_type( $post->ID );
-    $cpt = $post_type; 
+    $cpt = $post_type;
     $id = "cpt_$cpt";
   } elseif (is_home()){
-    $id = 'options'; 
+    $id = 'options';
   } elseif (is_front_page()) {
     $id = get_option('page_on_front');
   } else{

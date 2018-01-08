@@ -21,9 +21,7 @@ class AdminUserFields{
     $user_fields['facebook'] = 'Facebook';
     $user_fields['twitter'] = 'Twitter';
     $user_fields['phone'] = 'Phone Number';
-    $user_fields['avatar'] = 'Avatar';
     $user_fields['position'] = 'Position';
-    $user_fields['quote'] = 'Quote';
 
     return $user_fields;
   }

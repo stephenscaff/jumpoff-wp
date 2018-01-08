@@ -91,9 +91,9 @@ class PostOrder_Engine {
         if ($this->_check_load_script_css()) {
             wp_enqueue_script('jquery');
             wp_enqueue_script('jquery-ui-sortable');
-            wp_enqueue_script('orderjs', get_template_directory_uri() . '/inc/admin/post-order/assets/post_order.js', array('jquery'), null, true);
+            wp_enqueue_script('orderjs', get_template_directory_uri() . '/inc/admin/admin-post-order/assets/post_order.js', array('jquery'), null, true);
 
-            wp_enqueue_style('order', get_template_directory_uri() . '/inc/admin/post-order/assets/post_order.css', array(), null);
+            wp_enqueue_style('order', get_template_directory_uri() . '/inc/admin/admin-post-order/assets/post_order.css', array(), null);
         }
     }
 
@@ -105,17 +105,17 @@ class PostOrder_Engine {
         if (!empty($objects)) {
             foreach ($objects as $object) {
                 $result = $wpdb->get_results("
-					SELECT count(*) as cnt, max(menu_order) as max, min(menu_order) as min 
-					FROM $wpdb->posts 
+					SELECT count(*) as cnt, max(menu_order) as max, min(menu_order) as min
+					FROM $wpdb->posts
 					WHERE post_type = '" . $object . "' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future')
 				");
                 if ($result[0]->cnt == 0 || $result[0]->cnt == $result[0]->max)
                     continue;
 
                 $results = $wpdb->get_results("
-					SELECT ID 
-					FROM $wpdb->posts 
-					WHERE post_type = '" . $object . "' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future') 
+					SELECT ID
+					FROM $wpdb->posts
+					WHERE post_type = '" . $object . "' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future')
 					ORDER BY menu_order ASC
 				");
                 foreach ($results as $key => $result) {
@@ -127,19 +127,19 @@ class PostOrder_Engine {
         if (!empty($tags)) {
             foreach ($tags as $taxonomy) {
                 $result = $wpdb->get_results("
-					SELECT count(*) as cnt, max(term_order) as max, min(term_order) as min 
-					FROM $wpdb->terms AS terms 
-					INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id ) 
+					SELECT count(*) as cnt, max(term_order) as max, min(term_order) as min
+					FROM $wpdb->terms AS terms
+					INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id )
 					WHERE term_taxonomy.taxonomy = '" . $taxonomy . "'
 				");
                 if ($result[0]->cnt == 0 || $result[0]->cnt == $result[0]->max)
                     continue;
 
                 $results = $wpdb->get_results("
-					SELECT terms.term_id 
-					FROM $wpdb->terms AS terms 
-					INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id ) 
-					WHERE term_taxonomy.taxonomy = '" . $taxonomy . "' 
+					SELECT terms.term_id
+					FROM $wpdb->terms AS terms
+					INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id )
+					WHERE term_taxonomy.taxonomy = '" . $taxonomy . "'
 					ORDER BY term_order ASC
 				");
                 foreach ($results as $key => $result) {
@@ -232,8 +232,8 @@ class PostOrder_Engine {
         if (!empty($objects)) {
             foreach ($objects as $object) {
                 $result = $wpdb->get_results("
-					SELECT count(*) as cnt, max(menu_order) as max, min(menu_order) as min 
-					FROM $wpdb->posts 
+					SELECT count(*) as cnt, max(menu_order) as max, min(menu_order) as min
+					FROM $wpdb->posts
 					WHERE post_type = '" . $object . "' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future')
 				");
                 if ($result[0]->cnt == 0 || $result[0]->cnt == $result[0]->max)
@@ -241,16 +241,16 @@ class PostOrder_Engine {
 
                 if ($object == 'page') {
                     $results = $wpdb->get_results("
-						SELECT ID 
-						FROM $wpdb->posts 
-						WHERE post_type = '" . $object . "' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future') 
+						SELECT ID
+						FROM $wpdb->posts
+						WHERE post_type = '" . $object . "' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future')
 						ORDER BY post_title ASC
 					");
                 } else {
                     $results = $wpdb->get_results("
-						SELECT ID 
-						FROM $wpdb->posts 
-						WHERE post_type = '" . $object . "' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future') 
+						SELECT ID
+						FROM $wpdb->posts
+						WHERE post_type = '" . $object . "' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future')
 						ORDER BY post_date DESC
 					");
                 }
@@ -263,19 +263,19 @@ class PostOrder_Engine {
         if (!empty($tags)) {
             foreach ($tags as $taxonomy) {
                 $result = $wpdb->get_results("
-					SELECT count(*) as cnt, max(term_order) as max, min(term_order) as min 
-					FROM $wpdb->terms AS terms 
-					INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id ) 
+					SELECT count(*) as cnt, max(term_order) as max, min(term_order) as min
+					FROM $wpdb->terms AS terms
+					INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id )
 					WHERE term_taxonomy.taxonomy = '" . $taxonomy . "'
 				");
                 if ($result[0]->cnt == 0 || $result[0]->cnt == $result[0]->max)
                     continue;
 
                 $results = $wpdb->get_results("
-					SELECT terms.term_id 
-					FROM $wpdb->terms AS terms 
-					INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id ) 
-					WHERE term_taxonomy.taxonomy = '" . $taxonomy . "' 
+					SELECT terms.term_id
+					FROM $wpdb->terms AS terms
+					INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id )
+					WHERE term_taxonomy.taxonomy = '" . $taxonomy . "'
 					ORDER BY name ASC
 				");
                 foreach ($results as $key => $result) {
@@ -442,4 +442,3 @@ class PostOrder_Engine {
     }
 
 }
-?>

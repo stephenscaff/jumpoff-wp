@@ -12,6 +12,4 @@ function jumpoff_flush_rewrite_rules() {
 }
 
 // Includes
-require_once('post-taxonomy.php');
-require_once('post-type-film.php');
-require_once('post-type-photo.php');
+require_once('tax-post-functions.php');

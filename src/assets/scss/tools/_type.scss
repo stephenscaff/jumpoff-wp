@@ -1,14 +1,14 @@
 //----------------------------------------------
 //  font-rwd
-//  Change font-size across breaks 
+//  Change font-size across breaks
 //  @param: $font_sm  - at small
 //  @param: $font_med - at med break
 //  @param: $font_lg  - at Large break
-//  @param: $font_xl  - at Xlarge break  
+//  @param: $font_xl  - at Xlarge break
 //----------------------------------------------
 @mixin font-rwd($sm:null, $med:null, $lg:null, $xl:null, $xxl:null) {
   font-size: $sm;
-  
+
   @if $med {
     @media(min-width: $mq-med){
       font-size: $med;
@@ -33,30 +33,3 @@
     }
   }
 }
-
-
-//----------------------------------------------
-//  Font Title
-//  Extend/Util for consistent Title Styles 
-//----------------------------------------------
-%font-title,
-.font-title{
-  font-family: $font-header;
-  font-size: $font-lg;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-//----------------------------------------------
-//  Font Title
-//  Extend/Util for consistent Link Styles
-//----------------------------------------------
-%font-links{
-  font-family: $font-mono;
-  font-weight: 400;
-  font-size: $font-xs;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-

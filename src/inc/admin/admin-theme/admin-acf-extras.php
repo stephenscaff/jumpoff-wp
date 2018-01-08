@@ -9,11 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 class ACFExtras {
 
-  const GMAPS_API_KEY = 'AIzaSyA-27eNYal8SDSigP09PuN5eTJ8QSq86fo'
+  //const GMAPS_API_KEY = 'AIzaSyA-27eNYal8SDSigP09PuN5eTJ8QSq86fo'
 
   function __construct(){
     add_action('acf/input/admin_head', array( $this, 'acf_controls') );
-    add_action('acf/init', array( $this, 'gmaps_api_key' ));
+    //add_action('acf/init', array( $this, 'gmaps_api_key' ));
   },
 
   /**
@@ -41,8 +41,6 @@ class ACFExtras {
     </script>
     <?php
   }
-
-
 }
 
 new ACFExtras;
