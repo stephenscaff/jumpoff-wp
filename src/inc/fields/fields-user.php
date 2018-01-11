@@ -1,7 +1,7 @@
 <?php
 /**
- * Fields - User / Author
- * Location: User Profile Page
+ * Fields - SEO
+ * Location: all pages, posts and post types
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly

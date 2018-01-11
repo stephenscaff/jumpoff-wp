@@ -8,6 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 require_once( get_template_directory().'/vendor/autoload.php' );
 
 require_once('options-contacts.php');
+require_once('options-cpt-indexes.php');
 require_once('fields-seo.php');
 require_once('fields-subtitle.php');
 require_once('fields-mast.php');

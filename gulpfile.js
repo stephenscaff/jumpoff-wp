@@ -24,13 +24,14 @@ const
 
 const buildInclude  = [
   // include common file types
-  'src/**/*',
+  'src/**/*.php',
   'src/acf-json/',
   // include specific files and folders
   'src/screenshot.png',
   'src/style.css',
 
   // exclude files and folders
+  '!src/assets/scss/**/*',
   '!node_modules/**/*',
   '!assets/bower_components/**/*',
   '!assets'

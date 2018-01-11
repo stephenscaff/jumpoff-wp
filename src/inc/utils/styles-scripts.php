@@ -21,7 +21,7 @@ class ScriptStyleLoader{
   function __construct(){
     add_action( 'wp_enqueue_scripts', array( $this, 'styles' ));
     add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ));
-    add_filter( 'script_loader_tag', array( __CLASS__, 'async_scripts' ), 10, 2 );
+    //add_filter( 'script_loader_tag', array( __CLASS__, 'async_scripts' ), 10, 2 );
     add_filter( 'style_loader_src', array( $this, 'remove_version') );
 		add_filter( 'script_loader_src', array( $this, 'remove_version') );
   }
@@ -43,11 +43,11 @@ class ScriptStyleLoader{
    */
   function scripts(){
     if ( !is_admin() ) {
-      //wp_deregister_script( self::JQUERY );
-      //wp_register_script( self::JQUERY, get_template_directory_uri() . '/assets/js/jquery.min.js', '', false, true );
-      wp_register_script( self::JUMPOFF_JS, get_template_directory_uri() . '/assets/js/app.min.js', '', false, true );
+      wp_deregister_script( self::JQUERY );
+      wp_register_script( self::JQUERY, get_template_directory_uri() . '/assets/js/jquery.min.js', '', false, true );
+      wp_register_script( self::JUMPOFF_JS, get_template_directory_uri() . '/assets/js/app.min.js', array( 'jquery' ), false, true );
 
-      //wp_enqueue_script( 'jquery' );
+      wp_enqueue_script( 'jquery' );
       wp_enqueue_script( self::JUMPOFF_JS);
     }
   }
@@ -66,9 +66,9 @@ class ScriptStyleLoader{
 		if ($handle === self::JUMPOFF_JS) {
 			return str_replace( 'src', ' async="async" src', $tag );
 		}
-		//elseif ($handle === self::JQUERY){
-		//	return $tag;
-		//}
+		elseif ($handle === self::JQUERY){
+			return $tag;
+		}
 		else{
 			return $tag;
 		}
@@ -76,14 +76,3 @@ class ScriptStyleLoader{
 }
 
 new ScriptStyleLoader;
-
-/**
- * Removes cf7 scripts / styles for all but contact page
- */
-function jumpoff_cf7_dequeue() {
-	if ( !is_page( array( 'contact' ) ) ) {
-		wp_dequeue_script( 'contact-form-7' );
-		wp_dequeue_style( 'contact-form-7' );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'jumpoff_cf7_dequeue', 99 );

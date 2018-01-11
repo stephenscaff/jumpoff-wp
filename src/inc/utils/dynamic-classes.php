@@ -10,11 +10,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
 function jumpoff_body_class($classes) {
   global $post, $page;
 
-  $id = jumpoff_ids();
-
-  // Get field for Page Theme
-  $bg_color = get_field('bg_color', $id);
-
   if(basename(get_page_template()) === 'page.php'){
     $classes[] = 'page-default';
   }
@@ -22,15 +17,12 @@ function jumpoff_body_class($classes) {
     $classes[] = 'page-' . basename(get_permalink());
   }
   if (is_home() || is_singular('post') || is_post_type_archive( 'post' )) {
-    $classes[] = 'page-stories';
+    $classes[] = 'page-news';
   }
   //Example for CPTs
   if (is_post_type_archive()) {
     $post_type_name = $post->post_type;
     $classes[] = 'page-' . $post_type_name;
-  }
-  if ($bg_color) {
-    $classes[] = 'page-' . $bg_color;
   }
 
   // Remove Classes
@@ -69,13 +61,13 @@ add_filter('body_class', 'jumpoff_body_class');
  */
 function jumpoff_ids() {
   global $post;
-
-  $id;
   $page_for_posts = get_option( 'page_for_posts' );
+  $id="";
 
-  if( !is_object( $post ) ) return;
+  if( !is_object( $post ) )
+     return;
 
-  if (is_post_type_archive() OR  is_tax()){
+  if (is_post_type_archive()){
     //$post_type = get_queried_object();
     $post_type = get_post_type( $post->ID );
     $cpt = $post_type;

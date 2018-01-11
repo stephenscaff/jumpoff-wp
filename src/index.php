@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 get_header(); ?>
 
-<!-- Main --> 
+<!-- Main -->
 <main role="main" class="">
 
 <section class="mast pad-lg">
@@ -19,7 +19,7 @@ get_header(); ?>
     <h1 class="mast__title">The Jumpoff</h1>
     <h2 class="mast__subtitle color-alpha">Just a simple WP / Gulp starter to set shit off.</h2>
     <hr class="sep">
-    <p class="mast__text">Contains a bit of useful css, sensible scss/js structuring, a js includes system (see src/assets/js/app.js), and system error notices.</p>
+    <p class="mast__text">Contains wp stuff I use a good bit, with a front-end system containing a bit of useful css, sensible scss/js structuring, a js includes system (see src/assets/js/app.js), and system error notices.</p>
   </div>
 </section>
 
@@ -32,6 +32,5 @@ get_header(); ?>
 
 </main>
 
-<!-- Footer --> 
+<!-- Footer -->
 <?php get_footer(); ?>
-
