@@ -1,0 +1,47 @@
+//----------------------------------------------
+// Global Form elements
+//----------------------------------------------
+#wpwrap{
+  input[type=text],
+  input[type=password],
+  input[type=email],
+  input[type=number],
+  input[type=tel],
+  input[type=url],
+  input[type=search],
+  select,
+  textarea {
+    border: 1px solid #ddd;
+    box-shadow: none;
+    min-height: 2.25rem;
+    line-height: 2rem;
+    font-size: 0.9rem;
+  }
+
+  textarea{
+    line-height: 1.6;
+  }
+  select{
+    height: 2.5rem !important;
+    border: 1px solid #ddd;
+    border-radius: 0px;
+  }
+
+  #titlediv #title{
+    height: 3.1rem !important;
+    padding: 1rem 0.5rem 1.25rem !important;
+  }
+}
+
+
+//----------------------------------------------
+// Featured Image Checkbox
+// Field that allows for the ft image to be
+// added to the masthead, instead of the post.
+//----------------------------------------------
+.ft-img-check{
+  display: block;
+  width: 100%;
+  border-top: 1px solid #eee;
+  padding: 1.2em 0 0.4em;
+}
