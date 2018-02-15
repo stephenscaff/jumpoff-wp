@@ -44,29 +44,6 @@
 }
 
 //----------------------------------------------
-//  Aspect Ratio
-//  For preloading images to maintain height and as
-//  during fade-in animation.
-//  @param $width natural width of image
-//  @param $height natual height of image
-//----------------------------------------------
-@mixin aspect_ratio($width, $height) {
-  padding-bottom: ($height / $width) * 100%;
-  position: relative;
-  height: 0;
-
-  & > img{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
-    margin: 0 auto;
-  }
-}
-
-
-//----------------------------------------------
 //  pseudo elements
 //  Created common styles associated with pseudo
 //  elements

@@ -1,6 +1,8 @@
 //----------------------------------------------
-// Fonts
+//  List Reset
 //----------------------------------------------
-@import 'fonts/_maax';
-@import 'fonts/_maax-mono';
-@import 'fonts/_iconfont';
+%list-reset {
+  margin: 0 auto;
+  padding-left: 0;
+  list-style-type: none;
+}

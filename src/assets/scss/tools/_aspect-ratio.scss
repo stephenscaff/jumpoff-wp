@@ -1,0 +1,21 @@
+//----------------------------------------------
+//  Aspect Ratio
+//  Maintain height of image, for lazy loading or whatever
+//  @param $width natural width of image
+//  @param $height natual height of image
+//----------------------------------------------
+@mixin aspect_ratio($width, $height) {
+  padding-bottom: ($height / $width) * 100%;
+  position: relative;
+  height: 0;
+  overflow-y: hidden;
+
+  & > img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+}

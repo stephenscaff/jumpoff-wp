@@ -1,0 +1,50 @@
+//----------------------------------------------
+//  Page Trans - is Exiting
+//  @see js/components/_page-transitions.js
+//----------------------------------------------
+.is-exiting{
+
+  main, .site-footer {
+    animation: fade-out 1s 1s ease both;
+  }
+
+  main a + a,
+  main * + *,
+  .site-footer__nav * + *{
+    animation: fade-out 0.5s ease both;
+    @include nth-ani-delay(20, 0.1s);
+  }
+}
+
+main {
+  opacity: 0;
+
+  .is-loaded & {
+    opacity: 1;
+    transition: opacity 0.7s ease;
+  }
+}
+
+.no-js main {
+  opacity: 1;
+}
+
+//----------------------------------------------
+//  IS Exiting from open menu
+//----------------------------------------------
+.is-exiting.menu-is-closing {
+
+   main, .site-footer {
+    animation: fade-out 0.25s ease both;
+  }
+}
+
+//----------------------------------------------
+//  Is Exiting from non menu link
+//----------------------------------------------
+.is-exiting:not(.menu-is-open) {
+
+  main {
+    animation: fade-out 1s ease both;
+  }
+}

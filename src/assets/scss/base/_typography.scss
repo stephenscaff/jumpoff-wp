@@ -1,7 +1,7 @@
 h1,h2,h3,h4,h5{
   font-family: $font-header;
-  font-weight: 700;
-  color: $color-grey;
+  font-weight: 500;
+  color: $color-grey-dark;
 }
 
 //----------------------------------------------
@@ -66,11 +66,9 @@ h1,h2,h3,h4,h5{
   display: block;
   margin-bottom: $pad-xs;
   font-family: $font-header;
-  //font-size: $font-sm;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  @include font-rwd($font-sm, $font-xs);
 }
 
 .font-bold{
@@ -83,9 +81,6 @@ h1,h2,h3,h4,h5{
 p {
   margin-top: 0;
   margin-bottom: $pad-xs;
-  @media (min-width: $mq-xxl){
-    //font-size: $font-sma;
-  }
 }
 
 small {
@@ -109,10 +104,4 @@ b, strong{
 %type-single-line {
   word-spacing: 9999px;
   display: block;
-}
-
-%list-reset {
-  margin: 0 auto;
-  padding-left: 0;
-  list-style-type: none;
 }

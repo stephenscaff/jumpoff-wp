@@ -1,0 +1,32 @@
+//----------------------------------------------
+//  Box Shadow Hover
+//  Hover interaction using a pseudo element to
+//  simulate box-shadow hover for better performance.22
+//----------------------------------------------
+@mixin box_shadow_hover($hover_translate: -1em) {
+  transform: translate3d(0,0,0);
+  transition: transform 0.5s ease;
+  box-shadow: $box-shadow-med;
+
+  &:after {
+    z-index: $z-bg-el;
+    opacity: 0;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: $box-shadow-lg-hover;
+    transition: opacity 1s ease;
+  }
+
+  &:hover, &:active, &:focus {
+    transform: translate3d(0,$hover_translate,0);
+    transition: transform 0.5s ease;
+  }
+  
+  &:hover:after, &:active:after, &:focus:after {
+    opacity: 1;
+  }
+}

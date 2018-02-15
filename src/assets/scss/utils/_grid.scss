@@ -10,6 +10,10 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+
+  @media (min-width: $mq-med) {
+    width: $grid-width-med;
+  }
 }
 
 .grid-sm{
@@ -21,11 +25,7 @@
 
 .grid-lg{
   @extend %grid;
-
-  @media (min-width: $mq-med){
-    width: $grid-max-width-lg;
-    max-width: $grid-max-width-lg;
-  }
+  max-width: $grid-max-width-lg;
 }
 
 .grid-xl {

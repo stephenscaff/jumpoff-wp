@@ -4,17 +4,17 @@
 //----------------------------------------------
 .mast{
   position: relative;
-  display:flex;
-  align-items:center;
+  display:block;
   width: 100%;
   margin: 0 auto;
+  //padding: $pad 0;
 
-  @media (min-width: $mq-med){
-    display: flex;
-    align-items: center;
-  }
 
   &__title,  &__subtitle{
     @include font-rwd($font-xl, $font-xxl );
+  }
+
+  &__subtitle {
+    color: $color-grey;
   }
 }
