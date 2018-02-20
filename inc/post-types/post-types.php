@@ -11,5 +11,8 @@ function jumpoff_flush_rewrite_rules() {
   flush_rewrite_rules();
 }
 
-// Includes
+# Global Tax for featured posts and so on
 require_once('tax-post-functions.php');
+
+# Example Content Type - Team
+require_once('post-type-team.php');
