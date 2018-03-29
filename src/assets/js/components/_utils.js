@@ -6,6 +6,18 @@ var Util = (function() {
 
   return {
 
+
+    render: function (template, node) {
+      if (!node) return;
+      node.innerHTML = (typeof template === 'function' ? template() : template);
+      var event = new CustomEvent('elementRenders', {
+          bubbles: true
+      });
+      node.dispatchEvent(event);
+      return node;
+  },
+
+
     /**
      * Is In View?
      * A super simple in viewport check
