@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
 
 /**
  * Admin Body Class
@@ -32,12 +32,12 @@ class AdminBodyClass {
 
     $post_id = 'admin-post-'.$post->ID;
     $page_name = 'admin-'.$post->post_name;
-    $page_template = $page_template_name;
+    $page_template = $page_name;
     $classes;
     $classes = ' ' . $screen->post_type . ' ' . $post_id . ' ' . $page_name . '';
 
     // Had issues returning page template name, so...
-    if (basename( get_page_template() ) === 'page.php' OR basename(get_page_template()) === 'mast.php'){
+    if (basename( get_page_template() ) === 'page.php'){
       $classes .= ' admin-page-template-default';
     }
 

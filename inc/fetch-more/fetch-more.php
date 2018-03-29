@@ -17,7 +17,7 @@ function wp_fetch_more() {
   if( is_home() || is_archive() || is_tax() ) {
 
     /**
-     * Load script. 
+     * Load script.
      */
     wp_enqueue_script('wp_fetch_more_js',
     get_template_directory_uri() . '/inc/fetch-more/fetch-more.js', '', false, true );

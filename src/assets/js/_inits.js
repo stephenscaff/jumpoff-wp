@@ -1,9 +1,18 @@
 /**
- * Are We Good Test
+ * Site Inits object
  */
-function hello(text){
-  return console.log(text);
-}
+var site = {
 
-let name = 'Playboy';
-hello(`Sup ${name}. Them Components are importing.`);
+  /**
+  * Hellooo
+  */
+  hello: function(text) {
+    return console.log(text);
+  },
+};
+
+/**
+ * Test Test
+ */
+var name = 'Doood';
+site.hello(`Sup ${name}. Them inits are working.`);

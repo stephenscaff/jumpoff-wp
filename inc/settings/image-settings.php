@@ -19,31 +19,37 @@ if (!class_exists('WpImageSettings ')) {
    /**
     * Medium Size
     */
-   const THUMB_WIDTH = 500;
-   const THUMB_HEIGHT = 500;
+   const THUMB_WIDTH = "";
+   const THUMB_HEIGHT = "";
 
    /**
     * Medium Size
     */
-   const MED_WIDTH = 1250;
-   const MED_HEIGHT = 750;
+   const MED_WIDTH = "";
+   const MED_HEIGHT = "";
 
    /**
     * Large Size
     */
-   const LG_WIDTH = 1500;
-   const LG_HEIGHT = 900;
-
-
+   const LG_WIDTH = "";
+   const LG_HEIGHT = "";
 
    /**
     * Masthead Size
     */
-   const MAST_WIDTH = 2000;
-   const MAST_HEIGHT = 1200;
+   const MAST_WIDTH = "";
+   const MAST_HEIGHT = "";
 
   // Constructor
   function __construct() {
+    $this->THUMB_WIDTH = 500;
+    $this->THUMB_HEIGHT =500;
+    $this->MED_WIDTH = 1250;
+    $this->MED_HEIGHT = 750;
+    $this->LG_WIDTH = 1500;
+    $this->LG_HEIGHT = 900;
+    $this->MAST_WIDTH = 2000;
+    $this->MAST_HEIGHT = 1200;
     add_filter('intermediate_image_sizes_advanced',  array($this, 'remove_image_sizes'));
     add_filter('init',  array($this, 'medium_images'));
     add_filter('init',  array($this, 'large_images'));
@@ -73,8 +79,8 @@ if (!class_exists('WpImageSettings ')) {
    *  1250x750
    */
     function thumb_images(){
-      update_option( 'thumb_size_w', THUMB_WIDTH );
-      update_option( 'thumb_size_h', THUMB_HEIGHT );
+      update_option( 'thumb_size_w', $this->THUMB_WIDTH );
+      update_option( 'thumb_size_h', $this->THUMB_HEIGHT );
 
       // Add cropping capability
       if (false === get_option('thumb_crop')) {
@@ -90,8 +96,8 @@ if (!class_exists('WpImageSettings ')) {
  *  1250x750
  */
   function medium_images(){
-    update_option( 'medium_size_w', MED_WIDTH );
-    update_option( 'medium_size_h', MED_HEIGHT );
+    update_option( 'medium_size_w', $this->MED_WIDTH );
+    update_option( 'medium_size_h', $this->MED_HEIGHT );
 
     // Add cropping capability
     if(false === get_option('medium_crop')) {
@@ -107,8 +113,8 @@ if (!class_exists('WpImageSettings ')) {
  *  1500x900
  */
   function large_images(){
-    update_option( 'large_size_w', LG_WIDTH );
-    update_option( 'large_size_h', LG_HEIGHT );
+    update_option( 'large_size_w', $this->LG_WIDTH );
+    update_option( 'large_size_h', $this->LG_HEIGHT );
 
     if(false === get_option("large_crop")) {
          add_option('large_crop', '1');
@@ -128,7 +134,7 @@ if (!class_exists('WpImageSettings ')) {
  */
   function add_image_sizes(){
     // New Image: 'Mast'
-    add_image_size( 'mast', MAST_WIDTH, MAST_HEIGHT, true );
+    add_image_size( 'mast', $this->MAST_WIDTH, $this->MAST_HEIGHT, true );
   }
 
 /**

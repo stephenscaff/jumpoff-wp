@@ -48,8 +48,9 @@ const JS = folder.src + 'assets/js/app.js',
 /**
  * Compress Images
  */
-gulp.task('images', () => {
-  const out = folder.build + 'assets/images/';
+gulp.task('build-images', () => {
+
+  let out = folder.build + 'assets/images/';
 
   return gulp.src(IMAGES)
     .pipe(newer(out))
@@ -60,10 +61,11 @@ gulp.task('images', () => {
 
 
 /**
- * Videos
+ * Build Videos
  */
-gulp.task('videos', () => {
-  const out = folder.build + 'assets/videos/';
+gulp.task('build-videos', () => {
+
+  let out = folder.build + 'assets/videos/';
 
   return gulp.src(VIDEOS)
     .pipe(gulp.dest(out));
@@ -73,7 +75,8 @@ gulp.task('videos', () => {
  * SVG to PHP for partial includes
  */
 gulp.task('svg2php', () => {
-  const out = folder.build + 'assets/images/';
+
+  let out = folder.build + 'assets/images/';
 
   return gulp.src(SVG)
     .pipe(rename({ extname: '.php' }))
@@ -81,11 +84,13 @@ gulp.task('svg2php', () => {
 });
 
 /**
- * SCSS Tasks
+ * Build CSS/SCSS
  */
-gulp.task('scss', () => {
+gulp.task('build-css', () => {
 
-  var onError = function(err) {
+  let out = folder.build + 'assets/css/';
+
+  let onError = function(err) {
     notify.onError({
       title:    "CSS Error",
       subtitle: "Nah Bruv!",
@@ -112,14 +117,17 @@ gulp.task('scss', () => {
   }))
   .pipe(rename({ suffix: '.min' }))
   .pipe(sourcemaps.write('.'))
-  .pipe(gulp.dest(folder.build + 'assets/css/'))
+  .pipe(gulp.dest(out))
 });
 
 
 /**
  * Admin Theme SCSS Tasks
  */
-gulp.task('wp_admin_scss', () => {
+gulp.task('build-admin-css', () => {
+
+  let out = folder.build + 'inc/admin/admin-theme/assets/css/';
+
   const onError = function(err) {
     notify.onError({
         title:    "CSS Error",
@@ -143,14 +151,16 @@ gulp.task('wp_admin_scss', () => {
   .pipe(autoprefixer())
   .pipe(rename({ suffix: '.min' }))
   //.pipe(sourcemaps.write('.'))
-  .pipe(gulp.dest(folder.build + 'inc/admin/admin-theme/assets/css/'))
+  .pipe(gulp.dest(out))
 });
 
 
 /**
  * JavaScript
  */
-gulp.task('js', () => {
+gulp.task('build-js', () => {
+
+  let out = folder.build + 'assets/js/';
 
   var onError = function(err) {
     notify.onError({
@@ -174,13 +184,15 @@ gulp.task('js', () => {
     }))
     .pipe(rename({ suffix: '.min' }))
     //.pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(folder.build + 'assets/js/'));
+    .pipe(gulp.dest(out));
 });
 
 /**
  * Jquery
  */
-gulp.task('jquery', () => {
+gulp.task('build-jquery', () => {
+
+  let out = folder.build + 'assets/js/';
 
   return gulp.src(JQUERY)
     .pipe(include())
@@ -226,13 +238,13 @@ gulp.task('jquery', () => {
  * Run Tasks
  */
 gulp.task('run', [
-  'images',
-  'videos',
-  'scss',
-  'js',
-  'jquery',
+  'build-images',
+  'build-videos',
+  'build-css',
+  'build-js',
+  'build-jquery',
   'svg2php',
-  'wp_admin_scss'
+  'build-admin-css'
 ]);
 
 /**
@@ -240,13 +252,13 @@ gulp.task('run', [
  */
 gulp.task('watch', () => {
 
-  gulp.watch(folder.src + 'assets/images/**/*', ['images']);
-  gulp.watch(folder.src + 'assets/scss/**/*', ['scss']);
-  gulp.watch(folder.build + 'inc/admin/admin-theme/assets/scss/**/*', ['wp_admin_scss']);
-  gulp.watch(folder.src + 'assets/js/**/*', ['js']);
-  gulp.watch(folder.src + 'assets/js/**/*', ['jquery']);
+  gulp.watch(folder.src + 'assets/images/**/*', ['build-images']);
+  gulp.watch(folder.src + 'assets/scss/**/*', ['build-css']);
+  gulp.watch(folder.build + 'inc/admin/admin-theme/assets/scss/**/*', ['build-admin-css']);
+  gulp.watch(folder.src + 'assets/js/**/*', ['build-js']);
+  gulp.watch(folder.src + 'assets/js/**/*', ['build-jquery']);
   gulp.watch(folder.src + 'assets/images/**/*', ['svg2php']);
-  gulp.watch(folder.src + 'assets/videos/**/*', ['videos']);
+  gulp.watch(folder.src + 'assets/videos/**/*', ['build-videos']);
 
 });
 
