@@ -19,6 +19,7 @@ function jumpoff_text_limit($string, $length, $replacer) {
   return $string;
 }
 
+
 /**
  *  jumpoff_excerpt
  *
@@ -36,6 +37,7 @@ function jumpoff_excerpt($characters, $rep='...') {
   $shortened_excerpt = jumpoff_text_limit($excerpt, $characters, $rep);
   return $shortened_excerpt;
 }
+
 
 /**
  *  jumpoff_title
@@ -58,6 +60,7 @@ function jumpoff_title($characters, $rep='...') {
   return $shortened_title;
 }
 
+
 /**
  *  jumpoff_title_firstword
  *  Get first work from title
@@ -68,15 +71,18 @@ function jumpoff_title_firstword(){
   return $title;
 }
 
+
 /**
  * jumpoff_vid_embed
  *
  * use embed filter to wrap video oEmbeds
  */
+add_filter('embed_oembed_html', 'jumpoff_vid_embed', 99, 4);
+
 function jumpoff_vid_embed($html, $url, $attr, $post_id) {
   return '<div class="flex-vid">' . $html . '</div>';
 }
-add_filter('embed_oembed_html', 'jumpoff_vid_embed', 99, 4);
+
 
 
 /**

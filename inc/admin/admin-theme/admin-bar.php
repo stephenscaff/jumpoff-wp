@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Admin Bar
@@ -32,7 +32,7 @@ class AdminBar{
     $wp_admin_bar->remove_menu('comments');         // Remove the comments link
     $wp_admin_bar->remove_menu('new-content');      // Remove the content link
   }
-
+  
   /**
    * Remove Front End Admin Bar
    */

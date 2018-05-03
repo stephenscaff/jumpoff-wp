@@ -3,6 +3,19 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
 
 /**
+ * Remove Wp's Auto P
+ */
+function jumpoff_unautop($str) {
+  $str = str_replace("\n", "", $str);
+  $str = str_replace("<p>", "", $str);
+  $str = str_replace(array("<br />", "<br>", "<br/>"), "\n", $s);
+  $str = str_replace("</p>", "\n\n", $s);
+
+  return $str;
+}
+
+
+/**
  *  jumpoff_format_dashes
  *  Builds id friedly string by replacing whitespace with dashes
  *  and converting to lowercase
@@ -20,6 +33,7 @@ function jumpoff_format_dashes($str) {
 
   return $str;
 }
+
 
 /**
  *  jumpoff_line_wrap ()
@@ -46,16 +60,4 @@ function jumpoff_line_wrap ( $textarea, $type="list" ){
     }
   }
   return $output;
-}
-
-/**
- * Remove Wp's Auto P
- */
-function jumpoff_unautop($str) {
-  $str = str_replace("\n", "", $str);
-  $str = str_replace("<p>", "", $str);
-  $str = str_replace(array("<br />", "<br>", "<br/>"), "\n", $s);
-  $str = str_replace("</p>", "\n\n", $s);
-
-  return $str;
 }

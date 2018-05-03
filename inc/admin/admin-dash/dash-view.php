@@ -28,9 +28,21 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
   <section class="dash-cards">
 
     <article class="dash-card">
+      <a class="dash-card__link" href="<?php echo site_url( '' ); ?>" target="_blank">
+        <div class="dash-card__content">
+          <i class="dash-card__icon icon-open-in-browser"></i>
+
+          <h3 class="dash-card__title">Launch Site</h3>
+
+          <p class="dash-card__text">Go to the Site's Home Page.</p>
+        </div>
+      </a>
+    </article>
+
+    <article class="dash-card">
       <a class="dash-card__link" href="<?php echo admin_url( 'admin.php?page=company-contacts' ); ?>">
         <div class="dash-card__content">
-          <i class="dash-card__icon icon-phone-handset"></i>
+          <i class="dash-card__icon icon-phone-talk"></i>
 
           <h3 class="dash-card__title">Edit Contacts</h3>
 
@@ -42,7 +54,7 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
     <article class="dash-card">
       <a class="dash-card__link" href="<?php echo admin_url( 'edit.php?post_type=page' ); ?>">
         <div class="dash-card__content">
-          <i class="dash-card__icon icon-file-empty"></i>
+          <i class="dash-card__icon icon-pages"></i>
 
           <h3 class="dash-card__title">Manage Pages</h3>
 
@@ -56,9 +68,33 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
         <div class="dash-card__content">
           <i class="dash-card__icon icon-tag"></i>
 
-          <h3 class="dash-card__title">Articles</h3>
+          <h3 class="dash-card__title">Articles / News</h3>
 
           <p class="dash-card__text">Add new posts / news stories</p>
+        </div>
+      </a>
+    </article>
+
+    <article class="dash-card">
+      <a class="dash-card__link" href="<?php echo admin_url( 'edit.php' ); ?>">
+        <div class="dash-card__content">
+          <i class="dash-card__icon icon-tag"></i>
+
+          <h3 class="dash-card__title">Some Post Type</h3>
+
+          <p class="dash-card__text">Add new whateves</p>
+        </div>
+      </a>
+    </article>
+
+    <article class="dash-card">
+      <a class="dash-card__link" href="<?php echo admin_url( 'edit.php' ); ?>">
+        <div class="dash-card__content">
+          <i class="dash-card__icon icon-tag"></i>
+
+          <h3 class="dash-card__title">Some Post Type</h3>
+
+          <p class="dash-card__text">Add new whateves</p>
         </div>
       </a>
     </article>

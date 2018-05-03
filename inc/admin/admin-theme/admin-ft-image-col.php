@@ -12,24 +12,23 @@ class FeaturedImageColumn{
    * Constructor
    */
   function __construct(){
-    add_filter('manage_posts_columns', array( $this, 'posts_columns'), 5 );
-    add_action('manage_posts_custom_column', array( $this, 'posts_custom_columns'), 5, 2 );
-    //add_action('manage_test_posts_custom_column', array( $this, 'posts_custom_columns'), 5, 2 );
+    add_filter('manage_posts_columns', array( $this, 'add_column'), 5 );
+    add_action('manage_posts_custom_column', array( $this, 'add_image'), 5, 2 );
   }
 
   /**
-   * Order Remaining Menu Items
+   * Add Col
    */
-  function posts_columns($defaults){
+  function add_column($defaults){
     $defaults['column_post_thumbs'] = __('Featured Image');
     return $defaults;
   }
 
   /**
-   * Order Remaining Menu Items
+   * Add Ft Image to Col
    */
-  function posts_custom_columns($column_name, $id){
-    if($column_name === 'column_post_thumbs'){
+  function add_image($column_name, $id){
+    if ($column_name === 'column_post_thumbs'){
       echo the_post_thumbnail( 'featured-thumbnail');
     }
   }

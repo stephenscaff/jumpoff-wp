@@ -2,7 +2,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-require_once('class-wp-max-image-size.php');
+require_once('max-upload-size.php');
 require_once('cleanup.php');
 require_once('image-settings.php');
 require_once('permalinks.php');

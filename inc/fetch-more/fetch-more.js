@@ -32,6 +32,7 @@ var FetchMore = (function() {
       this.bindEvents();
     },
 
+    
     /**
      * Bind our events
      */
@@ -51,6 +52,7 @@ var FetchMore = (function() {
 
       FetchMore.checkLink();
     },
+
 
     /**
      * Gets Posts from available pagination
@@ -72,6 +74,7 @@ var FetchMore = (function() {
       });
     },
 
+
     /**
      * Display posts
      * Uses a doc fragment to store and add
@@ -90,6 +93,7 @@ var FetchMore = (function() {
       postsContainer.insertAdjacentHTML('beforeend', fetchedPostsHTML);
     },
 
+
     /**
      * Hide link if no more posts
      */
@@ -100,6 +104,7 @@ var FetchMore = (function() {
       }
     },
 
+
     /**
      * Begins animation, update btn text
      */
@@ -107,6 +112,7 @@ var FetchMore = (function() {
       linkContainer.classList.add('is-animating');
       linkBtn.innerHTML = linkLoadingText;
     },
+
 
     /**
      * Ends our animation, updates btn text
@@ -117,6 +123,7 @@ var FetchMore = (function() {
        linkBtn.innerText = linkText;
       }, 900);
     },
+
 
     /**
      * Updates paginaion pages

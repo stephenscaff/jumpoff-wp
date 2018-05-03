@@ -1,4 +1,7 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /**
  * Limit Posts
  * Creates a filter for offsetting posts and ajaxed pagination.

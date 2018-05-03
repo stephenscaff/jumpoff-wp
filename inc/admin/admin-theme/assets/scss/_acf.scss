@@ -150,6 +150,12 @@ table.acf_input tbody tr td.label{
   color: #888;
 }
 
+body.product .acf-field-message .acf-label label{
+  margin-top: 0.6em;
+  font-weight: 400;
+  font-size: 1em;
+}
+
 //----------------------------------------------
 //  Select 2 from ACF
 //-----------------------------------------------
@@ -163,4 +169,8 @@ table.acf_input tbody tr td.label{
 .select2-container .select2-choice .select2-arrow b{
   top: 12% !important;
   position: relative;
+}
+
+.select2-container-multi .select2-input{
+  border: 0 !important;
 }

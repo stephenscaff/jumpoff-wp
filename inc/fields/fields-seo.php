@@ -1,15 +1,16 @@
 <?php
-/**
- * Fields - SEO
- * Location: all pages, posts and post types
- */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+/**
+ * Fields - SEO
+ * Location: all pages, posts and post types. Edit as needed.
+ */
+
 $seo_fields = new StoutLogic\AcfBuilder\FieldsBuilder('seo', [
-'key' => 'seo',
-'position' => 'normal',
-'menu_order' => '13',
+  'key' => 'seo',
+  'position' => 'normal',
+  'menu_order' => '13',
 ]);
 
 $seo_fields

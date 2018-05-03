@@ -1,7 +1,7 @@
 <?php
-# Taxonomies and Categories:
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 
 /**
  * Jumpoff term
@@ -46,6 +46,7 @@ function jumpoff_term($taxonomy, $post_id = '') {
 }
   return (object)$term_obj;
 }
+
 
 /**
  * Terms
@@ -121,6 +122,7 @@ function jumpoff_terms($taxonomy, $type) {
    }
  }
 
+ 
  /**
   *  Categories List
   *  Returns cats wtih content to output as list

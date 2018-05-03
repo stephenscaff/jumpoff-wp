@@ -3,7 +3,9 @@
 // Main PageWrapper
 //----------------------------------------------
 #wpwrap{
-  margin-top: 1.3em;
+  @media (min-width: 32em) {
+    margin-top: 1.3em;
+  }
 }
 
 //----------------------------------------------
@@ -19,8 +21,10 @@
 #adminmenu,
 #adminmenu .wp-submenu,
 #adminmenuback, #adminmenuwrap {
-  background-color: #fff !important;
+  //background-color: #fff !important;
+  background-color: #f1f1f1 !important;
   width: $sidebar-width;
+  border-right: 1px solid #ddd;
 }
 #adminmenu .wp-submenu{
   left: $sidebar-width - 0.75em;

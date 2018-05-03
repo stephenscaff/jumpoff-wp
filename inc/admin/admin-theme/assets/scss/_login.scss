@@ -3,7 +3,7 @@
 //-----------------------------------------------
 .login{
   //font-family: $font-header;
-  background-color: $color-lightgrey;
+  background-color: #eee !important;
 }
 
 //----------------------------------------------
@@ -12,8 +12,9 @@
 .login h1 {
   text-align: center;
   margin: 0 auto;
-  display: block; 
+  display: block;
   outline: none;
+  display: none;
 
   &:focus{
     border: 0;
@@ -30,7 +31,7 @@
     outline: none;
     overflow: visible;
     opacity: 1;
-    background-image: url(http://url.com/theme-name/wp-content/themes/partner-portal/assets/images/login/logo-alpha.png) !important;
+    background-image: url(http://127.0.0.1/cb-branch-app/assets/images/svgs/logo-cb.svg) !important;
     background-size: 9em;
     background-position: 50%;
   }
@@ -51,12 +52,16 @@
       padding: 4em 2em 6em;
     }
   }
-
+  svg {
+    width: 24em;
+    margin: 0 auto 1em;
+    display: block;
+  }
   // Labels
   label{
     display: block;
     margin: 0 0 0.5em;
-    font-size: 1.2em;  
+    font-size: 1.2em;
     color: $color-alpha;
   }
 
@@ -74,6 +79,10 @@
     height: 2.85em;
     line-height: 2.85em;
     padding: 0 4em;
+  }
+
+  #backtoblog {
+    display: none;
   }
 }
 

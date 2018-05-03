@@ -1,5 +1,6 @@
 //----------------------------------------------
-//  Hide Main COntent Editor
+//  Admin Dash / Welcome screen view
+//  @see inc/admin-theme
 //-----------------------------------------------
 .dash{
   padding: 1% 1% 1% 0;
@@ -13,10 +14,14 @@
   padding: 0.5em 0 2em;
 
   &__title{
-    font-size: 3em;
+    font-size: 2em;
     font-weight: 400;
     line-height: 1.2;
     color: $color-alpha;
+
+    @media (min-width: 46em) {
+      font-size: 2.7em;
+    }
   }
 
   &__text{
@@ -40,24 +45,27 @@
 //  Dash Card
 //-----------------------------------------------
 .dash-card{
-  width: 100%;
-  flex-basis: 100%;
+  //width: 100%;
+  // flex-basis: 100%;
   max-width: 35em;
   position: relative;
   display: block;
   padding: 1em;
+  width:  calc(46% - 1em);;
+  flex-basis:  calc(46% - 1em);;
+  max-width: calc(46% - 1em);;
 
-
-  @media (min-width: $mq-med){
-    width:  46%;
-    flex-basis:  46%;
-    max-width: 46%;
-  }
 
   @media (min-width: $mq-large){
     width: 29%;
     flex-basis: 29%;
     max-width: 29%;
+
+    .is-halfs & {
+      width:  46%;
+      flex-basis:  46%;
+      max-width: 46%;
+    }
   }
 
   &__link{
@@ -74,6 +82,10 @@
     &:hover{
       box-shadow: 0 0 0 1px #5b9dd9, 0 0 2px 1px rgba(30,140,190,.8);
     }
+
+    .is-halfs & {
+      min-height: 23em;
+    }
   }
 
   &__content{
@@ -81,7 +93,8 @@
   }
 
   &__icon{
-    font-size: 3.5em;
+    font-size: 3em;
+    color: #dee2e4;
   }
 
   &__text{

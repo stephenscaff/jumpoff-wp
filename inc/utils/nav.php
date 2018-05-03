@@ -15,6 +15,7 @@ function jumpoff_active_class($page_name){
   }
 }
 
+
 /**
  *   Gets page link.
  *   For use with our custom navigations

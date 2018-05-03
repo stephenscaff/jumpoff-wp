@@ -9,6 +9,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 $autoload = get_template_directory().'/vendor/autoload.php';
 
+/**
+ * Throw warning if not loaded.
+ */
 if (is_file($autoload)) {
   require_once( $autoload);
 } else {

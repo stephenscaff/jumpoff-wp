@@ -12,13 +12,11 @@
 //  Hide Main COntent Editor for module pags
 //----------------------------------------------
 .admin-contact,
-.admin-about,
 .admin-home,
 .admin-careers,
 .admin-contact,
 .admin-page-mast-modules,
-.post-type-page:not(.admin-page-template-default),
-.post-type-page:not(.admin-page-template-mast) {
+.admin-kiosk {
   #postdivrich{
     display: none;
   }
@@ -43,21 +41,20 @@
 }
 
 //----------------------------------------------
-//  Hide User Fields that we can't unhook
-//----------------------------------------------
-tr.user-url-wrap,
-.user-description-wrap,
-.user-rich-editing-wrap,
-.user-comment-shortcuts-wrap,
-.user-admin-bar-front-wrap {
-    display: none !important;
-}
-
-//----------------------------------------------
 //  Hide Categorey Tabs
 //  Removes that pointless "most used" tabs on cat/tax boxes
 //-----------------------------------------------
 .category-tabs {
   margin: 8px 0 5px;
   display: none;
+}
+
+
+//----------------------------------------------
+//  Banker Role css hides
+//-----------------------------------------------
+.admin-kiosk.role-banker {
+   #acf-group_mast {
+    display: none !important;
+  }
 }

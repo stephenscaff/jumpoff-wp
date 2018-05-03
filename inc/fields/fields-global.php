@@ -37,12 +37,14 @@ $title_field = new FieldsBuilder('title');
 $title_field
   ->addText('title');
 
+
 /**
  * Pre Titles
  */
 $pretitle_field = new FieldsBuilder('pretitle');
 $pretitle_field
   ->addText('pretitle');
+
 
 /**
  * Content
@@ -53,6 +55,7 @@ $content_field
     'rows' =>  '4'
   ]);
 
+  
 /**
  * Headings
  */

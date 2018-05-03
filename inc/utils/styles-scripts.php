@@ -7,19 +7,31 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
  */
 class ScriptStyleLoader{
 
+  /**
+   * @var string
+   */
   const JQUERY = 'jquery';
 
+  /**
+   * @var string
+   */
   const JUMPOFF_JS = 'jumpoff_js';
 
+  /**
+   * @var string
+   */
   const JUMPOFF_STYLES = 'jumpoff_styles';
 
+  /**
+   * @var string
+   */
   const JUMPOFF_FONTS = 'jumpoff_fonts';
+
 
   /**
    * Constructor
    */
-  function __construct()
-  {
+  function __construct() {
     add_action( 'wp_enqueue_scripts', array( $this, 'styles' ));
     add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ));
     add_filter( 'script_loader_tag', array($this, 'async_scripts' ), 10, 2 );
@@ -27,11 +39,11 @@ class ScriptStyleLoader{
 		add_filter( 'script_loader_src', array( $this, 'remove_version') );
   }
 
+
   /**
    * Styles Loader
    */
-  function styles()
-  {
+  function styles() {
     if ( !is_admin() )
     {
       wp_register_style( self::JUMPOFF_STYLES, get_template_directory_uri() . '/assets/css/app.min.css', false );
@@ -41,13 +53,12 @@ class ScriptStyleLoader{
     }
   }
 
+
   /**
-   * SCripts Loader
+   * Scripts Loader
    */
-  function scripts()
-  {
-    if ( !is_admin() )
-    {
+  function scripts() {
+    if ( !is_admin() ) {
       wp_deregister_script( self::JQUERY );
       wp_register_script( self::JQUERY, get_template_directory_uri() . '/assets/js/jquery.min.js', '', false, true );
       wp_register_script( self::JUMPOFF_JS, get_template_directory_uri() . '/assets/js/app.min.js', array( 'jquery' ), false, true );
@@ -57,30 +68,29 @@ class ScriptStyleLoader{
     }
   }
 
-  function remove_version($src)
-  {
-		if ( strpos( $src, 'ver=' ) )
-    {
+
+  /**
+   * Remove Versions for security
+   */
+  function remove_version($src) {
+		if ( strpos( $src, 'ver=' ) ) {
 			$src = remove_query_arg( 'ver', $src );
 		}
 		return $src;
   }
 
+
   /**
    * Asynch Select JS
    */
-	function async_scripts( $tag, $handle )
-  {
-		if ($handle === self::JUMPOFF_JS)
-    {
+	function async_scripts( $tag, $handle ){
+		if ($handle === self::JUMPOFF_JS)  {
 			return str_replace( 'src', ' async="async" src', $tag );
 		}
-		elseif ($handle === self::JQUERY)
-    {
+		elseif ($handle === self::JQUERY)  {
 			return $tag;
 		}
-		else
-    {
+		else  {
 			return $tag;
 		}
   }
@@ -88,10 +98,11 @@ class ScriptStyleLoader{
 
 new ScriptStyleLoader;
 
+
 /**
  * Stop CF7 From gettin all global
  */
-add_action( 'wp_enqueue_scripts', 'jumpoff_cf7_dequeue', 99 );
+#add_action( 'wp_enqueue_scripts', 'jumpoff_cf7_dequeue', 99 );
 
 function jumpoff_cf7_dequeue()
 {

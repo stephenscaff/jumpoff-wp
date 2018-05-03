@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit; 
 
 /**
  *  Taxonomy: Post Functions (posts)
@@ -15,7 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  */
 
 add_action( 'init', 'tax_post_functions');
-
 
 function tax_post_functions() {
   register_taxonomy(

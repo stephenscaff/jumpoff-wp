@@ -24,6 +24,7 @@ $featured_content_module
    //'filters' => array('search', 'testimonai', 'audience'),
   ])
 
+  
 /**
  * Post Cards Module
  */

@@ -1,4 +1,6 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /**
  * CPT ACF
  *
@@ -8,10 +10,6 @@
  * @package   Jumpoff
  * @version   1.0
  */
-
-if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
-
-
 add_action( 'init', 'ctp_acf_options_pages', 99 );
 
 function ctp_acf_options_pages() {

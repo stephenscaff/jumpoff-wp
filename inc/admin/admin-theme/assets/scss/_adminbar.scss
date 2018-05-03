@@ -2,12 +2,13 @@
 // WP Admin Bar
 //----------------------------------------------
 #wpadminbar {
+  height: auto !important;
 
   &{
     background:$color-alpha;
     height:auto
   }
-  
+
   .quicklinks .menupop ul li a:focus,
   .quicklinks .menupop ul li a:focus strong,
   .quicklinks .menupop ul li a:hover,
@@ -37,7 +38,7 @@
 
   ul li {
     padding:7px 4px;
-    
+
     &:hover {
       background:darken($color-alpha, 20);
     }
@@ -54,7 +55,7 @@
   }
 
   #adminbarsearchccX:before,
-  .ab-icon:before, 
+  .ab-icon:before,
   .ab-item:before,
   #wp-admin-bar-user-info .username {
     color:#FFF
@@ -67,9 +68,9 @@
     background:transparent
   }
 
-  .ab-top-menu>li.hover>.ab-item, 
-  &.nojq .quicklinks .ab-top-menu>li>.ab-item:focus, 
-  &:not(.mobile) .ab-top-menu>li:hover>.ab-item, 
+  .ab-top-menu>li.hover>.ab-item,
+  &.nojq .quicklinks .ab-top-menu>li>.ab-item:focus,
+  &:not(.mobile) .ab-top-menu>li:hover>.ab-item,
   &:not(.mobile) .ab-top-menu>li>.ab-item:focus{
     background-color: transparent;
   }

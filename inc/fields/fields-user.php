@@ -1,10 +1,11 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /**
- * Fields - SEO
+ * Fields User Avatar
  * Location: all pages, posts and post types
  */
-
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 $user_fields = new StoutLogic\AcfBuilder\FieldsBuilder('user');
 

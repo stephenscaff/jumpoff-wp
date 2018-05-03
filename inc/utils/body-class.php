@@ -51,33 +51,3 @@ function jumpoff_body_class($classes) {
 }
 
 add_filter('body_class', 'jumpoff_body_class');
-
-
-/**
- *  jumpoff_ids()
- *  Retrieves IDs to use in calling fields.
- *  @return: $id (the id of the post)
- *  @example: $postidd = jumpoff_ids();
- */
-function jumpoff_ids() {
-  global $post;
-  $page_for_posts = get_option( 'page_for_posts' );
-  $id="";
-
-  if( !is_object( $post ) )
-     return;
-
-  if (is_post_type_archive()){
-    //$post_type = get_queried_object();
-    $post_type = get_post_type( $post->ID );
-    $cpt = $post_type;
-    $id = "cpt_$cpt";
-  } elseif (is_home()){
-    $id = 'options';
-  } elseif (is_front_page()) {
-    $id = get_option('page_on_front');
-  } else{
-    $id = $post->ID;
-  }
-  return $id;
-}

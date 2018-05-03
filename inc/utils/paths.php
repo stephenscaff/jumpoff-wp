@@ -12,6 +12,7 @@ function jumpoff_img(){
   echo $img_path;
 }
 
+
 /**
  *  jumpoff_path
  *  An asset path helper that gets template path.
@@ -22,6 +23,7 @@ function jumpoff_path(){
   $path = $template_path . '/assets';
   echo $path;
 }
+
 
 /**
  *  jumpoff_svg

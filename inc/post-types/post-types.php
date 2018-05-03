@@ -15,4 +15,4 @@ function jumpoff_flush_rewrite_rules() {
 require_once('tax-post-functions.php');
 
 # Example Content Type - Team
-require_once('post-type-team.php');
+# require_once('post-type-team.php');
