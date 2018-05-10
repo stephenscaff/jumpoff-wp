@@ -2,7 +2,19 @@
 
 ## Just a simple WP and Gulp starter to set it off.
 
-Contains a bit of useful css, senseable scss/js structuring, a js includes system (see src/assets/js/app.js), Handlebars-enabled partials, and error notices.
+The Jumpoff is a fairly opinionated starter for custom Wordpress development. It's a platform for beginning web projects that moves away from the interchangable theme / child theme approach.
+
+Additionally, the Jumpoff aims to reduce over-reliance on 3rd party plugins by baking project features and settings into the starter (via an `inc` directory).
+
+### Features
+
+- Gulp for task running
+- A lightweight front-end framework of sorts, with sensible scss/js structuring and a js includes system (see src/assets/js/app.js),
+- Organization by partials and components
+- A php approach to field management via ACF and Stout Logic's ACF Builder
+- Custom drag and drop modules for content authorship
+- Custom Admin theme (styles and functionality)
+- A small library of useful utilities/helpers
 
 ### Run
 

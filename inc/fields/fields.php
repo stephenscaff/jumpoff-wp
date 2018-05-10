@@ -21,6 +21,8 @@ if (is_file($autoload)) {
 
 require_once('options-contacts.php');
 require_once('options-cpt-indexes.php');
+require_once('fields-vars.php');
+require_once('fields-vars-modules.php');
 require_once('fields-seo.php');
 require_once('fields-subtitle.php');
 require_once('fields-mast.php');
