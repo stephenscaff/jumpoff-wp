@@ -22,7 +22,7 @@
     "gulp-include": "^2.3.1",
     "gulp-notify": "^3.0.0",
     "gulp-plumber": "^1.1.0",
-    "gulp-sourcemaps": "^2.6.0",
+    "gulp-sourcemaps": "^2.6.4",
     "gulp-svgo": "^1.2.5",
     "gulp-uglifyes": "^0.1.2"
   }
