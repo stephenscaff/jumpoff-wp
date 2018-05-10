@@ -16,15 +16,39 @@ Additionally, the Jumpoff aims to reduce over-reliance on 3rd party plugins by b
 - Custom Admin theme (styles and functionality)
 - A small library of useful utilities/helpers
 
+### Dependencies
+- [Node](https://nodejs.org/en/download/) : to run `gulp`.
+- [NPM](https://www.npmjs.com/get-npm) : also to run `gulp`.
+- [Gulp](https://gulpjs.com/) : for compiling, minimizing and linting scss, js, svgs, images, etc.
+- [SCSS/SASS](https://sass-lang.com/) : for css authorship.
+- [WordPress](https://wordpress.org/) : This is a custom Wordpress build
+- [ACF](https://www.advancedcustomfields.com/pro/) : For managing fields, metas, options, etc.
+- [StoutLogic ACF Builder](https://github.com/StoutLogic/acf-builder) : A more sane way to register ACF fields within PHP utils
+
 ### Run
 
-Just run `gulp install --save-dev` from the project directory. Note, moved gulp tasks to only css, js, image, svg stuff. The standard Src, Build, Symlinks, thing became a pain with Wp. This feels slightly less painful.... for now anyway. See `gulpfile.js` for the various tasks and includes.
+Install Gulp
+
+```
+npm install gulp
+```
+
+Install Gulp dependencies
+
+```
+npm install --save-dev
+```
+
+Install Composer dependencies
+
+```
+composer install
+```
+
 
 ### Composer
 
-Loading StoutLogic ACF Builder for registering fields.
-
-Just `composer install`
+Currently Composer is just installing StoutLogic's ACF Builder.
 
 Make sure to run composer first, or the theme can't locate autoload and you'll see a custom error.
 
@@ -34,12 +58,51 @@ Make sure to run composer first, or the theme can't locate autoload and you'll s
 As much as possible, css and js is organized by component, named after it's usage / BEM naming convention. JS files are loaded via `gulp includes` from `js/_app.js`. Most stuff in this project is just ES5 right now. Will probably change that soon.
 
 
-### Fields & Modules
+### Fields
 
-As mentioned above, we're using ACF for fields, but instead of the GUI, were using StoutLogic ACF Builder to define fields via php Helpers
-Additionally, a custom drag-and-drop module system is in place that goes off namings of Flexible content fields.
+The Jumpoff uses ACF for Fields, but actual field authorship is enhanced with [Stout Logic's ACF Builder](https://github.com/StoutLogic/acf-builder).
 
-See `inc/utils/class-acf-modules.php` for the class, and `partials/modules` for the actual module views
+
+After running into various environmental issues with `acf-json`, I opted for a more robust and transferable solution that supports variables for reuse and version control.
+
+Stout Logic provides a fluent API for rapidly creating and configuring ACF Fields in PHP, using a really nice builder pattern.
+
+Here's an example of creating fields for SEO metas:
+
+```
+
+/**
+ * Fields - SEO
+ * Location: Pages, posts, Team post type.
+ */
+$seo_fields = new StoutLogic\AcfBuilder\FieldsBuilder('seo', [
+  'key' => 'seo',
+  'position' => 'normal',
+]);
+
+$seo_fields
+  ->addText('seo_title')
+  ->addTextArea('seo_description',  [
+    'rows' =>  '2'
+  ])
+  ->addImage('seo_image')
+  ->setLocation('post_type', '==', 'page')
+    ->or('post_type', '==', 'post')
+    ->or('post_type', '==', 'team');
+
+add_action('acf/init', function() use ($seo_fields) {
+   acf_add_local_field_group($seo_fields->build());
+});
+```
+
+All Fields are registered in `inc/fields/*`, generally in their own clearly named file. Variables for reuse are housed in `inc/fields/fields-vars.php` and `inc/fields/fields-vars-modules.php`
+
+
+# Modules
+
+The Jumpoff uses ACF's Flexible content fields to create a drag-and-drop module system.
+
+A custom class (`inc/acf-utils/acf-modules.php`) further enhances flexible content fields by mapping them by name to files within the `partials/modules` directory. So, when used, an FC field named `intro-module` with load the module file `intro-module.php`.
 
 Calling the Modules in a template
 
@@ -49,9 +112,7 @@ while (has_sub_field('modules')) :
 endwhile;
 ```
 
-I used to rock `acf-json` but after running into some issues with moving from local to prod and duplicates and file permissions and so on, I opted for a more robust solution. StoutLogic's ACF Builder is nice as it allows you to create fields in php, with sanity, enabling to create a lib of fields that can be reused via variables.
-
-Still figuring out the best way to work with it, but for now I register global fields and 'modules' and apply then as needed. All fields are added from `inc/fields` and global fields are found with `fields-global.php` and `fields-global-modules.php`.
+https://gist.github.com/tdwesten/3402b2c5ef0843df6bb65afbb4835f99
 
 
 ### INC
