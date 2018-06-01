@@ -5,8 +5,8 @@
  * The section for Related Posts.
  *
  * @author    Stephen Scaff
- * @package   jumpoff/content/posts-related
- * @version     1.0
+ * @package   partials
+ * @version   1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -33,7 +33,7 @@ $args = array(
   'post__not_in' => array($post->ID),
   'tax_query' => array()
 );
- 
+
 $posts = get_posts( $args );
 foreach ( $posts as $post ) : setup_postdata( $post );
   get_template_part( 'partials/content/content', 'post' );
@@ -43,4 +43,3 @@ wp_reset_postdata();
     </div>
   </div>
 </section>
-

@@ -2,19 +2,18 @@
 /**
 * Posts module
 *
-* The module for adding posts or post type sections.
+* The module for adding posts or post type sections (example).
 *
 * @author       Stephen Scaff
-* @package      SandP
-* @see          kit/scss/components/_sliders.scss
+* @package      partials/modules
 * @version      1.0
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $post ; 
+global $post ;
 
-//vars 
+//vars
 $title = get_sub_field('heading_title');
 $bg_color = get_sub_field('bg_color');
 $post_type = get_sub_field('post_type');
@@ -32,7 +31,7 @@ if ($ft_or_recent == 'featured'){
     'terms' => array( 'featured' ),
     'operator'    => 'IN',
   );
-} 
+}
 
 $args = array(
   'post_type' => $post_type,

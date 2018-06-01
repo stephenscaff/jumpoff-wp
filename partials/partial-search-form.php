@@ -5,8 +5,8 @@
  * Displays search form
  *
  * @author    Stephen Scaff
- * @package   jumpoff/partials/search-form
- * @version     1.0
+ * @package   partials
+ * @version   1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly

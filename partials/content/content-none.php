@@ -3,7 +3,7 @@
 * Content: None
 *
 * @author    Stephen Scaff
-* @package   content/content-none
+* @package   partials/content
 * @version   1.0
 */
 
@@ -12,7 +12,7 @@ exit; // Exit if accessed directly
 }
 ?>
 
-<section class="nunzo"> 
+<section class="nunzo">
   <div class="grid">
     <div class="nunzo__content">
       <?php if (is_search()) : ?>

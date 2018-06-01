@@ -3,7 +3,7 @@
  * Partial: partials/partial-head
  *
  * @author    Stephen Scaff
- * @package   jumpoff/partials/partial-head
+ * @package   partials
  * @version   1.0
  */
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly

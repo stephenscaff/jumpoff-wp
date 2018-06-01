@@ -4,11 +4,10 @@
  *
  *
  * @author    Stephen Scaff
- * @package   jumpoff/archive
  * @version   1.0
  */
-if ( ! defined( 'ABSPATH' ) ) exit; 
-get_header(); 
+if ( ! defined( 'ABSPATH' ) ) exit;
+get_header();
 $search_query = get_search_query();
 ?>
 
@@ -17,7 +16,7 @@ $search_query = get_search_query();
 <!-- Search Bar -->
 <section class="search-mast">
   <div class="grid-sm">
-    <h1 class="search-mast__title">Search CellNetix</h1>
+    <h1 class="search-mast__title">Search</h1>
     <form id="searchform" role="search" class="search-form" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
       <div class="input-group">
         <input id="s" class="input-group__input input--search" name="s" type="text" placeholder="<?php esc_attr_e('Do another search', 'jumpoff'); ?>">
@@ -41,11 +40,11 @@ $search_query = get_search_query();
 <!-- Search Return Cards -->
 <section class="search-items">
   <div class="grid-sm">
-<?php 
+<?php
   while ( $wp_query->have_posts() ) : $wp_query->the_post();
     get_template_part( 'partials/content/content', 'search' );
-  endwhile; 
-?>  
+  endwhile;
+?>
   </div>
 </section>
 
@@ -54,5 +53,5 @@ $search_query = get_search_query();
 
 </main>
 
-<!-- Footer --> 
+<!-- Footer -->
 <?php get_footer(); ?>

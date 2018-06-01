@@ -3,7 +3,7 @@
  * Partial: partials/partial-header
  *
  * @author    Stephen Scaff
- * @package   jumpoff/partials/partial-header
+ * @package   partials
  * @version    1.0
  */
 

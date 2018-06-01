@@ -5,7 +5,7 @@
  * Outputs default posts loop
  *
  * @author    Stephen Scaff
- * @package   jumpoff/content/posts-related
+ * @package   partials
  * @version     1.0
  */
 
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
   <?php
     if ( have_posts() ): while ( have_posts() ) : the_post();
       get_template_part( 'partials/content/content', 'posts' );
-    endwhile; else: 
+    endwhile; else:
       get_template_part( 'partials/content/content', 'none' );
     endif;
     ?>

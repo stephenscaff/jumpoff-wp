@@ -3,7 +3,7 @@
 * Content: content-Posts
 *
 * @author    Stephen Scaff
-* @package   jumpoff/content/content-posts
+* @package   partials/content
 * @version   1.0
 */
 
