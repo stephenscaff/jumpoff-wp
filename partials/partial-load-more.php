@@ -1,23 +1,21 @@
 <?php
 /**
- * Partial Load More
+ * Partial: Fetch More
  *
- * Calls the load more ajax function
- *  
+ * Trigger for loading more posts via the Fetch API
  *
  * @author    Stephen Scaff
  * @package   partials
  * @version   1.0
- * @see       inc/load-more (for js, css and php)
+ * @see       inc/fetch-more (for js, css and php)
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 ?>
 
-<section class="view-all load-more">
-  <a id="js-load-more" class="load-more__link" href="#">
-    <span class="load-more__btn btn btn--alpha">Load More</span>
-    <span class="load-more__preloader"><span class="preloader preloader--load-more"></span></span>
+<section class="fetch-more">
+  <a id="js-fetch-more" class="fetch-more__link" href="#">
+    <span class="fetch-more__btn btn">Keep Reading</span>
   </a>
 </section>

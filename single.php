@@ -75,14 +75,11 @@ $author_name = get_the_author_meta('display_name');
 
 </article>
 
-
 <?php
 
 // get_template_part( 'partials/partial', 'next' );
 // get_template_part( 'partials/partial', 'related-posts' );
-
 ?>
-
 </main>
 
 <?php endwhile; ?>

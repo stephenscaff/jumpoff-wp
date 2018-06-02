@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 get_header(); ?>
 
-<!-- MAIN --> 
+<!-- MAIN -->
 <main role="main" class="">
 
 <!-- Mast -->
@@ -21,9 +21,9 @@ get_header(); ?>
 <?php get_template_part( 'partials/partial', 'posts' ); ?>
 
 <!-- Pagination -->
-<?php get_template_part( 'partials/posts', 'pagination' );?>
+<?php get_template_part( 'partials/posts', 'fetch-more' );?>
 
 </main>
 
-<!-- Footer  --> 
+<!-- Footer  -->
 <?php get_footer(); ?>

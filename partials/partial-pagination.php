@@ -11,9 +11,8 @@
  * @see       inc/functions/pagination.php
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-  exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 ?>
 <?php
 if ( function_exists('jumpoff_pagination') ) :

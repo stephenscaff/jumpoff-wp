@@ -1,11 +1,14 @@
 <?php
 /**
- * Partial: partials/partial-head
+ * Partial: head
+ *
+ * Head partial including metas, custom seo fields, wp_head(), etc.
  *
  * @author    Stephen Scaff
  * @package   partials
  * @version   1.0
  */
+ 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 // Meta/OG variables

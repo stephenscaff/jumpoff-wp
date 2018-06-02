@@ -1,6 +1,6 @@
 <?php
 /**
- * Template for iconv(in_charset, out_charset, str)                                                                                                                       n
+ * The primary page for posts / blog index.                                                                                                                       n
  *
  * @author    Stephen Scaff
  * @package   page
@@ -22,10 +22,7 @@ get_header(); ?>
 </section>
 
 <!-- Posts -->
-<?php get_template_part( 'partials/partial', 'posts' );?>
-
-<!-- Pagination -->
-<?php get_template_part( 'partials/partial', 'pagination' );?>
+<?php //get_template_part( 'partials/partial', 'posts' );?>
 
 </main>
 

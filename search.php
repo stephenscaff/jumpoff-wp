@@ -40,11 +40,11 @@ $search_query = get_search_query();
 <!-- Search Return Cards -->
 <section class="search-items">
   <div class="grid-sm">
-<?php
-  while ( $wp_query->have_posts() ) : $wp_query->the_post();
-    get_template_part( 'partials/content/content', 'search' );
-  endwhile;
-?>
+  <?php
+    while ( $wp_query->have_posts() ) : $wp_query->the_post();
+      get_template_part( 'partials/content/content', 'search' );
+    endwhile;
+  ?>
   </div>
 </section>
 

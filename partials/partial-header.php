@@ -1,10 +1,12 @@
 <?php
 /**
- * Partial: partials/partial-header
+ * Partial: Header
+ *
+ * Main site/app header and nav section.
  *
  * @author    Stephen Scaff
  * @package   partials
- * @version    1.0
+ * @version   1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -14,6 +16,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 <header class="site-header">
   <div class="grid-xl">
-    <a class="site-header__logo">The JumpOff</a>
+    <a class="site-header__brand">The JumpOff</a>
   </div>
 </header>

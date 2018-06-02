@@ -29,23 +29,27 @@ if (is_post_type('work')){
     <h3 class="color-alpha">More Articles</h3>
   </div>
 </section>
+
 <section class="cards pad bg-lightgrey">
   <div class="grid-lg">
     <div class="cards__grid">
-<?php 
-$args = array(
-  'post_type'        => $post_type,
-  'posts_per_page'   => 3,
-  'post__not_in'     => array ($current_post),
-  'order'            => 'DESC',
-);
-$more_posts = get_posts($args);
-  if ($more_posts) : 
-    foreach ( $more_posts as $post ) : setup_postdata( $post );
-      get_template_part( 'partials/content/content', 'post' ); 
-    endforeach; 
-  endif;
-wp_reset_postdata(); ?>
+    <?php
+    $args = array(
+      'post_type'        => $post_type,
+      'posts_per_page'   => 3,
+      'post__not_in'     => array ($current_post),
+      'order'            => 'DESC',
+    );
+
+    $more_posts = get_posts($args);
+
+    if ($more_posts) :
+      foreach ( $more_posts as $post ) : setup_postdata( $post );
+        get_template_part( 'partials/content/content', 'post' );
+      endforeach;
+    endif;
+    wp_reset_postdata();
+    ?>
     </div>
   </div>
 </section>

@@ -5,12 +5,10 @@
  * For better organization, the actual footer content lives in partials/partial-footer
  *
  * @author    Stephen Scaff
- * @package   jumpoff/footer
+ * @package   wp footer
  * @version   1.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 get_template_part( 'partials/partial', 'footer' );
-
-?>
