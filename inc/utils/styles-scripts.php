@@ -102,15 +102,14 @@ new ScriptStyleLoader;
 /**
  * Stop CF7 From gettin all global
  */
+
 #add_action( 'wp_enqueue_scripts', 'jumpoff_cf7_dequeue', 99 );
 
-function jumpoff_cf7_dequeue()
-{
+function jumpoff_cf7_dequeue() {
   wp_dequeue_script( 'contact-form-7' );
   wp_dequeue_style( 'contact-form-7' );
 
-	if ( is_page_template('templates/form.php') OR is_page( array( 'contact' ) ) )
-  {
+	if ( is_page_template('templates/form.php') OR is_page( array( 'contact' ) ) ) {
 		wp_enqueue_script( 'contact-form-7' );
 		wp_enqueue_style( 'contact-form-7' );
 	}

@@ -9,7 +9,7 @@ v<?php
 * @version      1.0
 */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit; 
 
 $content = get_sub_field('content');
 $grid = get_sub_field('grid_width');

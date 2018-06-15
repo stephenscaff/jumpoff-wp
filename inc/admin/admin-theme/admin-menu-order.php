@@ -48,14 +48,7 @@ class AdminMenus{
       'contacts',                              // Dashboard
       'edit.php?post_type=page',              // Pages
       'edit.php',
-      'edit.php?post_type=recipe',
       'edit.php?post_type=article',
-      'edit.php?post_type=toolkit',
-      'edit.php?post_type=video',
-      'edit.php?post_type=people',
-      'edit.php?post_type=campaign',
-      'edit.php?post_type=report',
-      'edit.php?post_type=stat',
       'upload.php',                           // Media
       'users.php',                            // Users
       'separator2',                           // Second separator

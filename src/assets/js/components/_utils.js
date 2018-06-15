@@ -6,7 +6,12 @@ var Util = (function() {
 
   return {
 
-
+    /**
+     * A render utility
+     * @param {mixed} - A template
+     * @param {Node/Selector} - Where we render our template to
+     * @example Util.render(someTemplate, renderToEl)
+     */
     render: function (template, node) {
       if (!node) return;
       node.innerHTML = (typeof template === 'function' ? template() : template);
@@ -15,7 +20,7 @@ var Util = (function() {
       });
       node.dispatchEvent(event);
       return node;
-  },
+    },
 
 
     /**
@@ -40,18 +45,6 @@ var Util = (function() {
       return isTopVisible;
     },
 
-
-    /**
-     * Is element at top?
-     */
-    isAtTop: function(el) {
-      var distance = $(el).offset().top,
-      $window = $(window);
-
-      if ($window.scrollTop() >= distance/1.5) {
-        return true;
-      }
-    },
 
     /**
      * ForEach Utility
@@ -109,11 +102,11 @@ var Util = (function() {
     },
 
     /**
-     * Animation detection util
+     * Detected when animations end
      */
     whichAnimationEvent: function(){
-      var t,
-          el = document.createElement("fakeelement");
+      var t;
+      var el = document.createElement("fakeelement");
 
       var animations = {
         "animation"      : "animationend",
@@ -130,7 +123,24 @@ var Util = (function() {
     },
 
     /**
-     * loadJSONP
+     * Get the value of a querystring
+     * @param  {String} field The field to get the value of
+     * @param  {String} url   The URL to get the value from (optional)
+     * @return {String}       The field value
+     */
+    getQueryString: function ( field, url ) {
+    	var href = url ? url : window.location.href;
+    	var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
+    	var string = reg.exec(href);
+    	return string ? string[1] : null;
+    },
+
+
+    /**
+     * JSONP Helper to load external data
+     * @param {String} url
+     * @param {function} callback
+     * @param {Object} Invoked context in callback
      */
      loadJSONP: function(url, callback, context){
 
@@ -139,7 +149,6 @@ var Util = (function() {
        if (url.match(/\?/)) url += "&callback="+name;
        else url += "?callback="+name;
 
-       console.log('util url', url)
        // Create script
        var script = document.createElement('script');
        script.type = 'text/javascript';
@@ -150,7 +159,6 @@ var Util = (function() {
          document.getElementsByTagName('head')[0].removeChild(script);
          script = null;
          delete window[name];
-         console.log([name])
        };
 
        // Load JSON

@@ -8,7 +8,7 @@
  * @package   partials
  * @version   1.0
  */
- 
+
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 // Meta/OG variables
@@ -49,9 +49,9 @@ $meta_img = $meta_img_url ? $meta_img_url : jumpoff_ft_img('large');
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="<?php wp_title('|', true, 'right'); bloginfo('name'); ?>"/>
 <meta name="twitter:url" content="<?php echo the_permalink() ?>">
-<meta name="twitter:site" content="@pigeonwisdom"/>
-<meta name="twitter:creator" content="https://twitter.com/CellNetixLabs">
-<meta name="twitter:domain" content="http://cellnetix.com"/>
+<meta name="twitter:site" content="@"/>
+<meta name="twitter:creator" content="https://twitter.com/">
+<meta name="twitter:domain" content="<?php echo get_site_url(); ?>"/>
 <meta name="twitter:image" content="<?php echo $meta_img; ?>" />
 
 <!-- Mobile -->

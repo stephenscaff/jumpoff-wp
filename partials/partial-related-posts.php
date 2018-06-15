@@ -23,22 +23,22 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
   <div class="grid-xl">
     <div class="posts__grid">
 <?php
-$cat = jumpoff_get_cat_slug();
-$args = array(
-  'post_type' => 'post',
-  'category_name'    => $cat,
-  'posts_per_page'   => 3,
-  'orderby'          => 'date',
-  'order'            => 'DESC',
-  'post__not_in' => array($post->ID),
-  'tax_query' => array()
-);
+    $cat = jumpoff_get_cat_slug();
+    $args = array(
+      'post_type' => 'post',
+      'category_name'    => $cat,
+      'posts_per_page'   => 3,
+      'orderby'          => 'date',
+      'order'            => 'DESC',
+      'post__not_in' => array($post->ID),
+      'tax_query' => array()
+    );
 
-$posts = get_posts( $args );
-foreach ( $posts as $post ) : setup_postdata( $post );
-  get_template_part( 'partials/content/content', 'post' );
-endforeach;
-wp_reset_postdata();
+    $posts = get_posts( $args );
+    foreach ( $posts as $post ) : setup_postdata( $post );
+      get_template_part( 'partials/content/content', 'post' );
+    endforeach;
+    wp_reset_postdata();
 ?>
     </div>
   </div>

@@ -5,7 +5,7 @@
  *  Template for displaying a common mast section.
  *
  *  @author    Stephen Scaff
- *  @package   jumpoff/partials/partial-products
+ *  @package   partials
  *  @version    1.0
  *  @see       inc/utils/conditions.php for jumpoff_id() logic that snags relevant post id.
  */

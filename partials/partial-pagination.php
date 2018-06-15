@@ -13,9 +13,6 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-?>
-<?php
 if ( function_exists('jumpoff_pagination') ) :
   jumpoff_pagination();
 endif;
-?>

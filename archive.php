@@ -11,7 +11,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 get_header(); ?>
 
-<!-- MAIN -->
 <main role="main" class="">
 
 <!-- Mast -->

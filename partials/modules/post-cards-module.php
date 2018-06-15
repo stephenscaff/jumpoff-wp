@@ -11,7 +11,7 @@
 * @version      1.0
 */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit; 
 
 $pretitle = get_sub_field('pretitle');
 $title = get_sub_field('title');
