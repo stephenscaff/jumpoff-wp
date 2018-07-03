@@ -1,6 +1,5 @@
 //----------------------------------------------
-//  bg-img-cover()
-//  Background Image setup
+//  Background Image styles
 //----------------------------------------------
 @mixin bg-img($bg_size: cover, $bg_position: 50%){
   background-position: $bg_position;
@@ -9,28 +8,30 @@
 }
 
 //----------------------------------------------
-//  bg-img-abs()
-//  Absolutely positioned bg element
+//  Absolutely positioned background image element.
 //  @requires (mixin) bg-img();
 //----------------------------------------------
-@mixin bg-img-abs($bg_size:cover) {
+@mixin bg-img-abs($bg_size:cover, $bg_position:50%) {
   z-index: 0;
-  position: absolute;
+  position: absolute; 
   height: 100%;
   width: 100%;
   top: 0;
   left: 0;
   overflow:hidden;
-  @include bg-img($bg_size:cover);
+  @include bg-img($bg_size:$bg_size, $bg_position:$bg_position);
 }
 
 //----------------------------------------------
-//  bg-overlay()
-//  Pseduo overlay element
-//  @param: $bg_hex: [$color-dark] - hex value for rgba conversion
-//  @param: $bg_opacity:[0.6] - alpha transparency level
+//  Overlay created via pseduo element
+//
+//  @param $bg_hex - hex value for rgba conversion
+//  @param $bg_opacity - alpha transparency level
 //----------------------------------------------
-@mixin bg-overlay($bg_hex: $color-dark, $bg_opacity: 0.6) {
+@mixin bg-overlay(
+$bg_hex:    $color-dark,
+$bg_opacity: 0.6
+) {
   &:after {
     z-index: 0;
     content: '';
@@ -40,6 +41,35 @@
     height: 100%;
     width: 100%;
     background: rgba($bg_hex, $bg_opacity);
+  }
+}
+
+
+//----------------------------------------------
+//  Overlay linear-gradient element
+//
+//  @param $direct Direction of gradient
+//  @param $start_color - Starting color of gradient
+//  @param $start_percent - Starting percentage fill
+//  @param $end_color - End color of gradient
+//  @param $end_percent - End fill percentage
+//----------------------------------------------
+@mixin bg-overlay-gradient(
+$direction:     right,
+$start_color:   rgba(0,0,0,0.4),
+$start_percent: 20%,
+$end_color:     rgba(0,0,0,0.1),
+$end_percent:   60%
+) {
+  &:after {
+    z-index: 0;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background:linear-gradient(to $direction, $start_color $start_percent, $end_color $end_percent);
   }
 }
 

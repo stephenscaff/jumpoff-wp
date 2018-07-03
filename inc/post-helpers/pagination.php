@@ -12,7 +12,7 @@ function jumpoff_pagination_list() {
   global $wp_query;
 
   // This needs to be an unlikely integer
-  $big = 999999999; 
+  $big = 999999999;
 
   // http://codex.wordpress.org/Function_Reference/paginate_links
   $paginate_links = paginate_links( array(
@@ -25,7 +25,7 @@ function jumpoff_pagination_list() {
     'next_text' => __('Next ›'),
     'type'      => 'list'
   ));
- 
+
   // Display the pagination if more than one page is found
   if ( $paginate_links ) {
     echo $paginate_links;
@@ -36,27 +36,32 @@ function jumpoff_pagination_list() {
  *  Pagination Link Classes
  *  @todo clean this shit up. Make classes or group functions
  */
+ add_filter('next_posts_link_attributes', 'posts_link_class');
+ add_filter('previous_posts_link_attributes', 'posts_link_class');
+
 function posts_link_class() {
   return 'class="pagination__link"';
 }
-add_filter('next_posts_link_attributes', 'posts_link_class');
-add_filter('previous_posts_link_attributes', 'posts_link_class');
+
 
 /**
  *   Pagination Next Link Classes
  */
-function posts_next_link_class() {
-  return 'class="pagination__link--next"';
-}
 add_filter('next_posts_link_attributes', 'posts_next_link_class');
+
+function posts_next_link_class() {
+  return 'class="is--next"';
+}
 
 /**
  *   Pagination Previous Link Classes
  */
-function posts_previous_link_class() {
-    return 'class="pagination__link--previous"';
-}
 add_filter('previous_posts_link_attributes', 'posts_previous_link_class');
+
+function posts_previous_link_class() {
+    return 'class="is-prev"';
+}
+
 
 /**
  *  Pagination
@@ -64,11 +69,13 @@ add_filter('previous_posts_link_attributes', 'posts_previous_link_class');
  *  @todo clean this shit up
  */
 function jumpoff_pagination() {
+
   global $wp_query;
+
   $class = '';
-  if ( !is_paged() ) {
-  $class = 'pagination--first';
-}
+
+  if ( !is_paged() ) $class = 'pagination--first';
+
   if ( $wp_query->max_num_pages > 1 ) { ?>
     <section class="pagination <?php echo $class; ?>">
       <?php previous_posts_link( '

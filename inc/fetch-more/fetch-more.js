@@ -32,7 +32,6 @@ var FetchMore = (function() {
       this.bindEvents();
     },
 
-    
     /**
      * Bind our events
      */
@@ -52,7 +51,6 @@ var FetchMore = (function() {
 
       FetchMore.checkLink();
     },
-
 
     /**
      * Gets Posts from available pagination
@@ -74,7 +72,6 @@ var FetchMore = (function() {
       });
     },
 
-
     /**
      * Display posts
      * Uses a doc fragment to store and add
@@ -93,17 +90,16 @@ var FetchMore = (function() {
       postsContainer.insertAdjacentHTML('beforeend', fetchedPostsHTML);
     },
 
-
     /**
      * Hide link if no more posts
+     * The -1 accounts for initial load not inlcuding maxpages
      */
     checkLink: function() {
       console.log(pageNum, maxPages, nextLink, pageNum);
       if (pageNum >= maxPages) {
-        linkContainer.classList.add('no-posts');
+        linkContainer.classList.add('no-more-posts');
       }
     },
-
 
     /**
      * Begins animation, update btn text
@@ -112,7 +108,6 @@ var FetchMore = (function() {
       linkContainer.classList.add('is-animating');
       linkBtn.innerHTML = linkLoadingText;
     },
-
 
     /**
      * Ends our animation, updates btn text
@@ -123,7 +118,6 @@ var FetchMore = (function() {
        linkBtn.innerText = linkText;
       }, 900);
     },
-
 
     /**
      * Updates paginaion pages

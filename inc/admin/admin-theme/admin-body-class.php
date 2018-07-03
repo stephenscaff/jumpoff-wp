@@ -1,10 +1,9 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Admin Body Class
- * Adds body class to admin pages
  */
 class AdminBodyClass {
 
@@ -29,7 +28,6 @@ class AdminBodyClass {
     // Returns an object that includes the screen’s ID, base, post type, taxonomy
     // @see https://developer.wordpress.org/reference/functions/get_current_screen
     $screen = get_current_screen();
-
     $post_id = 'admin-post-'.$post->ID;
     $page_name = 'admin-'.$post->post_name;
     $page_template = $page_name;

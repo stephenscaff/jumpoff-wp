@@ -8,7 +8,9 @@
 
 //  @note: Can replace universal selector with '& > #{$item}''  ($item:'article')
 //----------------------------------------------
-@mixin flex-grid($xs:null, $sm:null, $med:null, $lg:null, $xl:null, $xxl:null, $pad-vert:0, $pad-horz:0, $align:null) {
+@mixin flex-grid(
+$xs:null, $sm:null, $med:null, $lg:null, $xl:null, $xxl:null,
+$pad-vert:0, $pad-horz:0, $align:null) {
   display: flex;
   flex-direction: row;
   flex-flow: wrap;
@@ -75,7 +77,13 @@
 //  @param $wrap - wrap / no-wrap
 //  @mobile $mobile (boolean) - start row on mobile
 //----------------------------------------------
-@mixin flex-row($align: null, $justify:null, $direction: null, $wrap: wrap, $col-pad:null, $mobile:false){
+@mixin flex-row(
+$align: null,
+$justify:null,
+$direction: null,
+$wrap: wrap,
+$col-pad:null,
+$mobile:false){
   @if $align {
     align-items: $align;
   }
@@ -183,7 +191,15 @@
 //  @param $gam - gab between cols
 //  @param $pad - col padding
 //----------------------------------------------
-@mixin col-grid($sm:null, $med:null, $lg:null, $xl:null, $gap:0,$pad:0, $pad-bottom:0, $break: false){
+@mixin col-grid(
+$sm:null,
+$med:null,
+$lg:null,
+$xl:null,
+$gap:0,
+$pad:0,
+$pad-bottom:0,
+$break: false){
   position: relative;
   display: block;
   margin-left: -$pad;

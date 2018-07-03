@@ -6,10 +6,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Admin Bar
  * Cleans up admin bar, removes it from front end
  */
-class AdminBar{
+class AdminBar {
 
   function __construct(){
-    add_action( 'wp_before_admin_bar_render', array( $this, 'admin_bar'));
+    add_action( 'wp_before_admin_bar_render', array( $this, 'admin_bar') );
     $this->no_front_adminbar();
   }
 
@@ -32,7 +32,7 @@ class AdminBar{
     $wp_admin_bar->remove_menu('comments');         // Remove the comments link
     $wp_admin_bar->remove_menu('new-content');      // Remove the content link
   }
-  
+
   /**
    * Remove Front End Admin Bar
    */

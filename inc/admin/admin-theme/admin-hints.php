@@ -12,6 +12,7 @@ class AdminHints{
 
   function __construct(){
     add_filter( 'admin_post_thumbnail_html', array( $this, 'ft_img_size_hints'));
+    add_filter( 'admin_footer_text', array( $this,  'admin_footer'));
   }
 
   /**
@@ -31,6 +32,13 @@ class AdminHints{
     }
 
     return $content;
+  }
+
+  /**
+   * Admin Footer Message
+   */
+  function admin_footer(){
+    _e( '<span id="footer-thankyou">Developed by <a href="http://urbaninfluence.com" target="_blank">Urban Influence</a></span>' );
   }
 }
 new AdminHints;

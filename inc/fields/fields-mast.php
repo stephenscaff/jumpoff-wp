@@ -15,13 +15,11 @@ $mast_fields = new StoutLogic\AcfBuilder\FieldsBuilder('mast', [
 
 
 $mast_fields
-    ->addText('mast_pretitle')
-    ->addText('mast_title')
-    ->addTextArea('mast_text',  [
-      'rows' =>  '3'
-    ])
-    ->addImage('mast_image')
-    ->setLocation('post_type', '==', 'page');
+    ->addText( 'mast_pretitle' )
+    ->addText( 'mast_title' )
+    ->addTextArea( 'mast_text',  ['rows' =>  '3'] )
+    ->addImage( 'mast_image' )
+    ->setLocation( 'post_type', '==', 'page' );
 
 add_action('acf/init', function() use ($mast_fields) {
    acf_add_local_field_group($mast_fields->build());

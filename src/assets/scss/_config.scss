@@ -54,6 +54,7 @@ $mq-xxl: 115em;
 // Thunderbold goes to 157em
 $mq-xxxl: 130em;
 
+
 //----------------------------------------------
 // Grid
 //----------------------------------------------
@@ -61,8 +62,8 @@ $grid-width:          90%;
 $grid-width-med:      82%;
 $grid-max-width:      60em;
 $grid-max-width-sm:   41em;
-$grid-max-width-lg:   72em;
-$grid-max-width-xl:   95%;
+$grid-max-width-lg:   74em;
+$grid-max-width-xl:   92%;
 
 //----------------------------------------------
 // Spacings (pad/margin)
@@ -112,54 +113,28 @@ $form-color-border: $color-grey;
 $form-pad:  $pad-xs;
 
 //----------------------------------------------
-// Box Shadow scale
-//----------------------------------------------
-$box-shadow-sm: 0 0px 1px 1px rgba(0,0,0,.1);
-$box-shadow-card: 0px 1px 2px 1px rgba(0,0,0,0.05);
-$box-shadow-med: 0 1px 15px 2px rgba(0,0,0,0.05);
-$box-shadow-lg: 0 1px 17px 1px rgba(0,0,0,.1);
-$box-shadow-lg-hover: 0 6px 1em 0.5em rgba(0,0,0,.1);
-$box-shadow-xl: 0 19px 57px 0px rgba(0,0,0,0.1);
-
-
-//----------------------------------------------
 // Z-Index Scale
 //----------------------------------------------
-$z-10: 10;
-$z-9: 9;
-$z-8: 8;
-$z-7: 7;
-$z-6: 6;
-$z-5: 5;
-$z-4: 4;
-$z-3: 3;
-$z-2: 2;
-$z-1: 1;
-$z-0: 0;
-
-//----------------------------------------------
-// Z-Index Application
-//----------------------------------------------
-$z-close-x: $z-10;
-$z-panel: $z-9;
-$z-menu-toggle: $z-8;
-$z-sticky: $z-8;
-$z-site-header: $z-8;
-$z-popup: $z-9;
-$z-popup-overlay: $z-8;
-$z-header: $z-7;
-$z-menu: $z-7;
-$z-filter-nav : $z-9;
-$z-content: $z-5;
-$z-bg-img: $z-1;
-$z-abs-bg: $z-1;
-$z-bg-el: $z-1;
-$z-el-under: $z-1;
+$z-close-x: 10;
+$z-panel: 9;
+$z-popup: 9;
+$z-popup-overlay: 8;
+$z-menu-toggle: 8;
+$z-sticky: 7;
+$z-app-header: 7;
+$z-app-menu:   6;
+$z-filter-nav : 6;
+$z-notice-bar: 5;
+$z-content: 5;
+$z-bg-img: 1;
+$z-abs-bg: 1;
+$z-bg-el: 1;
+$z-el-under: 1;
 
 //----------------------------------------------
 // Box Shadow scale
 //----------------------------------------------
-$box-shadow-sm: 0 0px 1px 1px rgba(0,0,0,0.1);
+$box-shadow-sm: 0 -1px 1px 0px rgba(0,0,0,0.05);
 $box-shadow-med: 0 1px 15px 2px rgba(0,0,0,0.05);
 $box-shadow-lg: 0 1px 17px 1px rgba(0,0,0,0.1);
 $box-shadow-lg-hover: 0 6px 1em 0.5em rgba(0,0,0,0.1);

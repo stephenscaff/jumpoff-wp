@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * Post Image Column
  * Add featured image to posts cols
  */
-class FeaturedImageColumn{
+class FeaturedImageColumn {
 
   /**
    * Constructor

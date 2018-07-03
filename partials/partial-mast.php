@@ -22,9 +22,9 @@ $mast_bg = get_field('mast_bg', $id);
 
 <section class="mast">
   <?php if ($mast_bg) : ?>
-    <figure class="mast__bg js-parallax" style="background-image:url(<?php echo $mast_bg['url'] ?>)"></figure>
+    <figure class="mast__figure" style="background-image:url(<?php echo $mast_bg['url'] ?>)"></figure>
   <?php else : ?>
-    <figure class="mast__bg js-parallax" style="background-image:url(<?php echo jumpoff_ft_img('full'); ?>)"></figure>
+    <figure class="mast__figure" style="background-image:url(<?php echo jumpoff_ft_img('full'); ?>)"></figure>
   <?php endif; ?>
   <div class="grid">
     <div class="mast__content">

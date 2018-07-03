@@ -22,13 +22,16 @@ function jumpoff_unautop($str) {
  *  @return: $classes (string)
  */
 function jumpoff_format_dashes($str) {
-  //Lower case everything
+  # Lower case everything
   $str = strtolower($str);
-  //Make alphanumeric (removes all other characters)
+
+  # Make alphanumeric (removes all other characters)
   $str = preg_replace("/[^a-z0-9_\s-]/", "", $str);
-  //Clean up multiple dashes or whitespaces
+
+  # Clean up multiple dashes or whitespaces
   $str = preg_replace("/[\s-]+/", " ", $str);
-  //Convert whitespaces and underscore to dash
+
+  # Convert whitespaces and underscore to dash
   $str = preg_replace("/[\s_]/", "-", $str);
 
   return $str;
@@ -36,17 +39,19 @@ function jumpoff_format_dashes($str) {
 
 
 /**
- *  jumpoff_line_wrap ()
- *  Gets line breaks from a field and wraps
- *  them in span or list.
+ *  Line Wrapper
+ *  Detects line breaks in string and wraps them 
+ *  in a list or span.
  *
- *  @param   string $type Markup wrapping lines
- *  @return  $output
- *  @example
- *           jumpoff_line_wrap($fieldname, 'span')
+ *  @param    string $str The string / field
+ *  @param    string $type Markup wrapping lines
+ *  @return   string $output
+ *  @example  jumpoff_line_wrap( $fieldname,  'span' )
  */
-function jumpoff_line_wrap ( $textarea, $type="list" ){
-  $lines = explode("\n", $textarea);
+function jumpoff_line_wrap ( $str, $type='list' ){
+
+  $lines = explode("\n", $str);
+
   $output = '';
 
   if ( !empty($lines) ) {

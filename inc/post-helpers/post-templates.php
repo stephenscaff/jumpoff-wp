@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  *  jumpoff_text_limit
@@ -18,7 +18,6 @@ function jumpoff_text_limit($string, $length, $replacer) {
   return (preg_match('/^(.*)\W.*$/', substr($string, 0, $length+1), $matches) ? $matches[1] : substr($string, 0, $length)) . $replacer;
   return $string;
 }
-
 
 /**
  *  jumpoff_excerpt
@@ -38,17 +37,6 @@ function jumpoff_excerpt($characters, $rep='...') {
   return $shortened_excerpt;
 }
 
-
-/**
- * jumpoff_vid_embed
- *
- * use embed filter to wrap video oEmbeds
- */
-add_filter('embed_oembed_html', 'jumpoff_vid_embed', 99, 4);
-
-function jumpoff_vid_embed($html, $url, $attr, $post_id) {
-  return '<div class="flex-vid">' . $html . '</div>';
-}
 
 
 /**
