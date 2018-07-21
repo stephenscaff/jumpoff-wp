@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 <section class="posts pad">
   <div class="grid-xl">
     <div class="posts__grid">
-<?php
+    <?php
     $cat = jumpoff_get_cat_slug();
     $args = array(
       'post_type' => 'post',
@@ -39,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
       get_template_part( 'partials/content/content', 'post' );
     endforeach;
     wp_reset_postdata();
-?>
+    ?>
     </div>
   </div>
 </section>

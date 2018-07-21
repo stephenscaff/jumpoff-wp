@@ -12,19 +12,18 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-//vars
 $id = jumpoff_ids();
 $mast_title = get_field('mast_title', $id);
 $mast_text = get_field('mast_text', $id);
-$mast_bg = get_field('mast_bg', $id);
-
+$mast_img = get_field('mast_image', $id);
+$ft_img = jumpoff_ft_img();
 ?>
 
 <section class="mast">
-  <?php if ($mast_bg) : ?>
-    <figure class="mast__figure" style="background-image:url(<?php echo $mast_bg['url'] ?>)"></figure>
+  <?php if ($mast_img) : ?>
+    <figure class="mast__figure" style="background-image:url(<?php echo $mast_img; ?>)"></figure>
   <?php else : ?>
-    <figure class="mast__figure" style="background-image:url(<?php echo jumpoff_ft_img('full'); ?>)"></figure>
+    <figure class="mast__figure" style="background-image:url(<?php echo $ft_img->url ?>)"></figure>
   <?php endif; ?>
   <div class="grid">
     <div class="mast__content">

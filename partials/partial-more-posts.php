@@ -24,6 +24,7 @@ if (is_post_type('work')){
 }
 
 ?>
+
 <section class="heading bg-lightgrey">
   <div class="grid-lg">
     <h3 class="color-alpha">More Articles</h3>

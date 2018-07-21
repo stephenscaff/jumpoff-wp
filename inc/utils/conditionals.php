@@ -53,6 +53,53 @@ function is_any_post_type( $post = NULL ) {
     return in_array( $current_post_type, $custom_types );
 }
 
+/**
+ * Has More Posts
+ * Checks if current query has pagination
+ * pages so we can print our fetch-more-posts
+ *
+ * @return boolean
+ */
+function has_more_posts() {
+  global $wp_query;
+
+  if ($wp_query->max_num_pages > 1) {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Has Featured Image
+ * Detects if a ft image exists
+ * @var number $id - Post ID
+ * @return boolean
+ */
+function has_ft_img($id) {
+  $ft_img = jumpoff_ft_img('full', $id);
+
+  if ($ft_img->url) {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Is Extended CLass
+ * Counts a fields characaters and adds an
+ * 'is-extended' class.
+ * @return string
+ */
+function is_extended_class($str, $chars = '200') {
+  $class = '';
+  if (strlen($str) > $chars) {
+    $class = 'is-extended';
+  }
+
+  return $class;
+}
+
+
 
 /**
  *  jumpoff_ids()

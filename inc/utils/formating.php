@@ -2,6 +2,24 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
 
+
+
+/**
+ * Join Fields
+ * Coverts an array of style (class name) Fields
+ * to a space seperated grouping.
+ *
+ * @example jumpoff_add_class($class, 'module')
+ * @return string $group - space seperated sting of class names
+ */
+function jumpoff_add_classes($fields){
+  $group = join(' ', $fields);
+
+  return $group;
+}
+
+
+
 /**
  * Remove Wp's Auto P
  */
@@ -40,7 +58,7 @@ function jumpoff_format_dashes($str) {
 
 /**
  *  Line Wrapper
- *  Detects line breaks in string and wraps them 
+ *  Detects line breaks in string and wraps them
  *  in a list or span.
  *
  *  @param    string $str The string / field

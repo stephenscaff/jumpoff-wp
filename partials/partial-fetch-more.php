@@ -13,6 +13,8 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+if (has_more_posts($post->ID)) :
+
 ?>
 
 <section class="fetch-more">
@@ -20,3 +22,5 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     <span class="fetch-more__btn btn">Keep Reading</span>
   </a>
 </section>
+
+<?php endif;

@@ -20,7 +20,7 @@ add_action( 'init', function() {
 
   $args = [
    'public'             => true,
-   'description'        => 'Testimonals from WECU members.',
+   'description'        => 'Testimonals post type example.',
    'labels'             => $labels,
    'show_ui'            => true,
    'menu_position'      => 3,
