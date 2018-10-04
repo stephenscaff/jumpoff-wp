@@ -123,6 +123,14 @@ var Util = (function() {
     },
 
     /**
+     * Trigger Event
+     */
+    triggerEvent: function( elem, event ) {
+      var clickEvent = new Event( event );
+      elem.dispatchEvent( clickEvent );
+    },
+
+    /**
      * Get the value of a querystring
      * @param  {String} field The field to get the value of
      * @param  {String} url   The URL to get the value from (optional)

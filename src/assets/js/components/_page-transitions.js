@@ -14,7 +14,7 @@ var PageTransition = (function() {
 
   var s,
       html = document.querySelector('html'),
-      siteURL = 'http://' + top.location.host.toString();
+      siteURL = location.host.toString();
 
   // The no-trans class
   var noTrans = 'no-trans';
@@ -25,14 +25,13 @@ var PageTransition = (function() {
      * Settings Object
      */
     settings: {
-      //transLinks: document.querySelectorAll('a[href^="' + siteURL + '"], a[href^="/"], a[href^="./"], a[href^="../"]'),
-      transLinks: document.querySelectorAll('a[href^="' + siteURL + '"], a[href^="/"]'),
+      transLinks: document.querySelectorAll('a[href^="http://' + siteURL + '"], a[href^="https://' + siteURL + '"], a[href^="/"]',),
       linkLocation: null,
       html_body: document.querySelectorAll('html, body'),
       html: document.querySelector('html'),
       body: document.querySelector('body'),
-      exitDuration: 1100,
-      entranceDuration: 700,
+      exitDuration: 900,
+      entranceDuration: 400,
       isLoaded: false,
       isMenuLink: false,
     },
@@ -102,24 +101,9 @@ var PageTransition = (function() {
           if (e.metaKey || e.ctrlKey || e.shiftKey) return;
 
           e.preventDefault();
-
-          if (this.classList.contains('site-menu__link')) {
-            console.log('menu Link')
-            //var siteMenu = document.querySelector('.site-menu');
-            var transTest = document.querySelector('.site-menu');
-            s.html.classList.add('is-exiting');
-
-            SiteMenu.close();
-            PageTransition.exit(1300);
-            //
-            // transTest.addEventListener("transitionend", function(event) {
-            //   PageTransition.exit();
-            //   console.log('done')
-            //   PageTransition.redirectPage();
-            // });
-          } else {
-            PageTransition.exit(500);
-          }
+          //$('html, body').animate({scrollTop:0}, 900);
+          //window.scroll({top: 0, left: 0, behavior: 'smooth' });
+          PageTransition.exit(500);
         });
       });
     },

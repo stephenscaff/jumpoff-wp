@@ -29,11 +29,17 @@ function jumpoff_ft_img($size, $post_id = '', $fallback = false) {
   // Set our attached image as the returned related image.
   $img =  $attached_to_post[0];
 
+  // Get Alert
+  $alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
+
   if ( !empty( $img ) && $fallback == true ) {
     $img = jumpoff_random_img();
   }
-
-  return $img;
+  $img_obj = array(
+    'url' => $img,
+    'alt' => $alt
+  );
+  return (object)$img_obj;
 }
 
 /**

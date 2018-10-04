@@ -33,13 +33,14 @@ function jumpoff_unautop($str) {
 }
 
 
+
 /**
- *  jumpoff_format_dashes
+ *  Make Hash ID
  *  Builds id friedly string by replacing whitespace with dashes
  *  and converting to lowercase
  *  @return: $classes (string)
  */
-function jumpoff_format_dashes($str) {
+function jumpoff_make_hash($str) {
   # Lower case everything
   $str = strtolower($str);
 

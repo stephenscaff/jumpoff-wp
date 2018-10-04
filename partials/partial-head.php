@@ -11,19 +11,23 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-// Meta/OG variables
 $ids = jumpoff_ids();
-$meta_author = "Stephen Scaff";
+
+$meta_author = "Jumpoff";
 $meta_site_name = get_bloginfo('name') .' - '. get_bloginfo('description');
-$meta_title = get_post_meta($ids, 'seo_title', true );
+
+# Meta Title
+$meta_title = get_post_meta('seo_title', $ids);
 if (!$meta_title) $meta_title = wp_title('|', false, 'right') . get_bloginfo('name');
 
-$meta_description = get_post_meta($ids, 'seo_description', true );
-if (!$meta_description) $meta_description = 'The Jumpoff is a Wp starter using gulp.';
+# Meta Description
+$meta_description = get_field('seo_description', $ids);
+if (!$meta_description) $meta_description = 'Jumpoff...';
 
-$meta_img_id = get_post_meta( get_the_ID(), 'seo_image', true );
-$meta_img_url = wp_get_attachment_url( $meta_img_id );
-$meta_img = $meta_img_url ? $meta_img_url : jumpoff_ft_img('large');
+# Meta Image
+$meta_img = get_field('seo_image', $ids);
+$meta_img = $meta_img ? $meta_img['url'] : jumpoff_ft_img('large')->url;
+
 
 ?>
 
@@ -57,25 +61,8 @@ $meta_img = $meta_img_url ? $meta_img_url : jumpoff_ft_img('large');
 <!-- Mobile -->
 <meta name="viewport" content="width=device-width, initial-scale = 1, maximum-scale=1" />
 
-<!-- Fav and icons -->
-<link rel="shortcut icon" href="<?php jumpoff_img(); ?>/favicon.ico" type="image/ico" />
-<link rel="apple-touch-icon-precomposed" sizes="152x152" href="<?php jumpoff_img(); ?>/fav-152.png">
-<link rel="apple-touch-icon-precomposed" sizes="120x120" href="<?php jumpoff_img(); ?>/fav-120.png">
-<link rel="apple-touch-icon-precomposed" sizes="60x60" href="<?php jumpoff_img(); ?>/fav-60.png">
-<link rel="apple-touch-icon-precomposed" href="<?php jumpoff_img(); ?>/fav-152.png">
-<link rel="apple-touch-icon" sizes="57x57" href="<?php jumpoff_img(); ?>/favs/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="<?php jumpoff_img(); ?>/favs/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="<?php jumpoff_img(); ?>/favs/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="<?php jumpoff_img(); ?>/favs/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="<?php jumpoff_img(); ?>/favs/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="<?php jumpoff_img(); ?>/favs/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="<?php jumpoff_img(); ?>/favs/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="<?php jumpoff_img(); ?>/favs/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="<?php jumpoff_img(); ?>/favs/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"  href="<?php jumpoff_img(); ?>/favs/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="<?php jumpoff_img(); ?>/favs/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="<?php jumpoff_img(); ?>/favs/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="<?php jumpoff_img(); ?>/favs/favicon-16x16.png">
+<!-- Favs -->
+<?php if (has_site_icon()) : wp_site_icon();  endif; ?>
 
 <!-- Tracking -->
 <script type="text/javascript">

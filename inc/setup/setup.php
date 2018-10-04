@@ -49,9 +49,11 @@ class JumpoffSetup {
     add_filter( 'style_loader_src', array( $this, 'remove_version') );
     add_filter( 'script_loader_src', array( $this, 'remove_version') );
     add_filter( 'script_loader_tag', array($this, 'async_scripts' ), 10, 2 );
-		// add_action( 'after_setup_theme', array( $this, 'menus' ) );
+		add_action( 'after_setup_theme', array( $this, 'menus' ) );
 		add_action( 'after_setup_theme', array( $this, 'supports') );
     add_action( 'init', array( $this, 'permalinks') );
+		add_action( 'init', array( $this, 'cleanup' ) );
+		add_action( 'init', array( $this, 'no_xmlrpc' ) );
 	}
 
 
@@ -60,7 +62,7 @@ class JumpoffSetup {
    */
   public function permalinks() {
     global $wp_rewrite;
-    $wp_rewrite->set_permalink_structure( '/news/%year%/%monthnum%/%postname%/' );
+    $wp_rewrite->set_permalink_structure( '/blog/%year%/%monthnum%/%postname%/' );
   }
 
 
@@ -121,7 +123,10 @@ class JumpoffSetup {
 	public function menus() {
 		register_nav_menus( array(
 		    'nav_menu' => esc_html__( 'Primary Navigation Menu' ),
-		    'footer_menu' => esc_html__( 'Footer Menu' )
+		    'footer_menu_1' => esc_html__( 'Footer Menu 1' ),
+				'footer_menu_2' => esc_html__( 'Footer Menu 2' ),
+				'footer_menu_3' => esc_html__( 'Footer Menu 3' ),
+				'footer_menu_4' => esc_html__( 'Footer Menu 4' )
 		) );
 	}
 
@@ -150,9 +155,34 @@ class JumpoffSetup {
       remove_action('wp_head', 'wlwmanifest_link');
       remove_action('wp_head', 'wp_generator');
       remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
-      remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-      remove_action( 'wp_print_styles', 'print_emoji_styles' );
-      add_filter( 'emoji_svg_url', '__return_false' );
+			remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+			remove_action( 'wp_print_styles', 'print_emoji_styles' );
+			add_filter( 'emoji_svg_url', '__return_false' );
+  }
+
+	/**
+	 * NO XMLRPC
+	 */
+	public function no_xmlrpc(){
+
+    # Remove RSD link from head
+    remove_action('wp_head', 'rsd_link');
+
+    add_filter( 'wp_xmlrpc_server_class', '__return_false' );
+    add_filter('xmlrpc_enabled', '__return_false');
+
+
+    # Disable XMLRPC Class
+    add_filter( 'xmlrpc_methods', function( $methods ) {
+    	unset( $methods['pingback.ping'] );
+    	return $methods;
+    });
+
+    # Remove x-pingback HTTP header
+    add_filter('wp_headers', function($headers) {
+        unset($headers['X-Pingback']);
+        return $headers;
+    });
   }
 }
 

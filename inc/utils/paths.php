@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
 function jumpoff_img(){
   $template_path = bloginfo( 'template_directory' );
   $img_path = $template_path . '/assets/images';
-  echo $img_path;
+  return $img_path;
 }
 
 
@@ -21,7 +21,7 @@ function jumpoff_img(){
 function jumpoff_path(){
   $template_path = bloginfo( 'template_directory' );
   $path = $template_path . '/assets';
-  echo $path;
+  return $path;
 }
 
 

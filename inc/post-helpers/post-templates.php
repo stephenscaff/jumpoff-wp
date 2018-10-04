@@ -39,6 +39,49 @@ function jumpoff_excerpt($characters, $rep='...') {
 
 
 
+
+/**
+ * Get Module Field
+ * Returns the value of a specific module field from within a loop.
+
+ * @var $module_name string Name of the module
+ * @var $module_field string Name of the module's field
+ * @return string Field value
+ */
+function get_module_field($module_name, $module_field) {
+  $field = "";
+  $modules = get_field("modules");
+
+  if ($modules[0]["acf_fc_layout"] == $module_name) {
+    $field = $modules[0][$module_field];
+  }
+
+  return $field;
+}
+
+/**
+ * Get Module Field
+ * Returns the value of a specific module field from within a loop.
+
+ * @var $module_name string Name of the module
+ * @var $module_field string Name of the module's field
+ * @return string Field value
+ */
+function get_module_field_excerpt($module_name, $module_field, $characters, $rep='...') {
+  $field = "";
+  $excerpt = "";
+  $modules = get_field("modules");
+
+  if ($modules[0]["acf_fc_layout"] == $module_name) {
+    $field = $modules[0][$module_field];
+    $excerpt = jumpoff_text_limit($field, $characters, $rep);
+    $excerpt = strip_tags(html_entity_decode($excerpt));
+  }
+
+  return  $excerpt;
+}
+
+
 /**
  *  jumpoff_source_tag
  *

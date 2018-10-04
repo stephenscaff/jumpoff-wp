@@ -47,19 +47,12 @@ class AdminMenus{
 
     return array(
       'index.php',
+      'upload.php',
       'contacts',
       'notice-bar',
-      'quicktools',
-      'edit.php?post_type=personal_banking',
-      'edit.php?post_type=business_banking',
-      'edit.php?post_type=loans',
-      'edit.php?post_type=alert',
       'edit.php',
-      'edit.php?post_type=event',
-      'edit.php?post_type=testimonial',
       'edit.php?post_type=team',
-      'edit.php?post_type=page',
-      'upload.php',                           // Media
+      'edit.php?post_type=page',                           // Media
       'users.php',                            // Users
       'separator2',                           // Second separator
       'plugins.php',                          // Plugins
