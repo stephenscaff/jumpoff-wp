@@ -54,7 +54,7 @@ if (!class_exists('BlockquoteShortcode')) {
       'class'        => '',
       'cite'       => '',
       ), $atts));
-  
+
       // Vars
 
       if ($class) {
@@ -62,8 +62,8 @@ if (!class_exists('BlockquoteShortcode')) {
       }
       // Cite
       if($cite){
-        $cite = '<cite>' . $atts['cite'] . '</cite>'; 
-      } 
+        $cite = '<cite>' . $atts['cite'] . '</cite>';
+      }
 
       // Outputs
       $output = '<blockquote class="'. $class .'">' . $content . $cite . '</blockquote>';
@@ -76,3 +76,39 @@ if (!class_exists('BlockquoteShortcode')) {
 }
 // INIT Class
 new BlockquoteShortcode();
+
+
+
+/**
+ * BlockquoteShortcode
+ * Shortcode for creating blockquotes
+ *
+ * @example   [bquote format="long" cite="Carlos Danger"]
+ * @see theme-glossary for details
+ */
+if (!class_exists('VideoEmbedShortcode')) {
+
+  class VideoEmbedShortcode {
+
+    // Constructor
+    public function __construct() {
+      add_shortcode('video-embed',  array($this, 'output'));
+    }
+
+    // Output
+    public function output( $atts, $content = null )  {
+
+      extract(shortcode_atts(array(
+      'provider'    => '',
+      'id'          => '',
+      ), $atts));
+
+      $output = '';
+      $output = '<div id="js-plyr" class="vid plyr-embed js-plyr" data-plyr-provider="'.$atts['provider'].'" data-plyr-embed-id="'.$atts['id'].'"></div>';
+
+      return $output;
+    }
+  }
+}
+// INIT Class
+new VideoEmbedShortcode();

@@ -8,7 +8,7 @@
  * @package   partials
  * @version   1.0
  */
-if ( ! defined( 'ABSPATH' ) ) exit; 
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 ?>
 
