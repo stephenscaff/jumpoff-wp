@@ -45,3 +45,10 @@
   border-top: 1px solid #eee;
   padding: 1.2em 0 0.4em;
 }
+
+//----------------------------------------------
+// Select 2 (Via ACF)
+//----------------------------------------------
+.select2-container--default .select2-selection--single {
+    border: 1px solid #d4d4d4 !important;
+}

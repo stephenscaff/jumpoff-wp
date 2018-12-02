@@ -3,18 +3,18 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
 
 /**
- * create new PostOrder_Engine class
+ * create new PostOrdering class
  */
-$order = new PostOrder_Engine();
+$order = new PostOrdering();
 
 /**
- * class: PostOrder_engine
+ * class: PostOrdering
  */
-class PostOrder_Engine {
+class PostOrdering {
 
     function __construct() {
-      if (!get_option('order_install'))
-            $this->order_install();
+
+      if (!get_option('order_install')) $this->order_install();
 
       add_action('admin_menu', array($this, 'admin_menu'));
       add_action('admin_init', array($this, 'refresh'));
@@ -23,7 +23,6 @@ class PostOrder_Engine {
       add_action('wp_ajax_update-menu-order', array($this, 'update_menu_order'));
       add_action('wp_ajax_update-menu-order-tags', array($this, 'update_menu_order_tags'));
       add_action('pre_get_posts', array($this, 'order_pre_get_posts'));
-
       add_filter('get_previous_post_where', array($this, 'order_previous_post_where'));
       add_filter('get_previous_post_sort', array($this, 'order_previous_post_sort'));
       add_filter('get_next_post_where', array($this, 'order_next_post_where'));
@@ -68,18 +67,22 @@ class PostOrder_Engine {
       return false;
 
     if (!empty($objects)) {
+
       if (isset($_GET['post_type']) && !isset($_GET['taxonomy']) && in_array($_GET['post_type'], $objects)) { // if page or custom post types
         $active = true;
       }
       if (!isset($_GET['post_type']) && strstr($_SERVER['REQUEST_URI'], 'wp-admin/edit.php') && in_array('post', $objects)) { // if post
         $active = true;
       }
+
     }
 
     if (!empty($tags)) {
+
       if (isset($_GET['taxonomy']) && in_array($_GET['taxonomy'], $tags)) {
         $active = true;
       }
+
     }
 
     return $active;
@@ -89,10 +92,10 @@ class PostOrder_Engine {
     if ($this->_check_load_script_css()) {
       wp_enqueue_script('jquery');
       wp_enqueue_script('jquery-ui-sortable');
-      wp_enqueue_script('orderjs', get_template_directory_uri() . '/inc/admin/admin-post-order/assets/post_order.js', array(
+      wp_enqueue_script('orderjs', get_template_directory_uri() . '/inc/admin/post-ordering/assets/post_order.js', array(
         'jquery'
       ), null, true);
-      wp_enqueue_style('order', get_template_directory_uri() . '/inc/admin/admin-post-order/assets/post_order.css', array(), null);
+      wp_enqueue_style('order', get_template_directory_uri() . '/inc/admin/post-ordering/assets/post_order.css', array(), null);
     }
   }
 
@@ -117,6 +120,7 @@ class PostOrder_Engine {
                     WHERE post_type = '" . $object . "' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future')
                     ORDER BY menu_order ASC
                 ");
+
         foreach ($results as $key => $result) {
           $wpdb->update($wpdb->posts, array(
             'menu_order' => $key + 1
@@ -128,6 +132,7 @@ class PostOrder_Engine {
     }
 
     if (!empty($tags)) {
+
       foreach ($tags as $taxonomy) {
         $result = $wpdb->get_results("
                     SELECT count(*) as cnt, max(term_order) as max, min(term_order) as min
@@ -314,6 +319,7 @@ class PostOrder_Engine {
     global $post;
 
     $objects = $this->get_order_options_objects();
+
     if (empty($objects))
       return $where;
 
@@ -328,6 +334,7 @@ class PostOrder_Engine {
     global $post;
 
     $objects = $this->get_order_options_objects();
+
     if (empty($objects))
       return $orderby;
 

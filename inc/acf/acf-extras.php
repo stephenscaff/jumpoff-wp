@@ -4,20 +4,32 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 
 /**
- * Editor Toolbars
- * Class for customizing Wp Editor Toolbars, for
- * Visual (TinyMCE), Text (Qtags) and ACF toolbars
+ * ACF Extras
+ * Additional ACF Settings and helpers
  */
 class ACFExtras {
 
   //const GMAPS_API_KEY = 'xxxxx'
 
-  function __construct(){
+  /**
+   * @var ACFExtras
+   */
+  public static $instance;
+
+  /**
+   * @return ACFExtras
+   */
+  public static function init() {
+    if ( is_null( self::$instance ) )
+      self::$instance = new ACFExtras();
+    return self::$instance;
+  }
+
+  private function __construct(){
     add_action('acf/input/admin_head', array( $this, 'collapse_fields') );
     add_action('admin_head', array( $this, 'wysi_height') );
     add_action('acf/init', array( $this, 'gmaps_api_key' ));
   }
-
 
   /**
    * Register Google Maps API Key
@@ -50,11 +62,11 @@ class ACFExtras {
   function wysi_height() { ?>
   	<style>
   		iframe[id^='acf-editor-'] {
-  			min-height:10px;
-        max-height: 13em;
+  			min-height:15px;
+        max-height: 19em;
   		}
   	</style> <?php
   }
 }
 
-new ACFExtras;
+ACFExtras::init();

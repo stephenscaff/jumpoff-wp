@@ -19,12 +19,11 @@ function jumpoff_term($taxonomy, $post_id = '') {
 
   $terms = wp_get_post_terms($post->ID, $taxonomy);
   $term = '';
+  $term_obj = '';
 
   foreach ( $terms as $term ) {
 
-    if ( is_wp_error( $term ) ) {
-      continue;
-    }
+    if (is_wp_error( $terms )) return;
 
     $queried_object = get_queried_object();
 
@@ -54,6 +53,7 @@ function jumpoff_term($taxonomy, $post_id = '') {
  */
 function jumpoff_terms($taxonomy, $type) {
   $terms = get_the_terms($post->ID, $taxonomy);
+  $output = '';
   if ($terms) {
     foreach ( $terms as $term ) {
 
@@ -70,6 +70,35 @@ function jumpoff_terms($taxonomy, $type) {
     return rtrim($output, ', ');
   }
 }
+
+
+/**
+ * Terms
+ * Retrives the terms applied to the current post
+ */
+function jumpoff_related_terms($taxonomy) {
+  $terms = get_the_terms($post->ID, $taxonomy);
+  $output = '';
+  if ($terms) {
+    foreach ( $terms as $term ) {
+
+      if ($type === 'comma'){
+        $output .= $term->name . ', ';
+      }
+      elseif ( $type === 'list' ){
+        $output .= '<li>' . $term->slug . '</li>';
+      }
+      elseif ( $type === 'array' ){
+        $output .= '<li>' . $term->slug . '</li>';
+      }
+      else {
+        $output .= $term->name;
+      }
+    }
+    return rtrim($output, ', ');
+  }
+}
+
 
 
 /**
@@ -122,6 +151,37 @@ function jumpoff_terms($taxonomy, $type) {
    }
  }
 
+  /**
+   *  Single Post Categorey
+   *  Returns a post's cat (first in cat array)
+   *
+   *  @see
+   *  @return (string) $single_cat;
+   */
+  function jumpoff_cat($type){
+
+    global $post;
+
+    // Get cats from post id
+    $categories = get_the_category($post->ID);
+
+    if ($categories){
+
+      $single_cat = '';
+
+      if ($type === 'name'){
+        //return $categories[0]->cat_name;
+        $single_cat = $categories[0]->cat_name;
+      }
+
+      if ($type === 'url'){
+        //return esc_url( get_category_link( $categories[0]->term_id ) ) ;
+        $single_cat = esc_url( get_category_link( $categories[0]->term_id ) );
+      }
+
+      return $single_cat;
+    }
+  }
 
  /**
   *  Categories List
@@ -151,6 +211,19 @@ function jumpoff_terms($taxonomy, $type) {
  }
 
 
+ /**
+  * Get Single Cat from slug
+  * @return $categories (post_name);
+  */
+ function jumpoff_get_cat_slug(){
+   // Import global post object
+   global $post;
+
+   $categories = get_the_category($post->ID);
+
+   return $categories[0]->slug;
+ }
+
 
  /**
   *  jumpoff_term_link()
@@ -167,4 +240,26 @@ function jumpoff_terms($taxonomy, $type) {
    $term_link = get_term_link( $term, $tax );
 
    return $term_link;
+ }
+
+
+
+ function jumpoff_tax_filters($tax, $class) {
+    $args = array(
+      'taxonomy'   => $tax,
+      'hide_empty' => 0,
+    );
+    $output = '';
+
+    $terms = get_terms( $args);
+
+    # wp_error object check
+    if (is_wp_error( $terms )) return;
+
+    foreach ($terms as $term)  {
+      $url = get_term_link($term);
+      $title = $term->name;
+      $output .= '<a class="' . $class . '" href="' . $url . '">' . $title . '</a>';
+    }
+    return $output;
  }

@@ -12,9 +12,9 @@
  */
 var FetchMore = (function() {
 
-  var nextLink = wpFetchMore.nextLink,
-      pageNum = parseInt(wpFetchMore.startPage) + 1,
-      maxPages = parseInt(wpFetchMore.maxPages),
+  var nextLink = fetchMore.nextLink,
+      pageNum = parseInt(fetchMore.startPage) + 1,
+      maxPages = parseInt(fetchMore.maxPages),
       postsContainer = document.querySelector('#js-posts'),
       link = document.querySelector('#js-fetch-more'),
       linkContainer = document.querySelector('.fetch-more'),

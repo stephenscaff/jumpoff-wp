@@ -41,77 +41,79 @@ function duplicate_post_as_draft(){
    */
   if (isset( $post ) && $post != null) {
 
-  /**
-   * Post Data Args
-   */
-  $args = array(
-    'comment_status' => $post->comment_status,
-    'ping_status'    => $post->ping_status,
-    'post_author'    => $new_post_author,
-    'post_content'   => $post->post_content,
-    'post_excerpt'   => $post->post_excerpt,
-    'post_name'      => $post->post_name,
-    'post_parent'    => $post->post_parent,
-    'post_password'  => $post->post_password,
-    'post_status'    => 'draft',
-    'post_title'     => $post->post_title,
-    'post_type'      => $post->post_type,
-    'to_ping'        => $post->to_ping,
-    'menu_order'     => $post->menu_order
-  );
+    /**
+     * Post Data Args
+     */
+    $args = array(
+      'comment_status' => $post->comment_status,
+      'ping_status'    => $post->ping_status,
+      'post_author'    => $new_post_author,
+      'post_content'   => $post->post_content,
+      'post_excerpt'   => $post->post_excerpt,
+      'post_name'      => $post->post_name,
+      'post_parent'    => $post->post_parent,
+      'post_password'  => $post->post_password,
+      'post_status'    => 'draft',
+      'post_title'     => $post->post_title,
+      'post_type'      => $post->post_type,
+      'to_ping'        => $post->to_ping,
+      'menu_order'     => $post->menu_order
+    );
 
+    /**
+     * Insert post via wp_insert_post()
+     */
+    $new_post_id = wp_insert_post( $args );
 
-  /**
-   * Insert post via wp_insert_post()
-   */
-  $new_post_id = wp_insert_post( $args );
+    /**
+     * Get array of Post Terms and set on duped post
+     */
+    $taxonomies = get_object_taxonomies($post->post_type);
 
-
-  /**
-   * Get array of Post Terms and set on duped post
-   */
-  $taxonomies = get_object_taxonomies($post->post_type);
-
-  foreach ($taxonomies as $taxonomy) {
-    $post_terms = wp_get_object_terms($post_id, $taxonomy, array('fields' => 'slugs'));
-    wp_set_object_terms($new_post_id, $post_terms, $taxonomy, false);
-  }
-
-
-  /**
-   * SQL Queries to get post & meta infos
-   */
-  $post_meta_infos = $wpdb->get_results("SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=$post_id");
-
-  if ( count( $post_meta_infos ) != 0 ) {
-
-    $sql_query = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) ";
-
-    foreach ($post_meta_infos as $meta_info) {
-      $meta_key = $meta_info->meta_key;
-      $meta_value = addslashes($meta_info->meta_value);
-      $sql_query_sel[]= "SELECT $new_post_id, '$meta_key', '$meta_value'";
+    /**
+     * Loop through terms
+     */
+    foreach ($taxonomies as $taxonomy) {
+      $post_terms = wp_get_object_terms($post_id, $taxonomy, array('fields' => 'slugs'));
+      wp_set_object_terms($new_post_id, $post_terms, $taxonomy, false);
     }
 
-    $sql_query.= implode(" UNION ALL ", $sql_query_sel);
+    /**
+     * SQL Queries to get post & meta infos
+     */
+    $post_meta_infos = $wpdb->get_results("SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=$post_id");
 
-    $wpdb->query($sql_query);
-  }
+    if ( count( $post_meta_infos ) != 0 ) {
 
+      $sql_query = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) ";
 
-  /**
-   * Redirect to new post in edit mode
-   */
+      foreach ( $post_meta_infos as $meta_info ) {
+        $meta_key = $meta_info->meta_key;
+        $meta_value = addslashes($meta_info->meta_value);
+        $sql_query_sel[]= "SELECT $new_post_id, '$meta_key', '$meta_value'";
+      }
+
+      $sql_query.= implode(" UNION ALL ", $sql_query_sel);
+
+      $wpdb->query($sql_query);
+    }
+
+    /**
+     * Redirect to new post in edit mode
+     */
     wp_redirect( admin_url( 'post.php?action=edit&post=' . $new_post_id ) );
     exit;
+
   } else {
+    // if error
     wp_die('Post creation failed, could not find original post: ' . $post_id);
+
   }
 }
 
-/*
+/**
  * Add the duplicate link to action list
- * Uses wp filter:  post_row_actions();
+ * @see post_row_actions filter;
  */
 add_filter( 'post_row_actions', 'duplicate_post_link', 10, 2 );
 add_filter( 'page_row_actions', 'duplicate_post_link', 10, 2 );

@@ -13,6 +13,20 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 class CustomDash {
 
   /**
+   * @var CustomDash
+   */
+  public static $instance;
+
+  /**
+   * @return CustomDash
+   */
+  public static function init() {
+    if ( is_null( self::$instance ) )
+      self::$instance = new CustomDash();
+    return self::$instance;
+  }
+
+  /**
    * Constructor
    */
   function __construct() {
@@ -20,6 +34,9 @@ class CustomDash {
     add_action('load-index.php', array( $this,'redirect_dash') );
   }
 
+  /**
+   * Redirect to custom dash view
+   */
   function redirect_dash() {
 
     if( is_admin() ) {
@@ -31,14 +48,19 @@ class CustomDash {
     }
   }
 
+  /**
+   * Register Menu item for dash
+   */
   function register_menu() {
     add_dashboard_page( 'Welcome', 'Welcome', 'read', 'welcome', array( $this,'dash_view') );
   }
 
+  /**
+   * Load the Dash View
+   */
   function dash_view() {
     require_once('dash-view.php');;
   }
 }
 
-new CustomDash;
- 
+CustomDash::init();

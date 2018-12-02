@@ -115,3 +115,26 @@ function jumpoff_source_tag($format, $class){
 
   return $output;
 }
+
+
+/**
+ *  Get Category/term Archive Link
+ *  @param    $term
+ *  @param    string  $rep Ellipser
+ *
+ */
+function jumpoff_get_cat_link($term_field = '') {
+  global $post;
+  $post_type = get_post_type_object(get_post_type());
+  $post_type_name = $post_type->name;
+
+  if ($term_field) {
+    $archive_link = get_term_link($term_field->slug, 'category');
+  }
+
+  else {
+    $archive_link = jumpoff_get_page_url('news');
+  }
+
+  return $archive_link;
+}

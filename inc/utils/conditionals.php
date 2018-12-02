@@ -40,16 +40,57 @@ function is_any_post_type( $post = NULL ) {
     $all_custom_post_types = get_post_types( array ( '_builtin' => FALSE ) );
 
     // there are no custom post types
-    if ( empty ( $all_custom_post_types ) ) return FALSE;
+    if ( empty ( $all_custom_post_types ) )
+        return FALSE;
 
     $custom_types      = array_keys( $all_custom_post_types );
     $current_post_type = get_post_type( $post );
 
     // could not detect current type
-    if ( ! $current_post_type ) return FALSE;
+    if ( ! $current_post_type )
+        return FALSE;
 
     return in_array( $current_post_type, $custom_types );
 }
+
+
+/**
+ *  jumpoff_ids()
+ *  Retrieves IDs to use in calling fields.
+ *  @return: $id (the id of the post)
+ *  @example: $postidd = jumpoff_ids();
+ */
+function jumpoff_ids() {
+  global $post;
+  $term_obj = get_queried_object();
+  $page_for_posts = get_option( 'page_for_posts' );
+
+  $id='';
+  //
+  // if( !is_object( $post ) )
+  //    return;
+
+  if (is_post_type_archive()){
+    $post_type = get_queried_object();
+    //$post_type = get_post_type( $post->ID );
+    $cpt = $post_type->name;
+    $id = $cpt . '-index';
+  }
+  elseif (is_home()){
+    $id = 'posts-index';
+  }
+  elseif (is_front_page()) {
+    $id = get_option('page_on_front');
+  }
+  elseif (is_tax('activity_type') OR is_tax('activity_location')) {
+    $id = $term_obj->taxonomy . '_' . $term_obj->term_id;
+  }
+  else{
+    $id = $post->ID;
+  }
+  return $id;
+}
+
 
 /**
  * Has More Posts
@@ -62,21 +103,6 @@ function has_more_posts() {
   global $wp_query;
 
   if ($wp_query->max_num_pages > 1) {
-    return true;
-  }
-  return false;
-}
-
-/**
- * Has Featured Image
- * Detects if a ft image exists
- * @var number $id - Post ID
- * @return boolean
- */
-function has_ft_img($id) {
-  $ft_img = jumpoff_ft_img('full', $id);
-
-  if ($ft_img->url) {
     return true;
   }
   return false;
@@ -98,42 +124,17 @@ function is_extended_class($str, $chars = '200') {
 }
 
 
-
 /**
- *  jumpoff_ids()
- *  Retrieves IDs to use in calling fields.
- *  @return: $id (the id of the post)
- *  @example: $postidd = jumpoff_ids();
+ * Has Featured Image
  */
-function jumpoff_ids() {
-  global $post;
+function has_ft_img($id) {
+  $ft_img = jumpoff_ft_img('full', $id);
 
-  $page_for_posts = get_option( 'page_for_posts' );
-
-  $id='';
-
-  if ( !is_object( $post ) ) return;
-
-  if (is_post_type_archive()){
-    $post_type = get_queried_object();
-    //$post_type = get_post_type( $post->ID );
-    $cpt = $post_type->name;
-    $id = $cpt . '-index';
+  if ($ft_img->url) {
+    return true;
   }
-  elseif (is_home()){
-    $id = 'options';
-  }
-  elseif (is_front_page()) {
-    $id = get_option('page_on_front');
-  }
-  else{
-    $id = $post->ID;
-  }
-  return $id;
+  return false;
 }
-
-
-
 /**
 *  jumpoff_mod_class
 *  For creating BEM style modifiers
@@ -149,11 +150,14 @@ function jumpoff_mod_class() {
   elseif (is_front_page()) {
     $class ='home';
   }
-  elseif (is_post_type('name')){
-    $class = 'name';
+  elseif (is_tax()){
+    $class = 'tax';
   }
   elseif (is_archive()){
     $class = 'archive';
+  }
+  elseif (is_post_type('activity')){
+    $class = 'activity';
   }
   else {
     $class = basename(get_permalink());
@@ -161,27 +165,6 @@ function jumpoff_mod_class() {
   return $class;
 }
 
-/**
- *  Jumpoff Styler
- *  A helper for conditional checking custom fields (mostly using ACF).
- *
- *  @param: $spacer (string) - the custom field, only for strings
- *  @param: $spacer (boolean) - adds space to right of string out
- *  @return: (string) The field if it passes our check
- */
-function jumpoff_styler($field, $spacer = false){
-
-  $field_output = '';
-
-  if ($field) {
-    if ($spacer === true) {
-      $field_output = ' ' . $field;
-    } else {
-      $field_output = $field;
-    }
-  }
-  return $field_output;
-}
 
 /**
  * Custom Field Fallback

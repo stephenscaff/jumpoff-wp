@@ -34,11 +34,7 @@ if (!class_exists('WpImageSettings ')) {
    const LG_WIDTH = "";
    const LG_HEIGHT = "";
 
-   /**
-    * Masthead Size
-    */
-   const MAST_WIDTH = "";
-   const MAST_HEIGHT = "";
+
 
   // Constructor
   function __construct() {
@@ -48,12 +44,11 @@ if (!class_exists('WpImageSettings ')) {
     $this->MED_HEIGHT = 750;
     $this->LG_WIDTH = 1500;
     $this->LG_HEIGHT = 900;
-    $this->MAST_WIDTH = 2000;
-    $this->MAST_HEIGHT = 1200;
+
     add_filter('intermediate_image_sizes_advanced',  array($this, 'remove_image_sizes'));
-    add_filter('init',  array($this, 'medium_images'));
-    add_filter('init',  array($this, 'large_images'));
-    add_filter('init',  array($this, 'add_image_sizes'));
+    add_filter('pre_update_option_',  array($this, 'medium_images'));
+    add_filter('load-options.php',  array($this, 'large_images'));
+    add_filter('load-options.php',  array($this, 'add_image_sizes'));
     add_filter('image_size_names_choose',  array($this, 'add_images_to_admin'));
     add_filter('post_thumbnail_html',  array($this, 'remove_wxh_attribute' ));
 
@@ -134,7 +129,7 @@ if (!class_exists('WpImageSettings ')) {
  */
   function add_image_sizes(){
     // New Image: 'Mast'
-    add_image_size( 'mast', $this->MAST_WIDTH, $this->MAST_HEIGHT, true );
+    add_image_size( 'professional', $this->PROFESSIONAL_WIDTH, $this->PROFESSIONAL_HEIGHT, true );
   }
 
 /**
@@ -146,7 +141,7 @@ if (!class_exists('WpImageSettings ')) {
   function add_images_to_admin( $sizes ) {
 
     return array_merge( $sizes, array(
-      'mast' => __('Mastheads'),
+      'professional' => __('Professional'),
     ));
   }
 
@@ -181,7 +176,7 @@ if (!class_exists('WpImageSettings ')) {
    * Image output
    * Wraps post images in a figure/figcaption
    */
-  function image_output(){
+  function image_output() {
 
     add_filter( 'image_send_to_editor', 'image_wrapper', 10, 9 );
 
@@ -199,3 +194,58 @@ if (!class_exists('WpImageSettings ')) {
   }
 }
 new WpImageSettings ();
+
+
+
+
+
+add_filter( 'upload_dir', 'upload_dir_by_post' );
+
+function upload_dir_by_post( $args ) {
+  $id = ( isset( $_REQUEST['post_id'] ) ? $_REQUEST['post_id'] : '' );
+
+  if ( $id ) {
+   $directory = '/' . get_post_type( $id );
+
+   $args['path']    = str_replace( $args['subdir'], '', $args['path'] );
+   $args['url']     = str_replace( $args['subdir'], '', $args['url'] );
+   $args['subdir']  = $directory;
+   $args['path']   .= $directory;
+   $args['url']    .= $directory;
+  }
+
+  return $args;
+}
+
+
+//
+//
+// add_filter( 'intermediate_image_sizes', 'rudr_reduce_image_sizes' );
+//
+// function rudr_reduce_image_sizes( $sizes ){
+// 	/*
+// 	 * $sizes - all image sizes array Array ( [0] => thumbnail [1] => medium [2] => large [3] => post-thumbnail )
+// 	 * get_post_type() to get post type
+// 	 */
+// 	$type = get_post_type (  $_REQUEST['post_id']); // $_REQUEST['post_id'] post id the image uploads to
+//
+// 	foreach( $sizes as $key => $value ){
+//
+// 		/*
+// 		 * use switch if there are a lot of post types
+// 		 */
+// 		if( $type == 'professional' ) {
+//       unset( $sizes[$key] );
+// 		} else if ( $type == 'sometype' ) {
+//       // all but
+// 			if( !in_array( $value, array('custom','misha335') ) ){
+//     	   unset( $sizes[$key] );
+//     	}
+// 		} else {
+// 			if( $value != 'thumbnail' ){ // turn off everything except thumbnail
+//     				unset( $sizes[$key] );
+//     			}
+// 		}
+// 	}
+// 	return $sizes;
+// }

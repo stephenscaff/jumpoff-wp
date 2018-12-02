@@ -10,21 +10,35 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
 class ACFSearch {
 
   /**
+   * @var ACFSearch
+   */
+  public static $instance;
+
+  /**
    * @var $wpbd object
    */
   private $wpdb;
 
   /**
+   * @return ACFSearch
+   */
+  public static function init() {
+    if ( is_null( self::$instance ) )
+      self::$instance = new ACFSearch();
+    return self::$instance;
+  }
+
+  /**
    * Constructor
    */
-  function __construct() {
+  private function __construct() {
 
     global $wpdb;
     $this->wpdb = &$wpdb;
 
-    add_filter('posts_join',  array($this, 'join'));
-    add_filter('posts_where',  array($this, 'where'));
-    add_filter('posts_distinct',  array($this, 'distinct'));
+    add_filter('posts_join', array($this, 'join'));
+    add_filter('posts_where', array($this, 'where'));
+    add_filter('posts_distinct', array($this, 'distinct'));
   }
 
 
@@ -72,4 +86,4 @@ class ACFSearch {
   }
 }
 
-new ACFSearch;
+ACFSearch::init();

@@ -65,9 +65,9 @@ function jumpoff_make_hash($str) {
  *  @param    string $str The string / field
  *  @param    string $type Markup wrapping lines
  *  @return   string $output
- *  @example  jumpoff_line_wrap( $fieldname,  'span' )
+ *  @example  jumpoff_format_lines( $fieldname,  'span' )
  */
-function jumpoff_line_wrap ( $str, $type='list' ){
+function jumpoff_format_lines ( $str, $type='list' ){
 
   $lines = explode("\n", $str);
 
@@ -84,4 +84,26 @@ function jumpoff_line_wrap ( $str, $type='list' ){
     }
   }
   return $output;
+}
+
+/**
+ *  Covert to Words
+ *  Converts _ to space and capitalizes words.
+ *
+ *  @param    string $str The string / field
+ *  @return   string $output
+ */
+function convert_to_words($str) {
+  return ucwords(str_replace("_", " ", $str));
+}
+
+/**
+ *  Format Tel Link
+ *  Covert human readable / cms entered
+ *
+ *  @param    string $str The string / field of the number
+ *  @return   string $output
+ */
+function format_tel_link($str) {
+  return str_replace('[^0-9]', '', $str);
 }

@@ -9,9 +9,23 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 class FeaturedImageColumn {
 
   /**
+   * @var FeaturedImageColumn
+   */
+  public static $instance;
+
+  /**
+   * @return FeaturedImageColumn
+   */
+  public static function init() {
+   if ( is_null( self::$instance ) )
+     self::$instance = new FeaturedImageColumn();
+   return self::$instance;
+  }
+
+  /**
    * Constructor
    */
-  function __construct(){
+  private function __construct(){
     add_filter('manage_posts_columns', array( $this, 'add_column'), 5 );
     add_action('manage_posts_custom_column', array( $this, 'add_image'), 5, 2 );
   }
@@ -34,4 +48,4 @@ class FeaturedImageColumn {
   }
 }
 
-new FeaturedImageColumn;
+FeaturedImageColumn::init();

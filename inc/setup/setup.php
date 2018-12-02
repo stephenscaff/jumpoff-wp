@@ -62,7 +62,7 @@ class JumpoffSetup {
    */
   public function permalinks() {
     global $wp_rewrite;
-    $wp_rewrite->set_permalink_structure( '/blog/%year%/%monthnum%/%postname%/' );
+    $wp_rewrite->set_permalink_structure( '/news/%year%/%monthnum%/%postname%/' );
   }
 
 
@@ -85,8 +85,8 @@ class JumpoffSetup {
     if ( !is_admin() ) {
       wp_deregister_script( self::JQUERY );
       wp_register_script( self::JQUERY, get_template_directory_uri() . '/assets/js/jquery.min.js', '', false, true );
-      wp_register_script( self::JUMPOFF_JS, get_template_directory_uri() . '/assets/js/app.min.js', array( 'jquery' ), false, true );
-      wp_enqueue_script( self::JQUERY );
+      wp_register_script( self::JUMPOFF_JS, get_template_directory_uri() . '/assets/js/app.min.js', '', false, true );
+      //wp_enqueue_script( self::JQUERY );
       wp_enqueue_script( self::JUMPOFF_JS);
     }
   }
@@ -122,11 +122,10 @@ class JumpoffSetup {
    */
 	public function menus() {
 		register_nav_menus( array(
-		    'nav_menu' => esc_html__( 'Primary Navigation Menu' ),
+		    'nav_menu' => esc_html__( 'Header Menu' ),
 		    'footer_menu_1' => esc_html__( 'Footer Menu 1' ),
 				'footer_menu_2' => esc_html__( 'Footer Menu 2' ),
 				'footer_menu_3' => esc_html__( 'Footer Menu 3' ),
-				'footer_menu_4' => esc_html__( 'Footer Menu 4' )
 		) );
 	}
 
@@ -158,6 +157,8 @@ class JumpoffSetup {
 			remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 			remove_action( 'wp_print_styles', 'print_emoji_styles' );
 			add_filter( 'emoji_svg_url', '__return_false' );
+			remove_action( 'wp_head', 'adjacent_posts_rel_link' );
+			remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head' );
   }
 
 	/**

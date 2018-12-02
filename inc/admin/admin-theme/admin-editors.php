@@ -9,7 +9,22 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
  */
 class AdminEditors {
 
-  function __construct(){
+  /**
+   * @var AdminEditors
+   */
+  public static $instance;
+
+  /**
+   * @return AdminEditors
+   */
+  public static function init() {
+   if ( is_null( self::$instance ) )
+     self::$instance = new AdminEditors();
+   return self::$instance;
+  }
+
+
+  private function __construct(){
     add_action( 'admin_print_footer_scripts', array( $this, 'text_editor_toolbar' ), 999 );
     add_filter( 'tiny_mce_before_init', array( $this, 'visual_editor_toolbar' ));
     add_filter('acf/fields/wysiwyg/toolbars' , array( $this, 'acf_toolbar') );
@@ -75,7 +90,7 @@ class AdminEditors {
   }
 }
 
-new AdminEditors;
+AdminEditors::init();
 //
 //
 //

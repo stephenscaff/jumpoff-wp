@@ -1,71 +1,95 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
+  /**
+   *  jumpoff_body_class
+   *  Cleans up body classes, then adds custom, based on page or cpt names
+   *  @return: $classes (string)
+   */
 
-/**
- *  Body Class
- *  Cleans up body classes, then adds custom, based on page or cpt names
- *  @return (array) $classes collection of classes
- */
+  add_filter('body_class', function($classes) {
 
-add_filter('body_class', 'jumpoff_body_class');
+    global $post, $page;
 
-function jumpoff_body_class($classes) {
 
-  global $post, $page;
+    # Single Pages
+    if ( is_single() || is_page() && !is_front_page() ) {
 
-  # Classes Array
-  $classes = [];
+      $classes[] = 'page-' . basename(get_permalink());
 
-  # Single Pages
-  if ( is_single() || is_page() && !is_front_page() ) {
+    }
 
-    $classes[] = 'page-' . basename(get_permalink());
+    if (is_front_page()) {
+      $classes[] = 'page-home';
+    }
+    if (is_home() || is_singular('post') || is_post_type_archive( 'post' )) {
 
-  }
+      $classes[] = 'page-news';
 
-   /**
-    * Blog / News page
-    */
-   if (is_home() || is_singular('post') || is_post_type_archive( 'post' )) {
+    }
 
-     $classes[] = 'page-news';
+    if ( is_post_type_archive() ) {
 
-   }
+      $post_type_obj = get_queried_object();
+      $classes[] = 'page-index-'.$post_type_obj->name;
 
-   /**
-    * Is any post type?
-    * @see inc/utils/conditionals.php
-    */
-   if ( is_any_post_type() ) {
+    }
 
-     $post_type_obj = get_queried_object();
-     $post_type = get_post_type_object(get_post_type($post_type_obj));
-     $classes[] = 'page-'.$post_type->rewrite['slug'];
+    if ( is_any_post_type() ) {
 
-   }
+      $post_type_obj = get_queried_object();
+      $post_type = get_post_type_object(get_post_type($post_type_obj));
+      $classes[] = 'page-'.$post_type_obj->name;
 
-   if ( is_post_type_archive() ) {
+    }
 
-     $classes[] = 'page-index-'.$post_type_obj->name;
-
-   }
-
-   /**
-    * Add Specific Classes
-    */
    $extra_classes = array('');
 
-   /**
-    * Merge our final array
-    */
    $classes = array_merge( $classes, $extra_classes );
 
-   return $classes;
-}
 
-  // List of the only WP generated classes allowed
-  //$whitelist = array( '  ', 'home', 'error404' );
-  // Filter the body classes
-  //$classes = array_intersect( $classes, $whitelist );
-  //$classes = array_merge( $classes, (array) $classes );
+
+    // if(basename(get_page_template()) === 'page.php'){
+    //   $classes[] = 'page-default';
+    // }
+    // if (is_single() || is_page() && !is_front_page()) {
+    //   $classes[] = 'page-' . basename(get_permalink());
+    // }
+    // if (is_home() || is_singular('post') || is_post_type_archive( 'post' )) {
+    //   $classes[] = 'page-news';
+    // }
+    // //Example for CPTs
+    // if (is_post_type_archive()) {
+    //   $post_type_name = $post->post_type;
+    //   $classes[] = 'page-' . $post_type_name;
+    // }
+
+    // Remove Classes
+    $home_id_class = 'page-id-' . get_option('page_on_front');
+    $page_id_class = 'page-id-' . get_the_ID();
+    $post_id_class = 'postid-' . get_the_ID();
+    $page_template_name_class = 'page-template-page-' . basename(get_permalink());
+    $page_template_name_php = 'page-template-page-' . basename(get_permalink()) . '-php';
+
+    // Remove Classes Array
+    $remove_classes = array(
+      'page-template-default',
+      'page-template',
+      'single-format-standard',
+      $home_id_class,
+      $page_id_class,
+      $post_id_class,
+      $page_template_name_class,
+      $page_template_name_php
+    );
+
+    // Add specific classes
+    // $classes[] = 'is-loading';
+    $classes = array_diff($classes, $remove_classes);
+    //
+    // $extra_classes = array('');
+    //
+    // $classes = array_merge( $classes, $extra_classes );
+
+    return $classes;
+
+  });

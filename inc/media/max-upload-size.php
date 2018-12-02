@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * WP Max Image Size
@@ -9,15 +9,30 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 class WP_Max_Image_Size {
 
   /**
+   * @var WP_Max_Image_Size
+   */
+  public static $instance;
+
+  /**
    * Set max upload size
    */
-  const UPLOAD_MAX_SIZE = '850 KB';
+  const UPLOAD_MAX_SIZE = '750 KB';
+
+  /**
+   * @return WP_Max_Image_Size
+   */
+  public static function init() {
+   if ( is_null( self::$instance ) )
+     self::$instance = new WP_Max_Image_Size();
+
+   return self::$instance;
+  }
 
   /**
    * Constructor
+   * @link https://codex.wordpress.org/Plugin_API/Filter_Reference/wp_handle_upload_prefilter
    */
-  public function __construct()  {
-    // https://codex.wordpress.org/Plugin_API/Filter_Reference/wp_handle_upload_prefilter
+  private function __construct()  {
     add_filter('wp_handle_upload_prefilter', array($this, 'error_message'));
   }
 
@@ -44,10 +59,10 @@ class WP_Max_Image_Size {
 
     // If size of image is greater than our const, no go
     if ( ( $size > $limit ) && ($is_image !== false) ) {
-       $file['error'] = 'Whoa! Images must be smaller '.$limit;
+       $file['error'] = 'Whoa! That image is huge! If you want a fast site, please keep images under '.$limit;
     }
     return $file;
   }
 }
 
-$WP_Max_Image_Size = new WP_Max_Image_Size;
+WP_Max_Image_Size::init();

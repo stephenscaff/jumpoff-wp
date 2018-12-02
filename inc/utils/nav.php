@@ -23,7 +23,7 @@ function jumpoff_active_class( $page_name ){
  *   @param    string $page_name
  *   @return   string 'is-active';
  */
-function jumpoff_page_url( $page_name, $cpt='' ){
+function jumpoff_get_page_url( $page_name, $cpt='' ){
   if ( $cpt == true ) {
     $page_url = esc_url( get_post_type_archive_link( $page_name ) );
   } else {
@@ -56,6 +56,41 @@ function jumpoff_get_subpage_links( $post_type, $klass ){
     $output .= '<a class="'. $klass . '" href="' . $url . '">' . $title . '</a>';
   endforeach;
   wp_reset_postdata();
+
+  return $output;
+}
+
+
+
+
+/**
+ * Render Menu
+ * Renders Simple Menus with options for class name and menu title.
+ *
+ * @var string $menu_name
+ * @var string $menu_class - Nav element class name
+ * @var string $menu_title - optional menu title
+ * @return $output html blob
+ */
+ function render_menu($menu_name, $menu_class = null, $extra = null) {
+   global $post;
+   $locations = get_nav_menu_locations();
+   $menu_id = $locations[$menu_name];
+   $menu_items = wp_get_nav_menu_items($menu_id);
+   $output = '';
+   $output .= '
+    <nav class="'.$menu_class.'__nav">';
+    if ($menu_items) :
+      foreach($menu_items as $menu_item  => $item) :
+          $output .= '
+           <a class="'.$menu_class.'__link" href="'.$item->url.'" role="menuitem">'.$item->title.'</a>';
+      endforeach;
+    endif;
+    if ($extra) :
+    $output .= $extra;
+    endif;
+    $output .= '
+    </nav>';
 
   return $output;
 }

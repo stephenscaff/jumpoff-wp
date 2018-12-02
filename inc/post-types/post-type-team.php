@@ -2,6 +2,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+// Example Post Type
 /**
  *  Post Type: Team
  *
@@ -38,11 +39,11 @@ add_action( 'init', function() {
 
 
 /**
- *  Taxonomy: Team Cat
+ *  Taxonomy: Team Filters
  *
  *  Creates 'Team_cat' custom taxonomy
  *
- *  Slug : Team-categories
+ *  Slug : team-categories
  *  hierarchical : true
  *
  *  @author     Stephen Scaff
@@ -57,7 +58,7 @@ add_action( 'init', function() {
    $labels = jumpoff_post_type_labels('Team Categories', 'Team Categorey');
 
    $args = [
-       'description'        => 'Wecu Team Members.',
+       'description'        => 'Team Members Categories.',
        'labels'             => $labels,
        'hierarchical'        => true,
        'show_ui'             => true,

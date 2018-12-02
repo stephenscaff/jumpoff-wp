@@ -18,6 +18,7 @@ function jumpoff_ft_img($size, $post_id = '', $fallback = false) {
   // Allow for specific Image Ids
   if ($post_id) {
     $post = get_post($post_id);
+    setup_postdata( $post_id );
   }
 
   // Read featured image data for image url.
@@ -32,12 +33,20 @@ function jumpoff_ft_img($size, $post_id = '', $fallback = false) {
   // Get Alert
   $alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
 
+  // get $caption
+  $caption = wp_get_attachment_caption( $image_id );
+
   if ( !empty( $img ) && $fallback == true ) {
     $img = jumpoff_random_img();
   }
+
+  if ($post_id) {
+    wp_reset_postdata( $post_id );
+  }
   $img_obj = array(
     'url' => $img,
-    'alt' => $alt
+    'alt' => $alt,
+    'caption' => $caption
   );
   return (object)$img_obj;
 }

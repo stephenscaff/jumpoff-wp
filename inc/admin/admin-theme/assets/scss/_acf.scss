@@ -107,6 +107,9 @@ table.acf_input tbody tr td.label{
 //
 //  @group admin fields
 //-----------------------------------------------
+.acf-repeater .acf-table {
+    border-spacing: 2px;
+}
 .acf-repeater.-row label {
   font-size: 0.9rem;
 }
