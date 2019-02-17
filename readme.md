@@ -9,7 +9,7 @@ Additionally, the Jumpoff aims to reduce over-reliance on 3rd party plugins by b
 ### Features
 
 - Gulp for task running
-- A lightweight front-end framework of sorts, with sensible scss/js structuring and a js includes system (see src/assets/js/app.js),
+- A lightweight front-end framework of sorts, with sensible scss/js structuring.
 - Organization by partials and components
 - A php approach to field management via ACF and Stout Logic's ACF Builder
 - Custom drag and drop modules for content authorship
@@ -55,7 +55,7 @@ Make sure to run composer first, or the theme can't locate autoload and you'll s
 
 ### CSS / JS
 
-As much as possible, css and js is organized by component, named after it's usage / BEM naming convention. JS files are loaded via `gulp includes` from `js/_app.js`. Most stuff in this project is just ES5 right now. Will probably change that soon.
+As much as possible, css and js is organized by component, named after it's usage / BEM naming convention. JS files are loaded through `app.js` as module imports leveraging browserfy and babel.
 
 
 ### Fields
