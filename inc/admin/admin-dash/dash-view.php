@@ -21,7 +21,7 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 <section class="dash">
 
   <header class="dash-header">
-    <h1 class="dash-header__title">Welcome to KidderMathews</h1>
+    <h1 class="dash-header__title">Welcome to Your Site</h1>
     <p class="dash-header__text">From here you can create and manage the contetn and font-end experience of your site.</p>
     <p class="dash-header__text">  <a class="" href="<?php echo site_url( '' ); ?>" target="_blank">Launch Homepage</a></p>
   </header>
@@ -56,46 +56,13 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
       </a>
     </article>
 
-    <article class="dash-card">
-      <div class="dash-card__link" href="<?php echo admin_url( 'edit.php?post_type=professional' ); ?>">
-        <div class="dash-card__content">
-          <i class="dash-card__icon icon-tag-user"></i>
-
-          <h3 class="dash-card__title">Professionals & Teams</h3>
-
-
-          <p class="dash-card__text">
-            <a href="<?php echo admin_url( 'admin.php?page=professional' ); ?>">Professionals</a>
-            <span class="vert-sep">|</span>
-            <a href="<?php echo admin_url( 'admin.php?page=team' ); ?>">Teams</a>
-          </p>
-
-        </div>
-      </div>
-    </article>
 
     <article class="dash-card">
-      <div class="dash-card__link">
-        <div class="dash-card__content">
-          <i class="dash-card__icon icon-pie-chart"></i>
-
-          <h3 class="dash-card__title">Research</h3>
-
-          <p class="dash-card__text">
-            <a href="<?php echo admin_url( 'edit.php?post_type=trend_article' ); ?>">Trend Articles</a>
-            <span class="vert-sep">|</span>
-            <a href="<?php echo admin_url( 'admin.php?page=market_report' ); ?>">Market Reports</a>
-          </p>
-        </div>
-      </div>
-    </article>
-
-    <article class="dash-card">
-      <a class="dash-card__link" href="<?php echo admin_url( 'edit.php?post_type=success_story' ); ?>">
+      <a class="dash-card__link" href="<?php echo admin_url( 'edit.php?post_type=some_post_type' ); ?>">
         <div class="dash-card__content">
           <i class="dash-card__icon icon-explore"></i>
 
-          <h3 class="dash-card__title">Success Stories</h3>
+          <h3 class="dash-card__title">Some Post Type</h3>
 
           <p class="dash-card__text">Create and manage Success Stories</p>
 
@@ -103,62 +70,6 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
       </a>
     </article>
 
-
-    <article class="dash-card">
-      <a class="dash-card__link" href="<?php echo admin_url( 'edit.php?post_type=service' ); ?>">
-        <div class="dash-card__content">
-          <i class="dash-card__icon icon-case"></i>
-
-          <h3 class="dash-card__title">Services</h3>
-
-          <p class="dash-card__text">Create and manage Services</p>
-
-        </div>
-      </a>
-    </article>
-
-
-    <article class="dash-card">
-      <div class="dash-card__link">
-        <div class="dash-card__content">
-          <i class="dash-card__icon icon-chat-clear"></i>
-
-          <h3 class="dash-card__title">News and Press Releases</h3>
-
-          <p class="dash-card__text">
-            <a href="<?php echo admin_url( 'edit.php' ); ?>">News Features</a>
-            <span class="vert-sep">|</span>
-            <a href="<?php echo admin_url( 'edit.php' ); ?>">Press Releases</a>
-          </p>
-        </div>
-      </div>
-    </article>
-
-    <article class="dash-card">
-      <a class="dash-card__link" href="<?php echo admin_url( 'edit.php?post_type=location' ); ?>">
-        <div class="dash-card__content">
-          <i class="dash-card__icon icon-gps-add"></i>
-
-          <h3 class="dash-card__title">Locations</h3>
-
-          <p class="dash-card__text">Create and manage Locations</p>
-
-        </div>
-      </a>
-    </article>
-
-    <article class="dash-card">
-      <a class="dash-card__link" href="<?php echo admin_url( 'edit.php?post_type=career' ); ?>">
-        <div class="dash-card__content">
-          <i class="dash-card__icon icon-tag-user"></i>
-
-          <h3 class="dash-card__title">Careers</h3>
-
-          <p class="dash-card__text">Create and manage Career Listings</p>
-
-        </div>
-      </a>
-    </article>
 
     <article class="dash-card">
       <a class="dash-card__link" href="<?php echo admin_url( 'edit.php?post_type=page' ); ?>">
@@ -172,5 +83,36 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
       </a>
     </article>
 
+    <article class="dash-card">
+      <a class="dash-card__link" href="<?php echo admin_url( 'edit.php' ); ?>">
+        <div class="dash-card__content">
+          <i class="dash-card__icon icon-pages"></i>
+
+          <h3 class="dash-card__title">Manage Posts</h3>
+
+          <p class="dash-card__text">Write and manage posts / news</p>
+        </div>
+      </a>
+    </article>
+
+    <article class="dash-card">
+      <div class="dash-card__link" href="<?php echo admin_url( 'edit.php?post_type=team' ); ?>">
+        <div class="dash-card__content">
+          <i class="dash-card__icon icon-tag-user"></i>
+
+          <h3 class="dash-card__title">Some Post Type</h3>
+
+
+          <p class="dash-card__text">
+            <a href="<?php echo admin_url( 'admin.php?page=sompage' ); ?>">Item One</a>
+            <span class="vert-sep">|</span>
+            <a href="<?php echo admin_url( 'admin.php?page=team' ); ?>">Item Two</a>
+          </p>
+
+        </div>
+      </div>
+    </article>
+  </section>
+</section>
 
 <?php //include( ABSPATH . 'wp-admin/admin-footer.php' );

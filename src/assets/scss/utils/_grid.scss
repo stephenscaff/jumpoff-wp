@@ -48,17 +48,18 @@
 //  Grid - Simple grid system based on flexbox
 //  @requires flex-grid() - tools/_grid.scss
 //----------------------------------------------
-.grid-1-2 {
-  @include flex-grid(1,2,$pad-vert: $pad-col, $pad-horz: $pad-col)
-}
-
-.grid-1-2-3 {
-  @include flex-grid(1,2,3,$pad-vert: $pad-col, $pad-horz: $pad-col)
-}
-
 .grid-1-3 {
-  @include flex-grid(1,3,$pad-vert: $pad-col, $pad-horz: $pad-col)
+  @include flex-grid(1,$med:3,$pad-vert: $pad-col, $pad-horz: $pad-col)
 }
+
+.grid-1-2-3-4 {
+  @include flex-grid(1,2,3,4,$pad-vert: $pad-col, $pad-horz: $pad-col)
+}
+
+.grid-1-2-4 {
+  @include flex-grid(1,2,4,$pad-vert: $pad-col, $pad-horz: $pad-col)
+}
+
 
 //----------------------------------------------
 //  Grid System - No Padding mod

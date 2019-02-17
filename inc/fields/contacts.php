@@ -7,20 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
  if( function_exists('acf_add_options_page') ) {
 
-   /**
-    * Company Contacts Page
-    */
-   $page_contacts = acf_add_options_page(array(
-     'page_title'  => 'Company Contacts & Info',
-     'menu_title'  => 'Contacts',
-     'menu_slug'   => 'contacts',
-     'icon_url'    =>  'dashicons-location',
-     'capability'  => 'edit_posts',
-     'position'    =>  '2',
-     'redirect'    => false
-   ));
- }
-
 /**
  * Contacts Fields
  */
@@ -60,6 +46,7 @@ $contacts_fields
     ])
     ->setLocation('options_page', '==', 'contacts');
 
-add_action('acf/init', function() use ($contacts_fields) {
-   acf_add_local_field_group($contacts_fields->build());
-});
+  add_action('acf/init', function() use ($contacts_fields) {
+     acf_add_local_field_group($contacts_fields->build());
+  });
+}

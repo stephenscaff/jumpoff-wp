@@ -13,40 +13,30 @@
 
     # Single Pages
     if ( is_single() || is_page() && !is_front_page() ) {
-
       $classes[] = 'page-' . basename(get_permalink());
-
     }
 
-    if (is_front_page()) {
+    elseif (is_front_page()) {
       $classes[] = 'page-home';
     }
-    if (is_home() || is_singular('post') || is_post_type_archive( 'post' )) {
-
+    elseif (is_home() || is_singular('post') || is_post_type_archive( 'post' )) {
       $classes[] = 'page-news';
-
     }
 
-    if ( is_post_type_archive() ) {
+    elseif ( is_post_type_archive() ) {
 
       $post_type_obj = get_queried_object();
       $classes[] = 'page-index-'.$post_type_obj->name;
 
     }
 
-    if ( is_any_post_type() ) {
+    elseif ( is_any_post_type() ) {
 
       $post_type_obj = get_queried_object();
       $post_type = get_post_type_object(get_post_type($post_type_obj));
       $classes[] = 'page-'.$post_type_obj->name;
 
     }
-
-   $extra_classes = array('');
-
-   $classes = array_merge( $classes, $extra_classes );
-
-
 
     // if(basename(get_page_template()) === 'page.php'){
     //   $classes[] = 'page-default';
@@ -87,7 +77,6 @@
     $classes = array_diff($classes, $remove_classes);
     //
     // $extra_classes = array('');
-    //
     // $classes = array_merge( $classes, $extra_classes );
 
     return $classes;

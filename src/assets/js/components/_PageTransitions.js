@@ -1,3 +1,4 @@
+import Utils from '../components/_Utils.js'
 
 /**
  *  Page Transitions
@@ -10,11 +11,11 @@
  */
 
 // Page Transition
-var PageTransition = (function() {
+const PageTransitions = (() => {
 
-  var s,
-      html = document.querySelector('html'),
-      siteURL = location.host.toString();
+  let s
+  const html = document.querySelector('html');
+  const siteURL = location.host.toString();
 
   // The no-trans class
   var noTrans = 'no-trans';
@@ -27,19 +28,24 @@ var PageTransition = (function() {
     settings: {
       transLinks: document.querySelectorAll('a[href^="http://' + siteURL + '"], a[href^="https://' + siteURL + '"], a[href^="/"]',),
       linkLocation: null,
-      html_body: document.querySelectorAll('html, body'),
       html: document.querySelector('html'),
       body: document.querySelector('body'),
       exitDuration: 900,
-      entranceDuration: 400,
+      entranceDuration: 300,
       isLoaded: false,
       isMenuLink: false,
+      finalAnimationStart: 500,
+      classes: {
+        loading: 'is-loading',
+        loaded: 'is-loaded',
+        exiting: 'is-exiting'
+      }
     },
 
     /**
      * Init
      */
-    init: function() {
+    init() {
       s = this.settings;
       this.isPageLoaded();
       this.entrance();
@@ -51,45 +57,46 @@ var PageTransition = (function() {
     /**
      * Enter Page
      */
-    entrance: function() {
-      s.html.classList.add('is-loading');
-      // Remove class to prevent any Webkit bugs
+    entrance() {
+      s.html.classList.add(s.classes.loading);
 
       if (s.isLoaded = true) {
         setTimeout(function() {
-          s.html.classList.remove('is-loading');
-          s.html.classList.add('is-loaded');
+          s.html.classList.remove(s.classes.loading);
+          s.html.classList.add(s.classes.loaded);
         }, s.entranceDuration);
+
+        setTimeout(function() {
+          s.html.classList.add('is-animation-ready');
+        }, s.finalAnimationStart);
       }
     },
 
     /**
      * Exit Page
      */
-    exit: function(duration) {
-      s.html.classList.add('is-exiting');
+    exit(duration) {
+      s.html.classList.add(s.classes.exiting);
 
       setTimeout(function() {
-        PageTransition.redirectPage();
+        PageTransitions.redirectPage();
       }, duration);
     },
 
     /**
      * Is Loaded Check
      */
-    isPageLoaded: function() {
-      var state = document.readyState;
-      if (state === 'interactive' || state === 'complete') {
-      s.isLoaded = true;
-      }
+    isPageLoaded() {
+      const state = document.readyState;
+      if (state === 'interactive' || state === 'complete') s.isLoaded = true;
     },
 
     /**
      * Transition Page
      */
-    transitionPage: function() {
+    transitionPage() {
 
-      Util.forEach ( s.transLinks, function (index, transLink) {
+      Utils.forEach ( s.transLinks, function (index, transLink) {
 
         transLink.addEventListener('click', function (e) {
 
@@ -101,9 +108,9 @@ var PageTransition = (function() {
           if (e.metaKey || e.ctrlKey || e.shiftKey) return;
 
           e.preventDefault();
-          //$('html, body').animate({scrollTop:0}, 900);
-          //window.scroll({top: 0, left: 0, behavior: 'smooth' });
-          PageTransition.exit(500);
+
+          window.scroll({top: 0, left: 0, behavior: 'smooth' });
+          PageTransitions.exit(s.exitDuration);
         });
       });
     },
@@ -111,7 +118,7 @@ var PageTransition = (function() {
     /**
      * Redirect Page
      */
-    redirectPage: function() {
+    redirectPage() {
       window.location = s.linkLocation;
     },
     /**
@@ -119,7 +126,7 @@ var PageTransition = (function() {
      * Ensures back button works in FF,
      * @todo  update for jquery 3
      */
-    unloadWindow: function() {
+    unloadWindow() {
       // For back button history
       window.onbeforeunload = null;
     },
@@ -129,7 +136,7 @@ var PageTransition = (function() {
      * Check the persisted property of the onpageshow event
      * to stop back button cache in Safari
      */
-    workaround: function() {
+    workaround() {
       // For Safari browser
       window.onpageshow = function(e) {
         if (e.persisted) window.location.reload();
@@ -139,4 +146,4 @@ var PageTransition = (function() {
 })();
 
 // Init our Module
-PageTransition.init();
+export default PageTransitions;

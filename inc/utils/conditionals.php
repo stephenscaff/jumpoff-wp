@@ -24,12 +24,13 @@ function get_id_by_name($page) {
 function is_post_type( $type ){
   global $wp_query;
 
+  if (is_404()) return;
+
   if ($type == get_post_type($wp_query->post->ID) ){
     return true;
   }
   return false;
 }
-
 
 /**
  * Check if a post is a custom post type.
@@ -40,15 +41,13 @@ function is_any_post_type( $post = NULL ) {
     $all_custom_post_types = get_post_types( array ( '_builtin' => FALSE ) );
 
     // there are no custom post types
-    if ( empty ( $all_custom_post_types ) )
-        return FALSE;
+    if ( empty ( $all_custom_post_types ) ) return FALSE;
 
     $custom_types      = array_keys( $all_custom_post_types );
     $current_post_type = get_post_type( $post );
 
     // could not detect current type
-    if ( ! $current_post_type )
-        return FALSE;
+    if ( ! $current_post_type ) return FALSE;
 
     return in_array( $current_post_type, $custom_types );
 }
@@ -135,11 +134,13 @@ function has_ft_img($id) {
   }
   return false;
 }
+
+
 /**
-*  jumpoff_mod_class
-*  For creating BEM style modifiers
-*  @return: $class (string)
-*/
+ *  Modifier Class
+ *  For creating BEM style modifiers
+ *  @return: $class (string)
+ */
 function jumpoff_mod_class() {
   $page_for_posts = get_option( 'page_for_posts' );
   $class='';

@@ -1,21 +1,18 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- *  Post Type: Testimonals
- *
- *  Slug :      Team
- *  Supports : 'title','thumbnail','editor'
+ *  Post Type: Testimonials (non hierarchical example)
  *
  *  @version    1.0
  *  @author     stephen scaff
+ *  @see        inc/utils/post-type-labels
  */
 
 add_action( 'init', function() {
   $type = 'testimonial';
 
-  // Call the function and save it to $labels
   $labels = jumpoff_post_type_labels('Testimonial', 'Testimonials');
 
   $args = [

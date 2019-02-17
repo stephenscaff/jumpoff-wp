@@ -8,8 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
  */
 function jumpoff_img(){
   $template_path = bloginfo( 'template_directory' );
-  $img_path = $template_path . '/assets/images';
-  return $img_path;
+
+  return $template_path . '/assets/images';
 }
 
 
@@ -20,8 +20,8 @@ function jumpoff_img(){
  */
 function jumpoff_path(){
   $template_path = bloginfo( 'template_directory' );
-  $path = $template_path . '/assets';
-  return $path;
+
+  return $template_path . '/assets';
 }
 
 
@@ -32,5 +32,6 @@ function jumpoff_path(){
  */
 function jumpoff_svg( $file ){
   $svg = get_template_part( 'assets/images/svgs/' . $file, 'svg' );
+  
   return $svg;
 }

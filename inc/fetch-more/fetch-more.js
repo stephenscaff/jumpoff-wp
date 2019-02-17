@@ -12,9 +12,9 @@
  */
 var FetchMore = (function() {
 
-  var nextLink = fetchMore.nextLink,
-      pageNum = parseInt(fetchMore.startPage) + 1,
-      maxPages = parseInt(fetchMore.maxPages),
+  var nextLink = wpFetchMore.nextLink,
+      pageNum = parseInt(wpFetchMore.startPage) + 1,
+      maxPages = parseInt(wpFetchMore.maxPages),
       postsContainer = document.querySelector('#js-posts'),
       link = document.querySelector('#js-fetch-more'),
       linkContainer = document.querySelector('.fetch-more'),
@@ -38,6 +38,8 @@ var FetchMore = (function() {
     bindEvents: function() {
 
       // Main click event
+      FetchMore.checkLink();
+
       link.addEventListener('click', function (e) {
         e.preventDefault();
         console.log('clicked', pageNum, maxPages)
@@ -49,7 +51,7 @@ var FetchMore = (function() {
         }
       });
 
-      FetchMore.checkLink();
+      //FetchMore.checkLink();
     },
 
     /**
@@ -92,7 +94,6 @@ var FetchMore = (function() {
 
     /**
      * Hide link if no more posts
-     * The -1 accounts for initial load not inlcuding maxpages
      */
     checkLink: function() {
       console.log(pageNum, maxPages, nextLink, pageNum);
@@ -106,6 +107,7 @@ var FetchMore = (function() {
      */
     startAnimation: function() {
       linkContainer.classList.add('is-animating');
+      postsContainer.classList.add('is-animating');
       linkBtn.innerHTML = linkLoadingText;
     },
 
@@ -115,6 +117,7 @@ var FetchMore = (function() {
     endAnimation: function() {
       setTimeout(function() {
        linkContainer.classList.remove('is-animating');
+       postsContainer.classList.remove('is-animating');
        linkBtn.innerText = linkText;
       }, 900);
     },

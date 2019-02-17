@@ -136,22 +136,31 @@ $mobile:false){
 //
 //  @param $width (size), $mobile (boolean)
 //----------------------------------------------
-@mixin flex-col($width, $mobile:false){
-  @if $mobile == true {
-    flex-basis: $width;
-    width: $width;
-    max-width: $width;
-
-  } @else {
-
+@mixin flex-col(
+$sm:null,
+$med:null,
+$lg:null){
+  @if $sm  {
+    flex-basis: $sm;
+    width: $sm;
+    max-width: $sm;
+  }
+  @if $med {
     @media (min-width: $mq-med){
-      flex-basis: $width;
-      width: $width;
-      max-width: $width;
+      flex-basis: $med;
+      width: $med;
+      max-width: $med;
+    }
+  }
+
+  @if $lg {
+    @media (min-width: $mq-lg) {
+        flex-basis: $lg;
+        width: $lg;
+        max-width: $lg;
     }
   }
 }
-
 //----------------------------------------------
 //  flex-order()
 //  A helper to change an elements order at various

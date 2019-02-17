@@ -44,16 +44,15 @@ $mq-xsmall: 22em;
 // Phone
 $mq-sm: 32em;
 // Tablet
-$mq-med: 54em;
+$mq-med: 59em;
 // Laptop
-$mq-lg: 65em;
+$mq-lg: 78em;
 // Past laptop
 $mq-xl: 91em;
 // Mid-size monitor
 $mq-xxl: 115em;
 // Thunderbold goes to 157em
 $mq-xxxl: 130em;
-
 
 //----------------------------------------------
 // Grid
@@ -62,8 +61,16 @@ $grid-width:          90%;
 $grid-width-med:      82%;
 $grid-max-width:      60em;
 $grid-max-width-sm:   41em;
-$grid-max-width-lg:   74em;
+$grid-max-width-lg:   80em;
 $grid-max-width-xl:   92%;
+
+//----------------------------------------------
+// Measures
+//----------------------------------------------
+$measure-xs: 15em;
+$measure-sm: 28em;
+$measure-med: 33em;
+$measure-lg: 39em;
 
 //----------------------------------------------
 // Spacings (pad/margin)
@@ -79,6 +86,14 @@ $pad-xl:    $pad + $pad;
 $pad-col:   $pad-xs;
 $pad-col-med: $pad-sm;
 $pad-col-lg: $pad-med;
+
+
+//----------------------------------------------
+// Header Heights
+//----------------------------------------------
+$header-height-lg: 8em;
+$header-height-sm: 5em;
+$header-height-xs: 4em;
 
 //----------------------------------------------
 // Colors

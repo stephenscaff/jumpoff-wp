@@ -33,3 +33,22 @@
     }
   }
 }
+
+//----------------------------------------------
+//  Font Styles
+//----------------------------------------------
+
+@mixin font-uppercase($size: $font-xs, $weight: 700) {
+  font-size: $size;
+  font-weight: $weight;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+
+@mixin text-overflow($width:90%) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: $width;
+}

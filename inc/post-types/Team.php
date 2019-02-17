@@ -32,7 +32,13 @@ add_action( 'init', function() {
    'capability_type'    => 'post',
    'can_export'         => true,
    'has_archive'        => true,
-   'rewrite'            => array('slug' => 'team', 'with_front' => false),
+   'show_in_rest'       => true,
+   'rest_base'          => 'team',
+   'rest_controller_class' => 'WP_REST_Posts_Controller',
+   'rewrite'            => array(
+     'slug'       => 'team',
+     'with_front' => false
+   ),
  ];
  register_post_type( $type, $args);
 });
@@ -68,3 +74,25 @@ add_action( 'init', function() {
    ];
    register_taxonomy( $tax, $type, $args);
  });
+
+
+
+
+
+/**
+ * Add ACF Fields to Products Endpoint
+ */
+add_filter("rest_prepare_team", 'team_rest_prepare_post', 10, 3);
+
+function team_rest_prepare_post($data, $post, $request) {
+   $_data = $data->data;
+
+   $fields = get_fields($post->ID);
+
+   foreach ($fields as $key => $value){
+       $_data[$key] = get_field($key, $post->ID);
+   }
+
+   $data->data = $_data;
+   return $data;
+}

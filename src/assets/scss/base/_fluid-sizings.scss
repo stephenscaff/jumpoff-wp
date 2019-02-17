@@ -12,27 +12,46 @@ body {
 // Fluid body sizing
 //----------------------------------------------
 body {
-  font-size: 100%;
+  font-size: 102%;
 
-  @media (min-width: $mq-sm) {
-    font-size: 101%;
-  }
   @media (min-width: $mq-med) {
-    font-size: 102%;
-  }
-  @media (min-width: $mq-lg) {
-    font-size: 103%;
-  }
-  @media (min-width: 75em) {
-    font-size: 120%;
+    font-size: calc(0.1vw + 100%);
   }
   @media (min-width: $mq-xl) {
-    font-size: 125%;
+    font-size: calc(0.2vw + 100%);
   }
   @media (min-width: $mq-xxl) {
-    font-size: 130%;
+    font-size: calc(0.3vw + 100%);
   }
-  @media (min-width: $mq-xxxl) {
-    font-size: 140%;
+}
+
+
+
+html.is-ms,
+html.is-ie,
+html.is-ie10,
+html.is-edge {
+  body {
+    @media (min-width: $mq-sm) {
+      font-size: 105%;
+    }
+    @media (min-width: $mq-med) {
+      font-size: 109%;
+    }
+    @media (min-width: $mq-lg) {
+      font-size: 113%;
+    }
+    @media (min-width: $mq-xl) {
+      font-size: 139%;
+    }
+    @media (min-width: $mq-xxl) {
+      font-size: 145%
+    }
+    @media (min-width: $mq-xxxl) {
+      font-size: 160%;
+    }
+    @media (max-height: 47em) {
+      font-size: 107%;
+    }
   }
 }

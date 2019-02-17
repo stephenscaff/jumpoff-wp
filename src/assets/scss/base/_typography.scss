@@ -41,36 +41,6 @@ h1,h2,h3,h4,h5{
 //  Font Styles
 //----------------------------------------------
 
-%font-meta,
-.font-meta {
-  display: block;
-  margin-bottom: $pad-xs;
-  font-family: $font-header;
-  font-weight: 700;
-  font-size: $font-xs;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-}
-
-
-%font-title,
-.font-title{
-  font-family: $font-header;
-  font-size: $font-lg;
-  font-weight: 700;
-}
-
-
-%font-pretitle,
-.font-pretitle {
-  display: block;
-  margin-bottom: $pad-xs;
-  font-family: $font-header;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-}
-
 .font-bold{
   font-weight: 700;
 }

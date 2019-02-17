@@ -14,8 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ?>
 <body <?php body_class(); ?>>
 
-<header class="site-header">
+<header class="app-header">
   <div class="grid-xl">
-    <a class="site-header__brand">The JumpOff</a>
+    <a class="app-header__brand">The JumpOff</a>
   </div>
 </header>

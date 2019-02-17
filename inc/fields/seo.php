@@ -8,13 +8,14 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  */
 
 $seo_fields = new StoutLogic\AcfBuilder\FieldsBuilder('seo', [
-  'key' => 'seo',
+  'key' => 'group_seo',
   'position' => 'normal',
-  'menu_order' => '13',
+  'menu_order' => '999',
 ]);
 
 $seo_fields
   ->addText('seo_title')
+  ->addText('seo_canonical_url')
   ->addTextArea('seo_description',  [
     'rows' =>  '2'
   ])

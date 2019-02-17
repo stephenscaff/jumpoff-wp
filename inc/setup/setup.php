@@ -84,7 +84,7 @@ class JumpoffSetup {
 	public function scripts() {
     if ( !is_admin() ) {
       wp_deregister_script( self::JQUERY );
-      wp_register_script( self::JQUERY, get_template_directory_uri() . '/assets/js/jquery.min.js', '', false, true );
+      //wp_register_script( self::JQUERY, get_template_directory_uri() . '/assets/js/jquery.min.js', '', false, true );
       wp_register_script( self::JUMPOFF_JS, get_template_directory_uri() . '/assets/js/app.min.js', '', false, true );
       //wp_enqueue_script( self::JQUERY );
       wp_enqueue_script( self::JUMPOFF_JS);
@@ -126,6 +126,7 @@ class JumpoffSetup {
 		    'footer_menu_1' => esc_html__( 'Footer Menu 1' ),
 				'footer_menu_2' => esc_html__( 'Footer Menu 2' ),
 				'footer_menu_3' => esc_html__( 'Footer Menu 3' ),
+				'login_menu' => esc_html__( 'Login Menu' ),
 		) );
 	}
 

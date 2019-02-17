@@ -14,12 +14,13 @@ $btn-pad-sm: 1rem 1.75rem 0.9rem;
   padding: 0;
   background: transparent;
   border: 0;
-  @extend %font-links !optional;
+  @include font-uppercase;
   text-align: center;
   line-height: 1;
   white-space: nowrap;
   cursor: pointer;
   -webkit-appearance: none;
+  backface-visibility: hidden;
 }
 
 
@@ -29,19 +30,19 @@ $btn-pad-sm: 1rem 1.75rem 0.9rem;
 
 .btn{
   @include btn-theme;
-  padding: 1.25rem 2.75rem 0.95rem;
+  padding: 1.25rem 3rem 1.15rem;
   color: $color-white;
   background-color: $color-alpha;
   border: 1px solid;
   border-color: $color-alpha;
   border-radius: $base-border-radius;
-  transition: background-color 0.4s $ease-cb-2, color 0.5s $ease-cb-2;
+  transition: background-color 0.5s $ease-cb-2, color 0.5s $ease-cb-2, border-color 0.5s $ease-cb-2;
 
   &:hover, &:focus{
     color: $color-white;
     background-color: $color-grey-dark;
     border-color: $color-grey-dark;
-    transition: background-color 0.4s $ease-cb-2, color 0.5s $ease-cb-2;
+    transition: background-color 0.7s $ease-cb-2, color 0.7s $ease-cb-2, border-color 0.7s $ease-cb-2;
   }
 }
 
@@ -56,24 +57,16 @@ $btn-pad-sm: 1rem 1.75rem 0.9rem;
   overflow: hidden;
   font-weight: 700;
   line-height: 1.4;
+  color: $color-alpha;
+  @include link-line-width($color:$color-alpha, $color_hover: $color-alpha);
+}
 
-  &:hover, a:hover & {
-    color: $color-alpha;
-  }
+%btn-line-white,
+.btn-line.is-white {
+  color: $color-white;
 
   &:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width:100%;
-    height: 1px;
-    background-color: $color-alpha;
-    transition: all .8s cubic-bezier(.555,.205,.295,.975);
-  }
-
-  &:hover:after, a:hover &:after {
-    animation: btn-line-hover .8s cubic-bezier(.58,.3,.005,1) 0s 1;
+    background-color: $color-white;
   }
 }
 
@@ -91,7 +84,7 @@ $btn-pad-sm: 1rem 1.75rem 0.9rem;
 //----------------------------------------------
 
 .btns{
-  a + a {
+  a + a, .btn-wrap + .btn-wrap {
     margin-left: 0.5em;
   }
 

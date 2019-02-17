@@ -105,7 +105,7 @@ class JumpoffAdminSetup {
    if ( !$menu_order ) return true;
 
    return array(
-     'index.php',
+		 'index.php',
      'upload.php',
      'contacts',
      'edit.php?post_type=location',

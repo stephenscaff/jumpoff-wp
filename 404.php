@@ -11,8 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 get_header(); ?>
 
-<!-- MAIN --> 
-<main role="main" class="bg-white">
+<!-- MAIN -->
+<main class="has-header-offset bg-white">
 
 <section class="fourohfour">
   <div class="grid">
@@ -33,5 +33,5 @@ get_header(); ?>
 
 </main>
 
-<!-- Footer  --> 
+<!-- Footer  -->
 <?php get_footer(); ?>

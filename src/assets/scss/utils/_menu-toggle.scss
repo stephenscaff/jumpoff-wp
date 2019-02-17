@@ -5,9 +5,9 @@
 //--------------------------------------------
 
 $menu-lines-height: 2px;
-$menu-width: 1.8em;
+$menu-width: 3.25em;
 
-.u-menu-toggle{
+.menu-toggle{
   z-index: $z-menu-toggle;
   position: relative;
   height: 1.25em;
@@ -28,6 +28,7 @@ $menu-width: 1.8em;
       width: 100%;
       height: $menu-lines-height;
       background: $color-grey-dark;
+      transform: rotate(0.01deg);
     }
 
     &:after, &:before {
@@ -97,9 +98,11 @@ $menu-width: 1.8em;
     background: $color-beta;
     transition: background-color 0.4s ease-in-out, transform 0.4s ease-in-out;
   }
+
   &:after{
     transform: rotate(45deg);
   }
+
   &:before {
     transform: rotate(-45deg);
   }

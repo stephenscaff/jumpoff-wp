@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 ?>
 
-<section class="posts">
+<section class="posts has-fetch-more">
   <div class="grid">
     <div id="js-posts" class="posts__grid">
     <?php
