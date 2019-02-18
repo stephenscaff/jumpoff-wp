@@ -2,7 +2,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-require_once('cards.php');
-require_once('content.php');
-require_once('posts.php');
-require_once('video.php');
+require_once('Cards.php');
+require_once('Content.php');
+require_once('Posts.php');
+require_once('Video.php');

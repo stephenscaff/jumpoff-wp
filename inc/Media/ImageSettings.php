@@ -1,5 +1,6 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
+
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  *  JumpoffImageSettings

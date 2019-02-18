@@ -1,6 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
+namespace jumpoff;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  *   Nav Active Class.
@@ -9,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
  *   @param    string $page_name
  *   @return   string 'is-active';
  */
-function jumpoff_active_class( $page_name ){
+function get_active_class( $page_name ){
   if (is_page( $page_name ) || is_post_type_archive( $page_name )) {
     return 'is-active';
   }
@@ -23,7 +25,7 @@ function jumpoff_active_class( $page_name ){
  *   @param    string $page_name
  *   @return   string 'is-active';
  */
-function jumpoff_get_page_url( $page_name, $cpt='' ){
+function get_page_url( $page_name, $cpt='' ){
   if ( $cpt == true ) {
     $page_url = esc_url( get_post_type_archive_link( $page_name ) );
   } else {
@@ -40,7 +42,7 @@ function jumpoff_get_page_url( $page_name, $cpt='' ){
  * @var $klass string - class name for link
  * @return string
  */
-function jumpoff_get_subpage_links( $post_type, $klass ){
+function get_subpage_links( $post_type, $klass ){
   global $post ;
 
   $args = array(
@@ -59,8 +61,6 @@ function jumpoff_get_subpage_links( $post_type, $klass ){
 
   return $output;
 }
-
-
 
 
 /**

@@ -6,9 +6,14 @@
  * @author    Stephen Scaff
  * @version   1.0
  */
+
 if ( ! defined( 'ABSPATH' ) ) exit;
-get_header();
+
+
 $search_query = get_search_query();
+
+get_header();
+
 ?>
 
 <main role="main">
@@ -49,7 +54,7 @@ $search_query = get_search_query();
 </section>
 
 <!-- Pagination -->
-<?php get_template_part( 'partials/partial', 'pagination' );?>
+<?php get_template_part( 'partials/partial', 'fetch-more' );?>
 
 </main>
 

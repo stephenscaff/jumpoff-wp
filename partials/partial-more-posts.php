@@ -9,7 +9,7 @@
  *  @version    1.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Get id of current post
 $current_post = get_the_ID();

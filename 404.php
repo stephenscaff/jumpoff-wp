@@ -7,7 +7,10 @@
  * @version   2.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+namespace jumpoff;
+use jumpoff;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 get_header(); ?>
 
@@ -18,14 +21,14 @@ get_header(); ?>
   <div class="grid">
     <div class="fourohfour__grid">
       <figure class="fourohfour__figure">
-        <img src="<?php echo jumpoff_img(); ?>/404/404-1.gif">
+        <img src="<?php echo get_img_path(); ?>/404/404-1.gif">
       </figure>
 
       <div class="fourohfour__content">
         <span class="fourohfour__pretitle">404</span>
         <h1 class="fourohfour__title">Four Oh Four</h1>
         <p class="fourohfour__text">Nothing to see here. </p>
-        <a class="fourhofour__btn btn" href="<?php echo jumpoff_page_url('home') ?>">Take Me Home</a>
+        <a class="fourhofour__btn btn" href="<?php echo get_page_url('home') ?>">Take Me Home</a>
       </div>
     </div>
   </div>

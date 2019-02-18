@@ -7,9 +7,12 @@
  * @version   2.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-get_header(); ?>
+get_header();
+
+
+?>
 
 <!-- Main -->
 <main role="main" class="">
@@ -22,7 +25,7 @@ get_header(); ?>
 </section>
 
 <!-- Posts -->
-<?php //get_template_part( 'partials/partial', 'posts' );?>
+<?php get_template_part( 'partials/partial', 'posts' );?>
 
 </main>
 

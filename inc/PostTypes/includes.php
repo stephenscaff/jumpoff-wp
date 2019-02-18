@@ -11,5 +11,5 @@ function jumpoff_flush_rewrite_rules() {
   flush_rewrite_rules();
 }
 
+require_once('Team.php');
 # require_once('Team.php');
-# require_once('Testimonials.php');

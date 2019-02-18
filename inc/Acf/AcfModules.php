@@ -1,12 +1,12 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
 * ACF Module Loader Class
 *
-* Autoloads ACF Flexible Content Fields as modules by matching the module name with the file name
-* from within the modules directory.
+* Loads ACF Flexible Content Fields as modules by matching
+* the module name with the file name from within the modules directory.
 *
 * @author       Stephen Scaff
 * @see          partials/modules
@@ -37,19 +37,23 @@ class ACF_Modules {
     $find = array('{{layout}}', '_');
     $replace = array($layout, '-');
 
-    /* Find a file that matchs this_format */
+    // File file matching format
     $new_layout_file = str_replace($find[0], $replace[0], $layout_file);
 
-    if (file_exists($full_layout_directory . $new_layout_file)){
+    if ( file_exists($full_layout_directory . $new_layout_file) ){
       include($full_layout_directory . $new_layout_file);
+
       return true;
 
     } else {
-      /* Find a file that matchs this-format */
+
+      // Find file matching formats
       $new_layout_file = str_replace($find, $replace, $layout_file);
 
       if (file_exists($full_layout_directory . $new_layout_file)) {
+
         include($full_layout_directory . $new_layout_file);
+
         return true;
       }
     }

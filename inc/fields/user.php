@@ -2,6 +2,8 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+use StoutLogic\AcfBuilder\FieldsBuilder;
+
 /**
  * Admin Extras
  * Class to add useful stuff and remove stupid stuff.

@@ -1,8 +1,9 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+namespace jumpoff;
 
-// Example Post Type
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /**
  *  Post Type: Team
  *
@@ -17,7 +18,7 @@ add_action( 'init', function() {
  $type = 'team';
 
  // Call the function and save it to $labels
- $labels = jumpoff_post_type_labels('Team Member', 'Team Members');
+ $labels = set_post_type_labels('Team Member', 'Team Members');
 
  $args = [
    'public'             => true,
@@ -61,7 +62,7 @@ add_action( 'init', function() {
    $type = 'team';
 
    // Call the function and save it to $labels
-   $labels = jumpoff_post_type_labels('Team Categories', 'Team Categorey');
+   $labels = set_post_type_labels('Team Categories', 'Team Categorey');
 
    $args = [
        'description'        => 'Team Members Categories.',
@@ -74,9 +75,6 @@ add_action( 'init', function() {
    ];
    register_taxonomy( $tax, $type, $args);
  });
-
-
-
 
 
 /**
@@ -94,5 +92,6 @@ function team_rest_prepare_post($data, $post, $request) {
    }
 
    $data->data = $_data;
+
    return $data;
 }

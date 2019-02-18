@@ -2,6 +2,8 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+use StoutLogic\AcfBuilder\FieldsBuilder;
+
 /**
  * Fields - SEO
  * Location: all pages, posts and post types. Edit as needed.

@@ -1,6 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
+namespace jumpoff;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Get id by page name
@@ -29,6 +31,7 @@ function is_post_type( $type ){
   if ($type == get_post_type($wp_query->post->ID) ){
     return true;
   }
+
   return false;
 }
 
@@ -59,15 +62,12 @@ function is_any_post_type( $post = NULL ) {
  *  @return: $id (the id of the post)
  *  @example: $postidd = jumpoff_ids();
  */
-function jumpoff_ids() {
+function get_current_id() {
   global $post;
   $term_obj = get_queried_object();
   $page_for_posts = get_option( 'page_for_posts' );
 
   $id='';
-  //
-  // if( !is_object( $post ) )
-  //    return;
 
   if (is_post_type_archive()){
     $post_type = get_queried_object();
@@ -115,6 +115,7 @@ function has_more_posts() {
  */
 function is_extended_class($str, $chars = '200') {
   $class = '';
+
   if (strlen($str) > $chars) {
     $class = 'is-extended';
   }
@@ -132,6 +133,7 @@ function has_ft_img($id) {
   if ($ft_img->url) {
     return true;
   }
+
   return false;
 }
 
@@ -141,7 +143,7 @@ function has_ft_img($id) {
  *  For creating BEM style modifiers
  *  @return: $class (string)
  */
-function jumpoff_mod_class() {
+function get_mod_class() {
   $page_for_posts = get_option( 'page_for_posts' );
   $class='';
 
@@ -157,12 +159,13 @@ function jumpoff_mod_class() {
   elseif (is_archive()){
     $class = 'archive';
   }
-  elseif (is_post_type('activity')){
-    $class = 'activity';
+  elseif (is_post_type('team')){
+    $class = 'team';
   }
   else {
     $class = basename(get_permalink());
   }
+
   return $class;
 }
 
@@ -175,7 +178,7 @@ function jumpoff_mod_class() {
  * @param mixed fallback, probably a string
  * @return mixed Custom field or fallback
  */
-function jumpoff_field_fallback ($field, $fallback) {
+function field_fallback ($field, $fallback) {
 
   $output = '';
 
@@ -184,5 +187,6 @@ function jumpoff_field_fallback ($field, $fallback) {
   } else {
     $output = $fallback;
   }
+
   return $output;
 }

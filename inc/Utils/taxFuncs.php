@@ -1,6 +1,9 @@
 <?php
 
+namespace jumpoff;
+
 if ( ! defined( 'ABSPATH' ) ) exit;
+
 
 
 /**
@@ -9,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * @return obj(name, slug, url)
  */
-function jumpoff_term($taxonomy, $post_id = '') {
+function get_term($taxonomy, $post_id = '') {
 
   global $post;
 
@@ -27,22 +30,24 @@ function jumpoff_term($taxonomy, $post_id = '') {
 
     $queried_object = get_queried_object();
 
-    if ( is_tax() ){
-    $term_obj = array(
-  		'name' => (string)$queried_object->name,
-  		'slug' => (string)$queried_object->slug,
-      'url' => (string)get_term_link($term),
-		);
+    if ( is_tax() ) {
 
-  } else {
+      $term_obj = array(
+    		'name' => (string)$queried_object->name,
+    		'slug' => (string)$queried_object->slug,
+        'url' => (string)get_term_link($term),
+  		);
 
-    $term_obj = array(
-  		'name' => (string)$term->name,
-  		'slug' => (string)$term->slug,
-      'url' => (string)get_term_link($term),
-		);
+    } else {
+
+      $term_obj = array(
+    		'name' => (string)$term->name,
+    		'slug' => (string)$term->slug,
+        'url' => (string)get_term_link($term),
+  		);
+    }
   }
-}
+  
   return (object)$term_obj;
 }
 
@@ -51,12 +56,12 @@ function jumpoff_term($taxonomy, $post_id = '') {
  * Terms
  * Retrives the terms applied to the current post
  */
-function jumpoff_terms($taxonomy, $type) {
+function get_terms($taxonomy, $type) {
   $terms = get_the_terms($post->ID, $taxonomy);
   $output = '';
 
   if (!$terms) return;
-  
+
   foreach ( $terms as $term ) {
 
     if ($type === 'comma'){
@@ -69,8 +74,10 @@ function jumpoff_terms($taxonomy, $type) {
       $output .= $term->name;
     }
   }
+
   return rtrim($output, ', ');
 }
+
 
 /**
  *  jumpoff_term_link()
@@ -81,7 +88,7 @@ function jumpoff_terms($taxonomy, $type) {
  *  @param  $tax (string)
  *  @return $term_link (string) the term archive link
  */
-function jumpoff_term_link($term, $tax){
+function get_term_link($term, $tax){
   $term_link = get_term_link( $term, $tax );
 
   return $term_link;
@@ -95,7 +102,7 @@ function jumpoff_term_link($term, $tax){
  *  @see
  *  @return (string) $single_cat;
  */
-function jumpoff_cat($type){
+function get_cat($type){
 
   global $post;
 
@@ -120,13 +127,14 @@ function jumpoff_cat($type){
   }
 }
 
+
  /**
   *  Categories List
   *  Returns cats wtih content to output as list
   *
   *  @return string $category_item
   */
-function jumpoff_cats($type) {
+function get_cats($type) {
  $categories = get_categories();
  $category_item = '';
 
@@ -143,15 +151,17 @@ function jumpoff_cats($type) {
        $category_item .= '<li><a href="' . $category_link . '">' . $category->name . '</a></li>';
      }
    }
+
    return rtrim($category_item, ', ');
- }
+  }
 }
+
 
  /**
   * Get Single Cat from slug
   * @return $categories (post_name);
   */
-function jumpoff_get_cat_slug($cat_id) {
+function get_cat_slug($cat_id) {
 	$cat_id = (int) $cat_id;
 	$category = get_category($cat_id);
 
@@ -165,7 +175,7 @@ function jumpoff_get_cat_slug($cat_id) {
   * Jumpoff Query Filters
   * Builds out term links using query var
   */
-function jumpoff_query_filters($tax, $type, $class) {
+function get_query_filters($tax, $type, $class) {
 
   $output = "";
 

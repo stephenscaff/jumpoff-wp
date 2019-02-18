@@ -1,8 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
+namespace jumpoff;
 
-
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Join Fields
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
  * @example jumpoff_add_class($class, 'module')
  * @return string $group - space seperated sting of class names
  */
-function jumpoff_add_classes($fields){
+function add_classes($fields){
   $group = join(' ', $fields);
 
   return $group;
@@ -23,7 +23,7 @@ function jumpoff_add_classes($fields){
 /**
  * Remove Wp's Auto P
  */
-function jumpoff_unautop($str) {
+function better_unautop($str) {
   $str = str_replace("\n", "", $str);
   $str = str_replace("<p>", "", $str);
   $str = str_replace(array("<br />", "<br>", "<br/>"), "\n", $s);
@@ -40,7 +40,7 @@ function jumpoff_unautop($str) {
  *  and converting to lowercase
  *  @return: $classes (string)
  */
-function jumpoff_make_hash($str) {
+function make_hash($str) {
   # Lower case everything
   $str = strtolower($str);
 
@@ -67,7 +67,7 @@ function jumpoff_make_hash($str) {
  *  @return   string $output
  *  @example  jumpoff_format_lines( $fieldname,  'span' )
  */
-function jumpoff_format_lines ( $str, $type='list' ){
+function format_lines ( $str, $type='list' ){
 
   $lines = explode("\n", $str);
 
@@ -83,8 +83,10 @@ function jumpoff_format_lines ( $str, $type='list' ){
       }
     }
   }
+
   return $output;
 }
+
 
 /**
  *  Covert to Words
@@ -96,6 +98,7 @@ function jumpoff_format_lines ( $str, $type='list' ){
 function convert_to_words($str) {
   return ucwords(str_replace("_", " ", $str));
 }
+
 
 /**
  *  Format Tel Link

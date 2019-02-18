@@ -18,8 +18,8 @@ if ( is_file($autoload) ) {
 }
 
 # Includes
-require_once('vars.php');
-require_once('contacts.php');
-require_once('mast.php');
-require_once('seo.php');
-require_once('user.php');
+require_once('Vars.php');
+require_once('Contacts.php');
+require_once('Mast.php');
+require_once('Seo.php');
+require_once('User.php');

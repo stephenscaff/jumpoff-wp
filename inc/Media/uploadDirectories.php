@@ -5,9 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
  * Upload Images by Post
  */
 
- add_filter( 'upload_dir', 'upload_dir_by_post' );
+ add_filter( 'upload_dir', 'assign_uploads_bg_post' );
 
- function upload_dir_by_post( $args ) {
+ function assign_uploads_bg_post( $args ) {
    $id = ( isset( $_REQUEST['post_id'] ) ? $_REQUEST['post_id'] : '' );
 
    if ( $id ) {

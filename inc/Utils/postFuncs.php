@@ -1,5 +1,7 @@
 <?php
 
+namespace jumpoff;
+
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
@@ -13,11 +15,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *  @return $string
  */
 
-function jumpoff_text_limit($string, $length, $replacer) {
+function set_text_limit($string, $length, $replacer) {
   if(strlen($string) > $length)
   return (preg_match('/^(.*)\W.*$/', substr($string, 0, $length+1), $matches) ? $matches[1] : substr($string, 0, $length)) . $replacer;
+
   return $string;
 }
+
 
 /**
  *  jumpoff_excerpt
@@ -31,9 +35,10 @@ function jumpoff_text_limit($string, $length, $replacer) {
  *
  */
 
-function jumpoff_excerpt($characters, $rep='...') {
+function get_excerpt($characters, $rep='...') {
   $excerpt = get_the_excerpt('', '', false);
-  $shortened_excerpt = jumpoff_text_limit($excerpt, $characters, $rep);
+  $shortened_excerpt = set_text_limit($excerpt, $characters, $rep);
+
   return $shortened_excerpt;
 }
 
@@ -92,7 +97,7 @@ function get_module_field_excerpt($module_name, $module_field, $characters, $rep
  * @return $output
  */
 
-function jumpoff_source_tag($format, $class){
+function get_source_tag($format, $class){
   $post_type = get_post_type_object(get_post_type());
   $post_type_name = $post_type->labels->name;
   $post_type_slug = $post_type->rewrite['slug'];

@@ -1,12 +1,14 @@
 <?php
 
+namespace jumpoff;
+
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Formated Dumper (tee hee)
  * @return {string} a parsable string representation of a variable
  */
-function jumpoff_dump( $var, $name = '' ) {
+function pretty_dump( $var, $name = '' ) {
 	echo '<pre>';
 	if ( '' !== $name ) {
 		echo $name . ': ';
@@ -19,7 +21,7 @@ function jumpoff_dump( $var, $name = '' ) {
 /**
  * Js Console Debugger
  */
-function jumpoff_dump_js( $data ) {
+function dump_js( $data ) {
 	$output  = '<script>';
 	$output .= 'console.info( "Debug in Console:" );';
 	$output .= 'console.log(' . json_encode( $data ) . ');';
@@ -34,7 +36,7 @@ function jumpoff_dump_js( $data ) {
  * @param bool $html Insert nonbreaking spaces and <br />s for tabs and linebreaks
  * @return string The prettified output
  */
-function jumpoff_format_json($json, $html = false) {
+function format_json($json, $html = false) {
   $tabcount = 0;
   $result = '';
   $inquote = false;

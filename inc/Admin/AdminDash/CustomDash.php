@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  *  Custom Dash
@@ -59,7 +59,7 @@ class CustomDash {
    * Load the Dash View
    */
   function dash_view() {
-    require_once('dash-view.php');;
+    require_once('dash_view.php');;
   }
 }
 

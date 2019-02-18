@@ -26,9 +26,10 @@ if (!class_exists('FeaturedImageShortcode')) {
       return $output;
     }
   }
+
+  new FeaturedImageShortcode();
+
 }
-// INIT Class
-new FeaturedImageShortcode();
 
 
 /**
@@ -73,10 +74,9 @@ if (!class_exists('BlockquoteShortcode')) {
       return $output;
     }
   }
-}
-// INIT Class
-new BlockquoteShortcode();
 
+  new BlockquoteShortcode();
+}
 
 
 /**
@@ -109,6 +109,6 @@ if (!class_exists('VideoEmbedShortcode')) {
       return $output;
     }
   }
+
+  new VideoEmbedShortcode();
 }
-// INIT Class
-new VideoEmbedShortcode();

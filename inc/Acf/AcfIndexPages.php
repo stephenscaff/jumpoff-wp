@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
@@ -14,12 +15,14 @@ add_action( 'init', 'post_type_index_options_pages', 99 );
 
 function post_type_index_options_pages() {
 
-  if ( function_exists('acf_add_options_page') ) { //Check if installed acf
+  if ( function_exists('acf_add_options_page') ) {
 
-      $post_type_index_post_types = get_post_types( array(
-        '_builtin'    => false,
-        'has_archive' => true
-      ));
+      $post_type_index_post_types = get_post_types(
+        array(
+          '_builtin'    => false,
+          'has_archive' => true
+        )
+      );
 
       foreach ( $post_type_index_post_types as $post_type ) {
 
@@ -41,14 +44,18 @@ function post_type_index_options_pages() {
           );
 
           acf_add_options_page( $post_type_acf_page );
-
       }
     }
   } else {
+
     return;
+
   }
 }
 
+/**
+ * Add opts page for default Posts
+ */
 if ( function_exists( 'acf_add_options_sub_page' ) ){
   acf_add_options_sub_page(array(
     'title'      => 'Posts Index',

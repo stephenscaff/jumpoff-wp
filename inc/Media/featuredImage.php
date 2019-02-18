@@ -1,6 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
+namespace jumpoff;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
 *  Featured Image Helper
@@ -12,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
 * @return string Image Url
 **/
 
-function jumpoff_ft_img($size, $post_id = '', $fallback = false) {
+function get_ft_img($size, $post_id = '', $fallback = false) {
   global $post, $posts;
 
   // Allow for specific Image Ids
@@ -59,7 +61,7 @@ function jumpoff_ft_img($size, $post_id = '', $fallback = false) {
  *  @example: jumpoff_random_img()
  *  @param return image
  */
-function jumpoff_random_img() {
+function get_random_img() {
   // Get dir
   $template_dir = get_bloginfo('template_directory');
 

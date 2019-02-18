@@ -12,9 +12,9 @@
  *  @see       inc/fields/* - Defined fields and modules
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit; 
 
-// Modules
+
 while (has_sub_field('modules')) :
   ACF_Modules::render(get_row_layout());
 endwhile;

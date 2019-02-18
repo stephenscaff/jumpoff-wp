@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     <div id="js-posts" class="posts__grid">
     <?php
     if ( have_posts() ): while ( have_posts() ) : the_post();
-      get_template_part( 'partials/content/content', 'posts' );
+      get_template_part( 'partials/content/content', 'post' );
     endwhile; else:
       get_template_part( 'partials/content/content', 'none' );
     endif;

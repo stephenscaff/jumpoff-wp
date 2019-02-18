@@ -1,10 +1,10 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Editor Toolbars
- * Class for customizing Wp Editor Toolbars, for
+ * Singleton class for customizing Wp Editor Toolbars, for
  * Visual (TinyMCE), Text (Qtags) and ACF toolbars
  */
 class AdminEditors {
@@ -20,6 +20,7 @@ class AdminEditors {
   public static function init() {
    if ( is_null( self::$instance ) )
      self::$instance = new AdminEditors();
+
    return self::$instance;
   }
 
@@ -77,8 +78,11 @@ class AdminEditors {
    * Hide COntent Editor
    */
   function hide_editor() {
+
     $post_id = isset($_GET['post']) ? $_GET['post'] : isset($_POST['post_ID']);
-    if ( !$post_id )   return;
+
+    if ( !$post_id ) return;
+
     $title = get_the_title($post_id);
 
     if ( in_array($title, array('Home', 'Contact Us', 'About')) ) {
@@ -91,37 +95,3 @@ class AdminEditors {
 }
 
 AdminEditors::init();
-//
-//
-//
-// add_filter( 'mce_buttons', function($buttons) {
-//   array_unshift( $buttons, 'styleselect' );
-// 	return $buttons;
-// });
-//
-//
-// // Attach callback to 'tiny_mce_before_init'
-// add_filter( 'tiny_mce_before_init', function($init_array) {
-//   // Define the style_formats array
-//   $style_formats = array(
-//     array(
-//       'title' => 'Title',
-//       'block' => 'h2',
-//     ),
-//     array(
-//       'title' => 'SubTitle',
-//       'block' => 'h4',
-//     ),
-//     array(
-//       'title' => 'Small',
-//       'block' => 'sp',
-//       'classes' => 'font-sm',
-//       'wrapper' => true,
-//
-//     ),
-//   );
-//   // Insert the array, JSON ENCODED, into 'style_formats'
-//   $init_array['style_formats'] = json_encode( $style_formats );
-//
-//   return $init_array;
-// } );

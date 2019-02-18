@@ -10,8 +10,6 @@
 
     global $post, $page;
 
-
-    # Single Pages
     if ( is_single() || is_page() && !is_front_page() ) {
       $classes[] = 'page-' . basename(get_permalink());
     }
@@ -19,39 +17,21 @@
     elseif (is_front_page()) {
       $classes[] = 'page-home';
     }
+
     elseif (is_home() || is_singular('post') || is_post_type_archive( 'post' )) {
       $classes[] = 'page-news';
     }
 
     elseif ( is_post_type_archive() ) {
-
       $post_type_obj = get_queried_object();
       $classes[] = 'page-index-'.$post_type_obj->name;
-
     }
 
     elseif ( is_any_post_type() ) {
-
       $post_type_obj = get_queried_object();
       $post_type = get_post_type_object(get_post_type($post_type_obj));
       $classes[] = 'page-'.$post_type_obj->name;
-
     }
-
-    // if(basename(get_page_template()) === 'page.php'){
-    //   $classes[] = 'page-default';
-    // }
-    // if (is_single() || is_page() && !is_front_page()) {
-    //   $classes[] = 'page-' . basename(get_permalink());
-    // }
-    // if (is_home() || is_singular('post') || is_post_type_archive( 'post' )) {
-    //   $classes[] = 'page-news';
-    // }
-    // //Example for CPTs
-    // if (is_post_type_archive()) {
-    //   $post_type_name = $post->post_type;
-    //   $classes[] = 'page-' . $post_type_name;
-    // }
 
     // Remove Classes
     $home_id_class = 'page-id-' . get_option('page_on_front');

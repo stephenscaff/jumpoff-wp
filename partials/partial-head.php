@@ -8,7 +8,10 @@
  * @package   partials
  * @version   1.0
  */
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+namespace jumpoff;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 $ids = jumpoff_ids();
 
@@ -25,7 +28,7 @@ if (!$meta_description) $meta_description = '';
 
 # Meta Image
 $meta_img = get_field('seo_image', $ids);
-$meta_img = $meta_img ? $meta_img['url'] : jumpoff_ft_img('large')->url;
+$meta_img = $meta_img ? $meta_img['url'] : get_ft_img('large')->url;
 
 # Meta Canonical
 $meta_canonical = get_field('seo_canonical_url', $ids);

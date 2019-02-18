@@ -2,4 +2,4 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
 
-require_once('fetch-more.php');
+require_once('FetchMore.php');

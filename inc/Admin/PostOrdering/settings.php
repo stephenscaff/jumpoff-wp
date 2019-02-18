@@ -1,8 +1,10 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
-
+/**
+ * Post Order Settings and Admin
+ */
 $order_options = get_option('order_options');
 $order_objects = isset($order_options['objects']) ? $order_options['objects'] : array();
 $order_tags = isset($order_options['tags']) ? $order_options['tags'] : array();
@@ -91,10 +93,14 @@ $order_tags = isset($order_options['tags']) ? $order_options['tags'] : array();
 </div>
 
 <script>
+/**
+ * Post Ordering
+ */
 (function ($) {
 
   $("#order_allcheck_objects").on('click', function () {
     var items = $("#order_select_objects input");
+
     if ($(this).is(':checked'))
       $(items).prop('checked', true);
     else
@@ -103,10 +109,12 @@ $order_tags = isset($order_options['tags']) ? $order_options['tags'] : array();
 
   $("#order_allcheck_tags").on('click', function () {
     var items = $("#order_select_tags input");
+
     if ($(this).is(':checked'))
       $(items).prop('checked', true);
     else
       $(items).prop('checked', false);
   });
+  
 })(jQuery)
 </script>

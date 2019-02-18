@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /**
  * Duplicate Posts and Pages
  * Provides functionality to dupe pages and posts

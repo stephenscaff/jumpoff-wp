@@ -2,6 +2,8 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+use StoutLogic\AcfBuilder\FieldsBuilder;
+
 /**
  *   Mast Fields
  *   For mastheads and stuff.

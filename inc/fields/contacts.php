@@ -2,6 +2,8 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+use StoutLogic\AcfBuilder\FieldsBuilder;
+
 /**
  * Register Contacts Options Page
  */

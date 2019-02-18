@@ -3,8 +3,8 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 
-require_once('admin-theme/admin-setup.php');
-require_once('admin-dash/dash-admin.php');
-require_once('admin-theme/admin-ft-image-col.php');
-require_once('admin-theme/admin-post-duplicator.php');
-require_once('post-ordering/post-ordering.php');
+require_once('AdminSetup.php');
+require_once('AdminDash/CustomDash.php');
+require_once('AdminTheme/FeaturedImageCol.php');
+require_once('AdminTheme/PostDuplicator.php');
+require_once('PostOrdering/PostOrdering.php');

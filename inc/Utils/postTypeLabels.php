@@ -1,13 +1,15 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+namespace jumpoff;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  *  Post Type Labels
  *  Utility to handle singular / plural labels of register_post_type();
  *  $labels = jumpoff_post_type_labels('Project', 'Projects');
  */
-function jumpoff_post_type_labels( $singular = 'Post', $plural = 'Posts' ) {
+function set_post_type_labels( $singular = 'Post', $plural = 'Posts' ) {
  $p_lower = strtolower( $plural );
  $s_lower = strtolower( $singular );
 
