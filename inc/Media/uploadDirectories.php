@@ -1,13 +1,13 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
+
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * Upload Images by Post
+ * Upload Images by Content Type
  */
+ add_filter( 'upload_dir', 'uploads_by_type' );
 
- add_filter( 'upload_dir', 'assign_uploads_bg_post' );
-
- function assign_uploads_bg_post( $args ) {
+ function uploads_by_type( $args ) {
    $id = ( isset( $_REQUEST['post_id'] ) ? $_REQUEST['post_id'] : '' );
 
    if ( $id ) {

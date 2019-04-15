@@ -44,9 +44,9 @@ $mq-xsmall: 22em;
 // Phone
 $mq-sm: 32em;
 // Tablet
-$mq-med: 59em;
+$mq-med: 54em;
 // Laptop
-$mq-lg: 78em;
+$mq-lg: 65em;
 // Past laptop
 $mq-xl: 91em;
 // Mid-size monitor
@@ -54,23 +54,18 @@ $mq-xxl: 115em;
 // Thunderbold goes to 157em
 $mq-xxxl: 130em;
 
+
 //----------------------------------------------
 // Grid
 //----------------------------------------------
-$grid-width:          90%;
-$grid-width-med:      82%;
+$grid-width:          92%;
 $grid-max-width:      60em;
 $grid-max-width-sm:   41em;
-$grid-max-width-lg:   80em;
-$grid-max-width-xl:   92%;
-
-//----------------------------------------------
-// Measures
-//----------------------------------------------
-$measure-xs: 15em;
-$measure-sm: 28em;
-$measure-med: 33em;
-$measure-lg: 39em;
+$grid-width-med:      82%;
+$grid-width-lg:       88%;
+$grid-max-width-lg:   76em;
+$grid-max-width-xl:   90%;
+$grid-max-width-xxl:   95%;
 
 //----------------------------------------------
 // Spacings (pad/margin)
@@ -87,36 +82,25 @@ $pad-col:   $pad-xs;
 $pad-col-med: $pad-sm;
 $pad-col-lg: $pad-med;
 
-
-//----------------------------------------------
-// Header Heights
-//----------------------------------------------
-$header-height-lg: 8em;
-$header-height-sm: 5em;
-$header-height-xs: 4em;
-
 //----------------------------------------------
 // Colors
 //----------------------------------------------
-$color-alpha:     #433ed7;
-$color-beta:      #3da1ef;
-$color-white:     #fff;
-$color-dark:      #242424;
-$color-grey:      #999;
-
-$color-grey:      #999;
+$color-alpha:      #433ed7;
+$color-beta:       #3da1ef;
+$color-white:      #fff;
+$color-dark:       #242424;
+$color-grey:       #999;
 $color-grey-light: #f8f8f8;
-$color-grey-dark: #242424;
-
-$color-warning:   #c43a31;
-$color-success:   #1ABC9C;
+$color-grey-dark:  #242424;
+$color-warning:    #c43a31;
+$color-success:    #1ABC9C;
 
 
 //----------------------------------------------
 // Base UI
 //----------------------------------------------
 $base-border-radius: 0px;
-$base-border-width: 1px;
+$base-border-width:  1px;
 
 //----------------------------------------------
 // Forms

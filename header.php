@@ -9,5 +9,5 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-get_template_part( 'partials/partial', 'head' );
-get_template_part( 'partials/partial', 'header' );
+include(locate_template('views/shared/head.php'));
+include(locate_template('views/shared/header.php'));

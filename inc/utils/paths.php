@@ -1,40 +1,39 @@
 <?php
 
-namespace jumpoff;
+namespace Jumpoff;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 /**
- *  jumpoff_img()
+ *  Get Image Directory
  *  An image path helper that gets template path of images
+ *  @return string theme image directory
  */
-function get_img_path(){
+function get_img_dir(){
   $template_path = bloginfo( 'template_directory' );
-
-  return $template_path . '/assets/images';
+  $img_path = $template_path . '/assets/images';
+  return $img_path;
 }
 
 
 /**
- *  jumpoff_path
+ *  Get Assets Path
  *  An asset path helper that gets template path.
- *  @example : <video src="<?php jumpoff_path(); ?>/videos/vide.mp4">
+ *  @return string assets directory
  */
 function get_assets_path(){
   $template_path = bloginfo( 'template_directory' );
-
-  return $template_path . '/assets';
+  $path = $template_path . '/assets';
+  return $path;
 }
 
 
 /**
- *  jumpoff_svg
+ *  Get SVG
  *  An asset path helper that gets template path.
- *  @example : <video src="<?php jumpoff_path(); ?>/videos/vide.mp4">
+ * @param string $file - Svg file name
  */
-function get_svg_file( $file ){
+function get_svg( $file ){
   $svg = get_template_part( 'assets/images/svgs/' . $file, 'svg' );
-
   return $svg;
 }

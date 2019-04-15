@@ -1,18 +1,18 @@
 <?php
 
-namespace jumpoff;
+namespace Jumpoff;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
-*  Featured Image Helper
-*
-* @example: jumpoff_ft_img('full')
-*
-* @param array/string $size  images size - ie; full, medium, small)
-* @param string $id optional image id
-* @return string Image Url
-**/
+ *  Featured Image Helper
+ *
+ * @example: jumpoff_ft_img('full')
+ *
+ * @param array/string $size  images size - ie; full, medium, small)
+ * @param string $id optional image id
+ * @return string Image Url
+ */
 
 function get_ft_img($size, $post_id = '', $fallback = false) {
   global $post, $posts;

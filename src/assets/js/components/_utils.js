@@ -1,21 +1,10 @@
 /**
  * Global Utilities
  */
-const Utils = (() => {
+
+var Util = (function() {
 
   return {
-
-
-    /**
-     * Is doc ready
-     */
-    isReady: function() {
-      var state = document.readyState;
-      if ( state === 'interactive' || state === 'complete') {
-        return true;
-      }
-    },
-
 
     /**
      * A render utility
@@ -23,7 +12,7 @@ const Utils = (() => {
      * @param {Node/Selector} - Where we render our template to
      * @example Util.render(someTemplate, renderToEl)
      */
-    render(template, node) {
+    render: function (template, node) {
       if (!node) return;
       node.innerHTML = (typeof template === 'function' ? template() : template);
       var event = new CustomEvent('elementRenders', {
@@ -34,13 +23,35 @@ const Utils = (() => {
     },
 
 
+    /**
+     * Is In View?
+     * A super simple in viewport check
+     * Would probs want to build this out a bit more
+     *
+     * @param  {el} Element to test
+     * @param  {threshold} Integar Amount of threshold
+     * @return {boolean}
+     */
+    isInView: function(el, threshold) {
+      // 'sup jquery
+      if (typeof jQuery === "function" && el instanceof jQuery) {
+        el = el[0];
+      }
+      var threshold = Math.floor(threshold * 100),
+          winY = window.innerHeight - threshold || document.documentElement.clientHeight - threshold,
+          bounds = el.getBoundingClientRect(),
+          isTopVisible = (bounds.top >= 0) && (bounds.top <= winY);
+
+      return isTopVisible;
+    },
+
 
     /**
      * ForEach Utility
      * Ensure we can loop over a object or nodelist
      * @see https://toddmotto.com/ditch-the-array-foreach-call-nodelist-hack/
      */
-    forEach(array, callback, scope) {
+    forEach: function (array, callback, scope) {
       for (var i = 0; i < array.length; i++) {
         callback.call(scope, i, array[i]);
       }
@@ -48,22 +59,30 @@ const Utils = (() => {
 
 
     /**
-     * Throttler
+     * Throttle Util
+     * Stoopid simple throttle util to control scroll events and so on.
+     *
+     * @param  {Function}  Function call to throttle.
+     * @param  {int}       milliseconds to throttle  method
+     * @return {Function}  Returns a throttled function
      */
-    throttle(fn, wait) {
-      var time = Date.now();
-      return function() {
-        if ((time + wait - Date.now()) < 0) {
-          fn();
-          time = Date.now();
-        }
-      }
+    throttle: function(callback, ms) {
+      var wait = false;
+      return function () {
+          if (!wait) {
+              callback.call();
+              wait = true;
+              setTimeout(function () {
+                  wait = false;
+              }, ms);
+          }
+      };
     },
 
     /**
      * Has Class
      */
-    hasClass(el, className) {
+    hasClass: function(el, className) {
       if (el.classList.contains(className)){
         return true;
       }
@@ -72,7 +91,7 @@ const Utils = (() => {
     /**
      * toggle/add/remove
      */
-    classList(el) {
+    classList: function(el) {
       var list = el.classList;
 
       return {
@@ -85,7 +104,7 @@ const Utils = (() => {
     /**
      * Detected when animations end
      */
-    whichAnimationEvent(){
+    whichAnimationEvent: function(){
       var t;
       var el = document.createElement("fakeelement");
 
@@ -106,7 +125,7 @@ const Utils = (() => {
     /**
      * Trigger Event
      */
-    triggerEvent( elem, event ) {
+    triggerEvent: function( elem, event ) {
       var clickEvent = new Event( event );
       elem.dispatchEvent( clickEvent );
     },
@@ -117,35 +136,12 @@ const Utils = (() => {
      * @param  {String} url   The URL to get the value from (optional)
      * @return {String}       The field value
      */
-    getQueryString( field, url ) {
+    getQueryString: function ( field, url ) {
     	var href = url ? url : window.location.href;
     	var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
     	var string = reg.exec(href);
     	return string ? string[1] : null;
     },
-
-    fetchData(url) {
-      return fetch(url)
-        .then(res => {
-          return res.json()
-        })
-        .then(json => {
-          return json
-        })
-        .catch(ex => console.log('failed', ex));
-    },
-    //
-    // fetchData(url) {
-    //    return fetch(url)
-    //   .then(function(response) {
-    //     return response.json()
-    //   }).then(function(json) {
-    //     console.log('parsed json', json);
-    //     return json;
-    //   }).catch(function(ex) {
-    //     console.log('parsing failed', ex)
-    //   })
-    // },
 
 
     /**
@@ -154,7 +150,7 @@ const Utils = (() => {
      * @param {function} callback
      * @param {Object} Invoked context in callback
      */
-     loadJSONP(url, callback, context){
+     loadJSONP: function(url, callback, context){
 
        var unique = 0;
        var name = "_jsonp_" + unique++;
@@ -179,5 +175,3 @@ const Utils = (() => {
      },
    };
  })();
-
-export default Utils;

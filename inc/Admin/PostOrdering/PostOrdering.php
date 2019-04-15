@@ -2,13 +2,12 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-/**
- * create new PostOrdering class
- */
+/** create new PostOrdering class */
 $order = new PostOrdering();
 
 /**
- * class: PostOrdering
+ * PostOrdering
+ * Enables drag and drop sorting of selected posts/content types
  */
 class PostOrdering {
 

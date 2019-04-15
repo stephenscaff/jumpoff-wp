@@ -1,14 +1,12 @@
 <?php
 
-namespace jumpoff;
-
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Formated Dumper (tee hee)
  * @return {string} a parsable string representation of a variable
  */
-function pretty_dump( $var, $name = '' ) {
+function jumpoff_dump( $var, $name = '' ) {
 	echo '<pre>';
 	if ( '' !== $name ) {
 		echo $name . ': ';
@@ -21,7 +19,7 @@ function pretty_dump( $var, $name = '' ) {
 /**
  * Js Console Debugger
  */
-function dump_js( $data ) {
+function jumpoff_dump_js( $data ) {
 	$output  = '<script>';
 	$output .= 'console.info( "Debug in Console:" );';
 	$output .= 'console.log(' . json_encode( $data ) . ');';
@@ -36,7 +34,7 @@ function dump_js( $data ) {
  * @param bool $html Insert nonbreaking spaces and <br />s for tabs and linebreaks
  * @return string The prettified output
  */
-function format_json($json, $html = false) {
+function jumpoff_format_json($json, $html = false) {
   $tabcount = 0;
   $result = '';
   $inquote = false;
@@ -84,4 +82,12 @@ function format_json($json, $html = false) {
 	}
 
 	return '<pre>' . $result . '</pre>';
+}
+
+/**
+ * Jumpoff Wp Query
+ * View the page's sql query
+ */
+function jumpoff_wp_query() {
+	return $GLOBALS['wp_query']->request;
 }

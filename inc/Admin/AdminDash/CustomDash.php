@@ -21,6 +21,7 @@ class CustomDash {
    * @return CustomDash
    */
   public static function init() {
+
     if ( is_null( self::$instance ) )
       self::$instance = new CustomDash();
     return self::$instance;
@@ -39,10 +40,10 @@ class CustomDash {
    */
   function redirect_dash() {
 
-    if( is_admin() ) {
+    if (is_admin()) {
       $screen = get_current_screen();
 
-      if( $screen->base == 'dashboard' ) {
+      if ($screen->base == 'dashboard') {
         wp_redirect( admin_url( 'index.php?page=welcome' ) );
       }
     }
@@ -59,7 +60,7 @@ class CustomDash {
    * Load the Dash View
    */
   function dash_view() {
-    require_once('dash_view.php');;
+    require_once('dashView.php');;
   }
 }
 

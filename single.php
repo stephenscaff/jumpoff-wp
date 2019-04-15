@@ -7,16 +7,14 @@
 * @version   1.0.0
 */
 
-namespace jumpoff;
-
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 get_header();
 
 while (have_posts()) : the_post();
 
 $post_title = get_the_title();
-$post_ft_img = get_ft_img('full');
+$post_ft_img = jumpoff_ft_img('full');
 $post_subtitle = get_post_meta($post->ID,'subtitle', true);
 $author_id = get_the_author_meta('ID');
 $author_avatar = get_user_meta($author_id, 'user_avatar', true);
@@ -33,14 +31,14 @@ $author_name = get_the_author_meta('display_name');
 
 <!-- Post Header -->
 <section class="post-mast pad">
-  <header class="post-mast__header grid">
+  <header class="post-mast__header">
     <time class="post-mast__meta"><?php the_time('F j, Y'); ?></time>
     <h1 class="post-mast__title"><?php echo $post_title; ?></h1>
     <p class="post-mast__subtitle"><?php echo $post_subtitle; ?></p>
   </header>
   <div class="grid-lg">
     <figure class="post-mast__figure">
-      <img class="post-mast__img" src="<?php echo $post_ft_img->url; ?>" alt="<?php echo $post_ft_img->alt; ?>">
+      <img class="post-mast__img" src="<?php echo $post_ft_img; ?>" alt="">
     </figure>
   </div>
 </section>
@@ -67,7 +65,7 @@ $author_name = get_the_author_meta('display_name');
       <nav class="post-footer__shares">
         <a class="" href="https://twitter.com/share?url=<?php echo get_permalink() ?>&text=<?php echo substr(rawurlencode(get_the_title()), 0, 75) ?>&via=" target="_blank"><i class="icon-twitter bg-blue-dark"><span></span></i></a>
         <a class="" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo get_permalink() ?>" target="_blank"><i class="icon-facebook bg-purple"><span></span></i></a>
-        <a class="" href="https://www.linkedin.com/shareArticle?url=<?php echo get_permalink() ?>&title=<?php the_title(); ?>&summary=<?php echo get_excerpt(250); ?>&source=<?php get_home_url(); ?>" target="_blank"><i class="icon-linkedin bg-green"><span></span></i></a>
+        <a class="" href="https://www.linkedin.com/shareArticle?url=<?php echo get_permalink() ?>&title=<?php the_title(); ?>&summary=<?php echo jumpoff_excerpt(250); ?>&source=<?php get_home_url(); ?>" target="_blank"><i class="icon-linkedin bg-green"><span></span></i></a>
       </nav>
     </div>
   </div>
@@ -77,8 +75,7 @@ $author_name = get_the_author_meta('display_name');
 
 <?php
 
-// get_template_part( 'partials/partial', 'next' );
-// get_template_part( 'partials/partial', 'related-posts' );
+// include(locate_template( 'views/post/single.php' ) );
 ?>
 </main>
 

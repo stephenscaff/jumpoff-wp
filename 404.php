@@ -1,27 +1,24 @@
 <?php
 /**
- * Four Oh Four Template
+ * 404 Template
  *
  * @author    Stephen Scaff
- * @package   404
- * @version   2.0.0
+ * @package   Jumpoff
  */
 
-namespace jumpoff;
-use jumpoff;
+namespace Jumpoff;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 get_header(); ?>
 
-<!-- MAIN -->
 <main class="has-header-offset bg-white">
 
 <section class="fourohfour">
   <div class="grid">
     <div class="fourohfour__grid">
       <figure class="fourohfour__figure">
-        <img src="<?php echo get_img_path(); ?>/404/404-1.gif">
+        <img src="<?php echo get_img_dir(); ?>/404/404-1.gif">
       </figure>
 
       <div class="fourohfour__content">

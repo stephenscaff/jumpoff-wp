@@ -11,4 +11,4 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-get_template_part( 'partials/partial', 'footer' );
+include(locate_template('views/shared/footer.php'));

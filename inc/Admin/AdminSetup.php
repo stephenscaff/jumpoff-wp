@@ -1,12 +1,13 @@
 <?php
 
-namespace jumpoff;
+namespace Jumpoff;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+
 /**
  * Jumpoff Admin Setup
- * Singleton housing a variety of admin specific directives and settings
+ * Variety of admin specific directives and settings.
  */
 class JumpoffAdminSetup {
 
@@ -36,13 +37,14 @@ class JumpoffAdminSetup {
     add_filter( 'admin_post_thumbnail_html', array( $this, 'ft_img_size_hints' ) );
     $this->login_logo();
 		$this->disable_gutenberg();
+		$this->no_front_adminbar();
 	}
 
   /**
    * Load styles
    */
   function load_styles(){
-    wp_enqueue_style('admin', get_template_directory_uri() . '/inc/admin/admin-theme/assets/css/admin.min.css', false );
+    wp_enqueue_style('admin', get_template_directory_uri() . '/inc/Admin/AdminTheme/assets/css/admin.min.css', false );
   }
 
 	/**
@@ -51,6 +53,10 @@ class JumpoffAdminSetup {
 	function disable_gutenberg() {
 		add_filter('use_block_editor_for_post', '__return_false');
 		add_filter('gutenberg_can_edit_post_type', '__return_false');
+
+		add_action( 'wp_enqueue_scripts', function(){
+			wp_dequeue_style( 'wp-block-library' );
+		}, 100 );
 	}
 
   /**
@@ -87,12 +93,12 @@ class JumpoffAdminSetup {
   function remove_menu_items(){
     global $current_user;
 
-    // Always Remove
+    # Always Remove
     remove_menu_page( 'edit-comments.php' );
-    remove_menu_page( 'edit.php?post_type=acf-field-group' );
+    //remove_menu_page( 'edit.php?post_type=acf-field-group' );
     //remove_menu_page( 'themes.php' );
 
-    // If not admin remove
+    # If not admin remove
     if ( !current_user_can('administrator')  ) {
       remove_menu_page( 'plugins.php' );
       remove_menu_page( 'tools.php' );
@@ -106,12 +112,14 @@ class JumpoffAdminSetup {
    if ( !$menu_order ) return true;
 
    return array(
-		 'index.php',
+     'index.php',
      'upload.php',
      'contacts',
+     'notice-bar',
      'edit.php',
 		 'edit.php?post_type=team',
      'edit.php?post_type=page',
+     'edit.php?post_type=service',
      'edit.php',
      'users.php',
      'plugins.php',
@@ -124,73 +132,68 @@ class JumpoffAdminSetup {
  /**
   * Admin Footer Message
   */
-	function admin_footer(){
-		return '<span id="footer-thankyou">Developed by <a href="http://stephenscaff.com" target="_blank">Stephen Scaff</a></span>';
-	}
+ function admin_footer(){
+   return '<span id="footer-thankyou">Developed by <a href="http://greenrubino.com" target="_blank">Green Rubino</a></span>';
+ }
+
+ /**
+  * Featured Image Meta Hints
+  */
+ function ft_img_size_hints( $content ) {
+   global $post_type;
+
+   if ( 'some_post_type' == $post_type ) {
+     $content .= '<p>Headshot Image: <br /> Size to 550x550</p>';
+   }
+
+	 elseif ( 'page' == $post_type ) {
+     $content .= '<p>Featured Image: <br /> Size to 1500x900.</p>';
+   }
+
+	 elseif ( 'post' == $post_type ) {
+     $content .= '<p>Mast Image: <br /> Size to 1500x900.</p>';
+   }
+
+	 else {
+     //$content .= '<p>Size to 1500x900px.<br/>';
+		 $content .= '<p>Mast Image: <br /> Size to 1500x900.</p>';
+   }
+
+   return $content;
+ }
+
+ function login_logo() {
+   add_filter( 'login_message', function( $message ) {
+     $svg = get_svg('brand-logo');
+     return $svg;
+   });
+ }
 
 
-	/**
-	 * Featured Image Meta Hints
-	 */
-	function ft_img_size_hints( $content ) {
+ function body_class(){
+   global $post;
 
-		global $post_type;
+   if ( !is_object($post) ) return;
 
-		if ( 'professional' == $post_type ) {
-			$content .= '<p>Headshot Image: <br /> Size to 550x550</p>';
-		}
-		elseif ( 'service' == $post_type ) {
-			$content .= '<p>Mast Image: <br /> Size to 2000x1200.</p>';
-		}
-		else {
-			$content .= '<p>Size to 1500x900px.<br/>';
-		}
+   setup_postdata( $post );
 
-		return $content;
-	}
+   // Returns an object that includes the screen’s ID, base, post type, taxonomy
+   // @see https://developer.wordpress.org/reference/functions/get_current_screen
+   $screen = get_current_screen();
+   $post_id = 'admin-post-'.$post->ID;
+   $page_name = 'admin-'.$post->post_name;
+   $page_template = $page_name;
+   $classes = '';
+   $classes = ' ' . $screen->post_type . ' ' . $post_id . ' ' . $page_name . '';
 
-
-	/**
-	 * Login Screen Logo
-	 */
-	function login_logo() {
-		add_filter( 'login_message', function( $message ) {
-			$svg = jumpoff_svg('brand-logo');
-
-			return $svg;
-	 });
-	}
-
-	/**
-	 * Admin Body Class Helper
-	 */
-
-	 function body_class(){
-		 global $post;
-
-		 if ( !is_object($post) ) return;
-
-		 setup_postdata( $post );
-
-		// Returns an object that includes the screen’s ID, base, post type, taxonomy
-		// @see https://developer.wordpress.org/reference/functions/get_current_screen
-		$screen = get_current_screen();
-		$post_id = 'admin-post-'.$post->ID;
-		$page_name = 'admin-'.$post->post_name;
-		$page_template = $page_name;
-		$classes = '';
-		$classes = ' ' . $screen->post_type . ' ' . $post_id . ' ' . $page_name . '';
-
-   	// Had issues returning page template name, so...
-		if (basename( get_page_template() ) === 'page.php' ){
-			$classes .= ' admin-page-template-default';
-		}
+   // Had issues returning page template name, so...
+   if (basename( get_page_template() ) === 'page.php' ){
+     $classes .= ' admin-page-template-default';
+   }
 
    return $classes;
-
-	 wp_reset_postdata( $post );
-
-	}
+   wp_reset_postdata( $post );
+ }
 }
 
 JumpoffAdminSetup::init();

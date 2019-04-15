@@ -9,16 +9,23 @@
 //  @note: Can replace universal selector with '& > #{$item}''  ($item:'article')
 //----------------------------------------------
 @mixin flex-grid(
-$xs:null, $sm:null, $med:null, $lg:null, $xl:null, $xxl:null,
-$pad-vert:0, $pad-horz:0, $align:null) {
-  display: flex;
-  flex-direction: row;
-  flex-flow: wrap;
-  @if $align {
-    align-items: $align;
-  }
-  margin-left: -$pad-horz;
-  margin-right: -$pad-horz;
+  $xs:null,
+  $sm:null,
+  $med:null,
+  $lg:null,
+  $xl:null,
+  $xxl:null,
+  $pad-vert:0,
+  $pad-horz:0,
+  $align:null) {
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    @if $align {
+      align-items: $align;
+    }
+    margin-left: -$pad-horz;
+    margin-right: -$pad-horz;
 
   & > * {
     padding-top:$pad-vert;
@@ -63,7 +70,7 @@ $pad-vert:0, $pad-horz:0, $align:null) {
       }
     }
   }
-  &.-center{
+  &.is-center{
     justify-content: center;
   }
 }
@@ -78,12 +85,12 @@ $pad-vert:0, $pad-horz:0, $align:null) {
 //  @mobile $mobile (boolean) - start row on mobile
 //----------------------------------------------
 @mixin flex-row(
-$align: null,
-$justify:null,
-$direction: null,
-$wrap: wrap,
-$col-pad:null,
-$mobile:false){
+  $align: null,
+  $justify:null,
+  $direction: null,
+  $wrap: wrap,
+  $col-pad:null,
+  $mobile:false){
   @if $align {
     align-items: $align;
   }
@@ -136,31 +143,22 @@ $mobile:false){
 //
 //  @param $width (size), $mobile (boolean)
 //----------------------------------------------
-@mixin flex-col(
-$sm:null,
-$med:null,
-$lg:null){
-  @if $sm  {
-    flex-basis: $sm;
-    width: $sm;
-    max-width: $sm;
-  }
-  @if $med {
-    @media (min-width: $mq-med){
-      flex-basis: $med;
-      width: $med;
-      max-width: $med;
-    }
-  }
+@mixin flex-col($width, $mobile:false){
+  @if $mobile == true {
+    flex-basis: $width;
+    width: $width;
+    max-width: $width;
 
-  @if $lg {
-    @media (min-width: $mq-lg) {
-        flex-basis: $lg;
-        width: $lg;
-        max-width: $lg;
+  } @else {
+
+    @media (min-width: $mq-med){
+      flex-basis: $width;
+      width: $width;
+      max-width: $width;
     }
   }
 }
+
 //----------------------------------------------
 //  flex-order()
 //  A helper to change an elements order at various

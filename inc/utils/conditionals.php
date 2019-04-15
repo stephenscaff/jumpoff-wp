@@ -1,19 +1,19 @@
 <?php
 
-namespace jumpoff;
+namespace Jumpoff;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * Get id by page name
- * @return integar Page id.
+ * Is page template
+ *
+ * @param $template - page template to check against
+ * @return boolean
  */
-function get_id_by_name($page) {
-
-  $slug = get_page_by_path($page);
-  $id = $slug->ID;
-
-  return $id;
+function is_template( $template ) {
+   global $post;
+   if ( ! $post ) return false;
+   return $template === get_post_meta( $post->ID, '_wp_page_template', true );
 }
 
 
@@ -24,16 +24,18 @@ function get_id_by_name($page) {
  *  @return: boolean (ture if is specified post_type)
  */
 function is_post_type( $type ){
-  global $wp_query;
+  global $wp_query, $post;
+
+  if( !is_object($post) ) return;
 
   if (is_404()) return;
 
   if ($type == get_post_type($wp_query->post->ID) ){
     return true;
   }
-
   return false;
 }
+
 
 /**
  * Check if a post is a custom post type.
@@ -41,53 +43,18 @@ function is_post_type( $type ){
  * @return boolean
  */
 function is_any_post_type( $post = NULL ) {
-    $all_custom_post_types = get_post_types( array ( '_builtin' => FALSE ) );
+  $all_custom_post_types = get_post_types( array ( '_builtin' => false ) );
 
-    // there are no custom post types
-    if ( empty ( $all_custom_post_types ) ) return FALSE;
+  // there are no custom post types
+  if ( empty ( $all_custom_post_types ) ) return false;
 
-    $custom_types      = array_keys( $all_custom_post_types );
-    $current_post_type = get_post_type( $post );
+  $custom_types      = array_keys( $all_custom_post_types );
+  $current_post_type = get_post_type( $post );
 
-    // could not detect current type
-    if ( ! $current_post_type ) return FALSE;
+  // could not detect current type
+  if ( ! $current_post_type ) return false;
 
-    return in_array( $current_post_type, $custom_types );
-}
-
-
-/**
- *  jumpoff_ids()
- *  Retrieves IDs to use in calling fields.
- *  @return: $id (the id of the post)
- *  @example: $postidd = jumpoff_ids();
- */
-function get_current_id() {
-  global $post;
-  $term_obj = get_queried_object();
-  $page_for_posts = get_option( 'page_for_posts' );
-
-  $id='';
-
-  if (is_post_type_archive()){
-    $post_type = get_queried_object();
-    //$post_type = get_post_type( $post->ID );
-    $cpt = $post_type->name;
-    $id = $cpt . '-index';
-  }
-  elseif (is_home()){
-    $id = 'posts-index';
-  }
-  elseif (is_front_page()) {
-    $id = get_option('page_on_front');
-  }
-  elseif (is_tax('activity_type') OR is_tax('activity_location')) {
-    $id = $term_obj->taxonomy . '_' . $term_obj->term_id;
-  }
-  else{
-    $id = $post->ID;
-  }
-  return $id;
+  return in_array( $current_post_type, $custom_types );
 }
 
 
@@ -107,22 +74,6 @@ function has_more_posts() {
   return false;
 }
 
-/**
- * Is Extended CLass
- * Counts a fields characaters and adds an
- * 'is-extended' class.
- * @return string
- */
-function is_extended_class($str, $chars = '200') {
-  $class = '';
-
-  if (strlen($str) > $chars) {
-    $class = 'is-extended';
-  }
-
-  return $class;
-}
-
 
 /**
  * Has Featured Image
@@ -133,60 +84,75 @@ function has_ft_img($id) {
   if ($ft_img->url) {
     return true;
   }
+  return false;
+}
+
+
+
+/**
+ * Is Extended CLass
+ * Counts a fields characaters and adds an
+ * 'is-extended' class.
+ * @return string
+ */
+function is_extended_class($str, $chars = '200') {
+  $class = '';
+  if (strlen($str) > $chars) {
+    $class = 'is-extended';
+  }
+
+  return $class;
+}
+
+/**
+ * Has Get
+ *
+ * Check if a $_Get filter is in play
+ *
+ * @param string $key - $_GET key value.
+ * @return boolean;
+ */
+function has_get($key) {
+  if (isset($_GET[$key])) {
+    return true;
+  }
 
   return false;
 }
 
 
 /**
- *  Modifier Class
- *  For creating BEM style modifiers
- *  @return: $class (string)
+ * Is Page Check
+ * Helper to check a page template
+ * @param string File Name (sans file type)
+ * @return boolean
  */
-function get_mod_class() {
-  $page_for_posts = get_option( 'page_for_posts' );
-  $class='';
-
-  if (is_home()){
-    $class ='news';
+function is_page_check($page_name){
+  if (is_page_template("templates/${page_name}.php")) {
+    return true;
   }
-  elseif (is_front_page()) {
-    $class ='home';
-  }
-  elseif (is_tax()){
-    $class = 'tax';
-  }
-  elseif (is_archive()){
-    $class = 'archive';
-  }
-  elseif (is_post_type('team')){
-    $class = 'team';
-  }
-  else {
-    $class = basename(get_permalink());
-  }
-
-  return $class;
+  return false;
 }
 
 
 /**
- * Custom Field Fallback
- * Defines a string fallback for custom fields.
- *
- * @param mixed $field Custom Field
- * @param mixed fallback, probably a string
- * @return mixed Custom field or fallback
+ * Is Type Check
+ * Helper to check post type
+ * @param string Post Type Name
+ * @return boolean
  */
-function field_fallback ($field, $fallback) {
-
-  $output = '';
-
-  if ($field) {
-    $output = $field;
-  } else {
-    $output = $fallback;
+function is_post_type_check($type) {
+  global $post;
+  $post_type = get_query_var('post_type');
+  if ($post_type == $type) {
+    return true;
   }
+  return false;
+}
 
-  return $output;
+/**
+ * Is Team Page
+ */
+function is_team() {
+  return is_post_type_check('team');
 }

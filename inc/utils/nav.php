@@ -1,6 +1,6 @@
 <?php
 
-namespace jumpoff;
+namespace Jumpoff;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -87,7 +87,7 @@ function get_subpage_links( $post_type, $klass ){
       endforeach;
     endif;
     if ($extra) :
-    $output .= $extra;
+      $output .= $extra;
     endif;
     $output .= '
     </nav>';

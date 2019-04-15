@@ -24,12 +24,26 @@ function handleError(err) {
 }
 
 
+
+function bundleJS(file) {
+   let url = `src/assets/js/${file}.js`;
+   return browserify(url).transform('babelify', {
+    presets: [
+      ['@babel/preset-env', {
+        targets: {
+          browsers: ['last 2 versions', 'ie >= 11']
+        }
+      }]
+    ]
+  })
+}
+
 /**
  * JavaScript
  */
 gulp.task('build-js', () => {
 
-  let bundler = browserify('src/assets/js/app.js').transform('babelify', {presets: ['@babel/preset-env']})
+  let bundler = bundleJS('app');
 
   return bundler.bundle()
     .on('error', handleError)
@@ -48,6 +62,17 @@ gulp.task('build-js', () => {
     .pipe(gulp.dest('./assets/js/'));
 });
 
+/**
+ * Jquery
+ */
+gulp.task('build-jquery', () => {
+
+  return gulp.src('src/assets/js/jquery.js')
+    .pipe(uglify())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(newer('./assets/js/'))
+    .pipe(gulp.dest('./assets/js/'));
+});
 
 /**
  * Build CSS/SCSS
@@ -73,13 +98,12 @@ gulp.task('build-css', () => {
     .pipe(gulp.dest('./assets/css/'))
 });
 
-
 /**
  * Admin Theme SCSS Tasks
  */
 gulp.task('build-admin-css', () => {
 
-  return gulp.src('src/inc/admin/admin-theme/assets/scss/*')
+  return gulp.src('inc/admin/admin-theme/assets/scss/*')
     .pipe(sass({
       outputStyle: 'compressed',
       //imagePath: 'assets/images/',
@@ -88,13 +112,10 @@ gulp.task('build-admin-css', () => {
       autoprefixer: {add: true},
     }))
     .on('error', handleError)
-    .pipe(sourcemaps.init())
     .pipe(autoprefixer())
     .pipe(rename({ suffix: '.min' }))
-    //.pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('./inc/admin/admin-theme/assets/css/'))
+    .pipe(gulp.dest('inc/admin/admin-theme/assets/css/'))
 });
-
 
 /**
  * Compress Images
@@ -106,7 +127,6 @@ gulp.task('build-images', () => {
     .pipe(gulp.dest('./assets/images/'));
 });
 
-
 /**
  * Build Videos
  */
@@ -116,7 +136,6 @@ gulp.task('build-videos', () => {
     .pipe(newer('./assets/videos/'))
     .pipe(gulp.dest('./assets/videos/'));
 });
-
 
 /**
  * SVG to PHP for partial includes
@@ -145,6 +164,7 @@ gulp.task('run', [
  */
 gulp.task('watch', () => {
   gulp.watch('src/assets/js/**/*', ['build-js']);
+  // gulp.watch('src/assets/js/**/*', ['build-jquery']);
   gulp.watch('src/assets/scss/**/*', ['build-css']);
   gulp.watch('./inc/admin/admin-theme/assets/scss/**/*', ['build-admin-css']);
   gulp.watch('src/assets/images/**/*', ['build-images']);

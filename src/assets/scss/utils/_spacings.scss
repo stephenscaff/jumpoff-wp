@@ -42,5 +42,17 @@
 }
 
 .no-pad {
-  padding: 0;
+  padding: 0 !important;
+}
+
+//--------------------------------------------
+// Fixed Header offset
+// Applied to the main element on most pages
+//--------------------------------------------
+.has-header-offset {
+  padding-top: $header-height-xs;
+
+  @media (min-width: $mq-med) {
+    padding-top: $header-height-lg;
+  }
 }

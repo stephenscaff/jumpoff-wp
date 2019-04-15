@@ -1,54 +1,117 @@
-//----------------------------------------------
-//  font-rwd
-//  Change font-size across breaks
-//  @param: $font_sm  - at small
-//  @param: $font_med - at med break
-//  @param: $font_lg  - at Large break
-//  @param: $font_xl  - at Xlarge break
-//----------------------------------------------
-@mixin font-rwd($sm:null, $med:null, $lg:null, $xl:null, $xxl:null) {
-  font-size: $sm;
+//--------------------------------------------
+// Menu Toggle
+// Hamburger style menu toggle element
+// @see js/components/_mobile-menu.js
+//--------------------------------------------
 
-  @if $med {
-    @media(min-width: $mq-med){
-      font-size: $med;
+$menu-lines-height: 2px;
+$menu-width: 3.25em;
+
+.menu-toggle{
+  z-index: $z-menu-toggle;
+  position: relative;
+  height: 1.25em;
+  width: $menu-width;
+  display: inline-block;
+  padding: 0.5em 0;
+  align-self: center;
+  cursor: pointer;
+  -webkit-appearance: none;
+  border: 0;
+
+  &__bars {
+    transition: background-color 0.4s ease, transform 0.4s ease;
+    transform: rotate(0);
+
+    &, &:after, &:before {
+      position: absolute;
+      width: 100%;
+      height: $menu-lines-height;
+      background: $color-grey-dark;
+      transform: rotate(0.01deg);
     }
-  }
 
-  @if $lg {
-    @media(min-width: $mq-lg){
-      font-size: $lg;
+    &:after, &:before {
+      content: '';
+      display: block;
+      transition: all 0.4s ease-in-out;
     }
-  }
 
-  @if $xl {
-    @media(min-width: $mq-xl){
-      font-size: $xl;
+    &:before {
+      top: -7px;
     }
-  }
 
-  @if $xxl {
-    @media(min-width: $mq-xxl){
-      font-size: $xxl;
+    &:after {
+      top: 7px;
+    }
+
+    &:hover {
+      cursor:pointer;
+    }
+
+    &:hover:after {
+      width: 100%;
+    }
+
+    // Menu Toggle - Open State
+    .menu-is-open:not(.menu-is-closing) &, .menu-is-opening &, .is-open &, &.is-open {
+      background: transparent !important;
+      transition: background-color 0.4s ease, transform 0.4s ease;
+      transform: rotate(180deg);
+
+      &:after, &:before {
+        top: 0 !important;
+        zoom: 1;
+        width: 100%;
+      }
+      &:after {
+        transform: rotate(45deg);
+      }
+      &:before {
+        transform: rotate(-45deg);
+      }
     }
   }
 }
 
+
 //----------------------------------------------
-//  Font Styles
+// Control - Close X
+// Created from the burger styles
 //----------------------------------------------
+%u-close-x,
+.u-close-x{
+  z-index: $z-close-x;
+  position: relative;
+  display: block;
+  height: 3em;
+  width: 3em;
 
-@mixin font-uppercase($size: $font-xs, $weight: 700) {
-  font-size: $size;
-  font-weight: $weight;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
+  &:after, &:before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: 0 !important;
+    width: 1.855555rem;
+    height: 1px;
+    display: block;
+    background: $color-beta;
+    transition: background-color 0.4s ease-in-out, transform 0.4s ease-in-out;
+  }
 
+  &:after{
+    transform: rotate(45deg);
+  }
 
-@mixin text-overflow($width:90%) {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: $width;
+  &:before {
+    transform: rotate(-45deg);
+  }
+
+  &.-white:before, &.-white:after {
+    background-color: #fff;
+  }
+
+  &:hover{
+    cursor: pointer;
+  }
 }

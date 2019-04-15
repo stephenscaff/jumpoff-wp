@@ -1,4 +1,26 @@
 //----------------------------------------------
+//  Link Styles
+//  Basic global link styles
+//  @param: $mainColor: [$color-darkgrey] - initial color
+//  @param: $hoverColor:[$color-alpha]    - hover color
+//----------------------------------------------
+@mixin links($color: $color-alpha, $hover: $color-beta){
+ color: $color;
+ text-decoration: none;
+ line-height:inherit;
+ transition: color 0.4s ease-in-out;
+
+  &:hover, &:focus, a:hover &{
+    color: $hover;
+    transition: color 0.4s ease-in-out;
+  }
+  &:active{
+    color: darken($hover, 25);
+  }
+}
+
+
+//----------------------------------------------
 //  Global Links
 //----------------------------------------------
 a{

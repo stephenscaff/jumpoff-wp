@@ -3,4 +3,4 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 # Add Featured Images to API
-require_once('api-ft-image.php');
+require_once('ApiAdditions.php');
