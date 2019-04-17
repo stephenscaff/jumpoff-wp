@@ -1,0 +1,20 @@
+
+//--------------------------------------------
+// Lines / Seperators
+//--------------------------------------------
+.sep{
+  display: block;
+  border:0;
+  height: 1px;
+  width: 8em;
+  background-color: $color-dark;
+  margin: $pad-xs + 0.5em 0;
+
+  &.is-white {
+    background-color: $color-white;
+  }
+
+  &.is-centered {
+    margin: $pad-xs + 0.5em auto;
+  }
+}

@@ -33,7 +33,8 @@
 
 .grid-xl {
   @extend %grid;
-
+  width: $grid-max-width-xxl;
+  max-width: $grid-max-width-xxl;
   @media (min-width: $mq-med){
     width: $grid-max-width-xl;
     max-width: $grid-max-width-xl;

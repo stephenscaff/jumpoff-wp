@@ -1,10 +1,9 @@
-/**
- * JS Includes
- * Include js files here, in the desired order.
- */
- /* jshint -W030 */
- /* globals feature: false */
+import "@babel/polyfill";
+import Utils from './components/Utils.js'
+import './components/Sniffers.js'
+import PageTransitions from './components/PageTransitions'
+import MenuSmall from './components/MenuSmall.js'
 
 
-//=include components/_hello.js
-//=include _inits.js
+PageTransitions.init();
+MenuSmall.init();

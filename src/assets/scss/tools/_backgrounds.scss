@@ -13,7 +13,7 @@
 //----------------------------------------------
 @mixin bg-img-abs($bg_size:cover, $bg_position:50%) {
   z-index: 0;
-  position: absolute; 
+  position: absolute;
   height: 100%;
   width: 100%;
   top: 0;

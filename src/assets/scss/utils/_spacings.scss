@@ -50,7 +50,7 @@
 // Applied to the main element on most pages
 //--------------------------------------------
 .has-header-offset {
-  padding-top: $header-height-xs;
+  padding-top: $header-height-sm;
 
   @media (min-width: $mq-med) {
     padding-top: $header-height-lg;

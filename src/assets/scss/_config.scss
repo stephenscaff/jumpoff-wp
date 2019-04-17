@@ -30,7 +30,7 @@ $font-xl: 2em;
 $font-lg: 1.5em;
 $font-med: 1.15em;
 $font-base: 1em;
-$font-sm: 0.9em;
+$font-sm: 0.85em;
 $font-xs: 0.7em;
 $font-xxs: 0.7rem;
 $font-scale: 0.15em;
@@ -83,15 +83,28 @@ $pad-col-med: $pad-sm;
 $pad-col-lg: $pad-med;
 
 //----------------------------------------------
+// Global Sizing Elements
+//----------------------------------------------
+$header-height-sm: 3.5em;
+$header-height-lg: 4em;
+
+$app-sidebar-width: 15em;
+
+$measure-sm: 23em;
+$measure-med: 30em;
+
+
+//----------------------------------------------
 // Colors
 //----------------------------------------------
-$color-alpha:      #433ed7;
+$color-orange:     #C77C4D;
+$color-alpha:      $color-orange;
 $color-beta:       #3da1ef;
 $color-white:      #fff;
 $color-dark:       #242424;
-$color-grey:       #999;
-$color-grey-light: #f8f8f8;
-$color-grey-dark:  #242424;
+$color-grey:       #645853;
+$color-grey-light: #DAD7CD;
+$color-grey-dark:  #181107;
 $color-warning:    #c43a31;
 $color-success:    #1ABC9C;
 

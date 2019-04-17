@@ -1,3 +1,10 @@
+body {
+  font-family: $font-paragraph;
+  color: $color-grey-dark;
+  line-height: 1.5;
+  background-color: #fff;
+}
+
 h1,h2,h3,h4,h5{
   font-family: $font-header;
   font-weight: 500;
@@ -9,31 +16,31 @@ h1,h2,h3,h4,h5{
 //----------------------------------------------
 %font-xxl, h1 {
   margin-bottom: $pad-xxs;
-  line-height: 1.25;
-  @include font-rwd($font-xxl, $font-xxl + $font-scale)
+  line-height: 1.35;
+  @include font-rwd($font-xxl, $font-xxxl)
 }
 
 %font-xl, h2 {
   margin-bottom: $pad-xxs;
-  line-height: 1.25;
-  @include font-rwd($font-xl, $font-xl + $font-scale)
+  line-height: 1.35;
+  @include font-rwd($font-xl, $font-xxl)
 }
 
 %font-lg, h3 {
   margin-bottom: $pad-xxs;
-  line-height: 1.25;
-  @include font-rwd($font-lg, $font-lg + $font-scale)
+  line-height: 1.4;
+  @include font-rwd($font-lg, $font-xl)
 }
 
 %font-med, h4 {
   margin-bottom: $pad-xxs;
-  line-height: 1.25;
+  line-height: 1.45;
   @include font-rwd($font-med, $font-med + $font-scale)
 }
 
-%font-base, h5{
+%font-base, h5 {
   margin-bottom: $pad-xxs;
-  line-height: 1.25;
+  line-height: 1.35;
   @include font-rwd($font-base, $font-base + $font-scale)
 }
 
