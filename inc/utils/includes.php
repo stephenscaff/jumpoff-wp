@@ -14,4 +14,5 @@ require_once('nav.php');
 require_once('paths.php');
 require_once('postTypeLabels.php');
 require_once('postFilters.php');
+require_once('taxFuncs.php');
 require_once('devHelpers.php');

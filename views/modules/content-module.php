@@ -11,11 +11,11 @@ namespace Jumpoff;
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 $content = get_sub_field('content');
-$grid = get_sub_field('grid_width');
+$grid    = get_sub_field('grid_width');
 
 ?>
 
-<section class="content content--module">
+<section class="content module">
   <div class="<?php echo $grid; ?>">
     <?php echo $content; ?>
   </div>

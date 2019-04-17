@@ -1,25 +1,30 @@
 <?php
 /**
  * Views/Shared/Fetch-More
- * Calls the load more ajax function
  *
- * @author    Stephen Scaff
- * @package   Jumpoff
- * @see       inc/load-more (for js, css and php)
+ * Displays button for Load More Posts via fetch api
+ *
+ *
+ * @author      Stephen Scaff
+ * @package     jumpoff
+ * @subpackage  FetchMore
+ * @see         inc/fetch-more
  */
 
 namespace Jumpoff;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if (has_more_posts($post->ID)) :
+if (has_more_posts(get_the_ID())) :
 
 ?>
 
 <section class="fetch-more">
-  <a id="js-fetch-more" class="fetch-more__link" href="#">
-    <span class="fetch-more__btn btn">Keep Reading</span>
-  </a>
+  <div class="grid">
+    <a id="js-fetch-more" class="fetch-more__link" href="#">
+      <span class="fetch-more__btn btn">View More</span>
+    </a>
+  </div>
 </section>
 
 <?php endif;

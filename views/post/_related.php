@@ -23,20 +23,21 @@ if ( ! defined( 'ABSPATH' ) ) exit;
   <div class="grid-xl">
     <div class="posts__grid">
     <?php
-    $cat  = get_cat_slug();
+    $id   = get_the_ID();
+    $cat  = get_cat_slug($id);
     $args = array(
-      'post_type' => 'post',
+      'post_type'        => 'post',
       'category_name'    => $cat,
       'posts_per_page'   => 3,
       'orderby'          => 'date',
       'order'            => 'DESC',
-      'post__not_in' => array($post->ID),
-      'tax_query' => array()
+      'post__not_in'     => array($post->ID),
+      'tax_query'        => array()
     );
     $posts = get_posts( $args );
 
     foreach ( $posts as $post ) : setup_postdata( $post );
-      include(locate_template('views/content/post.php' ));
+      include(locate_template('views/post/_post.php' ));
     endforeach;
     wp_reset_postdata();
     ?>

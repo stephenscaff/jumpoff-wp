@@ -1,7 +1,8 @@
 <?php
-# Shortcodes
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Bail if accessed directly
+namespace Jumpoff;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * FeaturedImageShortcode
@@ -21,7 +22,7 @@ if (!class_exists('FeaturedImageShortcode')) {
 
     // Output
     function shortcode_output( $output = null )  {
-      $output = '<figure class="featured-image"><img src="'. jumpoff_ft_img('full','', false) .'"></figure>';
+      $output = '<figure class="featured-image"><img src="'. get_ft_img('full','', false) .'"></figure>';
 
       return $output;
     }

@@ -79,7 +79,7 @@ function has_more_posts() {
  * Has Featured Image
  */
 function has_ft_img($id) {
-  $ft_img = jumpoff_ft_img('full', $id);
+  $ft_img = get_ft_img('full', $id);
 
   if ($ft_img->url) {
     return true;

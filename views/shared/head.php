@@ -5,25 +5,25 @@
  * Head partial including metas, custom seo fields, wp_head(), etc.
  *
  * @author    Stephen Scaff
- * @package   jumpoff/shine
- * @see       inc/utils/hooks-head.php
+ * @package   jumpoff/kidder
+ * @see       inc/utils/hooks-head.php for additional logic passed to wp_head()
  */
 
 namespace Jumpoff;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$ids = get_id();
-$meta_author = 'Shine';
-$meta_site_name = 'Shine';
-$meta_title = '';
-$seo_title = get_field('seo_title', $ids);
+$ids            = get_id();
+$meta_author    = 'Jumpoff';
+$meta_site_name = 'Jumpoff';
+$meta_title     = '';
+$seo_title      = get_field('seo_title', $ids);
 
 # Title
 if ($seo_title) {
-  $meta_title = $seo_title . ' | ' . $meta_site_name;
+  $meta_title   = $seo_title . ' | ' . $meta_site_name;
 } else {
-  $meta_title = wp_title('|', false, 'right') . $meta_site_name;
+  $meta_title   = wp_title('|', false, 'right') . $meta_site_name;
 }
 
 # Meta Description

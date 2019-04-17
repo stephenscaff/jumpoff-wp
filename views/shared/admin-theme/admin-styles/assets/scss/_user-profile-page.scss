@@ -1,0 +1,33 @@
+//----------------------------------------------
+//  Hide User Fields that we can't unhook
+//----------------------------------------------
+tr.user-url-wrap,
+.user-description-wrap,
+.user-rich-editing-wrap,
+.user-comment-shortcuts-wrap,
+.user-admin-bar-front-wrap {
+    display: none !important;
+}
+
+// Hide: About the User Title
+// No better way to do this with css
+#your-profile h2:nth-of-type(1),
+#your-profile h2:nth-of-type(4) {
+    display: none;
+}
+
+#your-profile h2 {
+  margin-top: 2em;
+  padding-top: 2em;
+  font-size: 1.5em;
+  border-top: 1px solid #ddd;
+}
+
+#your-profile label,
+#your-profile tbody > .acf-field > .acf-label label {
+  font-weight: 400;
+}
+
+#your-profile select {
+  width: 25em;
+}

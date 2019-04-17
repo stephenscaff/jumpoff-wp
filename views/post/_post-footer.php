@@ -8,7 +8,12 @@
 
 namespace Jumpoff;
 
-if ( ! defined( 'ABSPATH' ) ) exit
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+$title   = get_the_title();
+$excerpt = get_excerpt(250);
+$url     = get_the_permalink();
+$source  = get_home_url();
 
 ?>
 
@@ -24,9 +29,24 @@ if ( ! defined( 'ABSPATH' ) ) exit
         <p class="post-footer__byline-attr"><?php echo $author_position; ?></p>
       </div>
       <nav class="post-footer__shares">
-        <a class="" href="https://twitter.com/share?url=<?php echo get_permalink() ?>&text=<?php echo substr(rawurlencode(get_the_title()), 0, 75) ?>&via=" target="_blank"><i class="icon-twitter bg-blue-dark"><span></span></i></a>
-        <a class="" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo get_permalink() ?>" target="_blank"><i class="icon-facebook bg-purple"><span></span></i></a>
-        <a class="" href="https://www.linkedin.com/shareArticle?url=<?php echo get_permalink() ?>&title=<?php the_title(); ?>&summary=<?php echo jumpoff_excerpt(250); ?>&source=<?php get_home_url(); ?>" target="_blank"><i class="icon-linkedin bg-green"><span></span></i></a>
+        <a
+          class="post-footer__share"
+          href="https://twitter.com/share?url=<?php echo $url; ?>&text=<?php echo substr(rawurlencode($title), 0, 75) ?>&via="
+          target="_blank">
+          <i class="icon-twitter"></i>
+        </a>
+        <a
+          class="post-footer__share"
+          href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url ?>"
+          target="_blank">
+          <i class="icon-facebook bg-purple"></i>
+        </a>
+        <a
+          class=""
+          href="https://www.linkedin.com/shareArticle?url=<?php echo $url ?>&title=<?php the_title(); ?>&summary=<?php echo $excerpt; ?>&source=<?php echo $source; ?>"
+          target="_blank">
+          <i class="icon-linkedin"></i>
+        </a>
       </nav>
     </div>
   </div>

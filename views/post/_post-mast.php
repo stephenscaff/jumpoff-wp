@@ -11,11 +11,11 @@ namespace Jumpoff;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$post_title = get_the_title();
-$post_subtitle = get_field('post_subtitle');
-$post_img = jumpoff_ft_img('full');
-$post_img_url = $post_img->url;
-$post_date = get_the_time('F j, Y');
+$post_title     = get_the_title();
+$post_subtitle  = get_field('post_subtitle');
+$post_img       = get_ft_img('full');
+$post_img_url   = $post_img->url;
+$post_date      = get_the_time('F j, Y');
 
 # Featured Image or Fallback logic
 $has_img = false;

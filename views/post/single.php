@@ -1,11 +1,10 @@
 <?php
 /**
- * views/post/single
- * Single Post View
- *
- * @author    Stephen Scaff
- * @package   jumpoff
- */
+* The default template for single blog posts.
+*
+* @author    Stephen Scaff
+* @package   Jumpoff
+*/
 
 namespace Jumpoff;
 
@@ -30,14 +29,18 @@ $author_name          = get_the_author_meta('display_name');
 
 ?>
 
-<main role="main">
-  <article class="post-single">
-    <?php include(locate_template( 'views/post/_post-mast.php' ) ); ?>
-    <?php include(locate_template( 'views/post/_post-content.php' ) ); ?>
-    <?php include(locate_template( 'views/post/_post-footer.php' ) ); ?>
-  </article>
+<main>
 
-  <?php include(locate_template( 'views/shared/related.php' ) ); ?>
+<article class="post-single">
+
+<?php include(locate_template( 'views/post/_post-mast.php' ) ); ?>
+<?php include(locate_template( 'views/post/_post-content.php' ) ); ?>
+<?php include(locate_template( 'views/post/_post-footer.php' ) ); ?>
+
+</article>
+
+<?php include(locate_template( 'views/post/_related.php' ) ); ?>
+
 </main>
 
 <?php endwhile; ?>

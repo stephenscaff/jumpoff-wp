@@ -57,6 +57,18 @@ Make sure to run composer first, or the theme can't locate autoload and you'll s
 
 As much as possible, css and js is organized by component, named after it's usage / BEM naming convention. JS files are loaded through `app.js` as module imports leveraging browserfy and babel.
 
+### Setup
+`inc/Setup/Setup` houses a setup singleton class to kick things off.
+
+### Better Folder Org
+`inc/Setup/loader.php` contains a template loader filter to reorg how wp loads template files.
+Now, are components and single/archive/search files are housed in `views` and organized by content type.
+
+For example, `single.php` is now found in `views/post/single.php` and an archive for the post type `Work` would be found in `views/work/archive.php`, etc. Partials are genreally scopped to their content type folder as well, using the underscore naming convention to indicate their included nature - ie, `inc/work/_nav.php`.
+
+Share files like app wide headers and footer are housed in `views/shared/*`, ie `views/shared/header.php`.
+
+Default files like `archive.php` are left in place currently and simple include to their enhanced locations.... for now... just in case. I'll pull them shortly.
 
 ### Fields
 
@@ -95,14 +107,14 @@ add_action('acf/init', function() use ($seo_fields) {
 });
 ```
 
-All Fields are registered in `inc/fields/*`, generally in their own clearly named file. Variables for reuse are housed in `inc/fields/fields-vars.php` and `inc/fields/fields-vars-modules.php`
+All Fields are registered in `inc/Fields/*`, generally in their own clearly named file. Variables for reuse are housed in `inc/Fields/vars.php`
 
 
 # Modules
 
-The Jumpoff uses ACF's Flexible content fields to create a drag-and-drop module system.
+The Jumpoff uses ACF's Flexible content fields to create a drag-and-drop module system and are defined at `inc/Fields/Modules/*`
 
-A custom class (`inc/acf-utils/acf-modules.php`) further enhances flexible content fields by mapping them by name to files within the `partials/modules` directory. So, when used, an FC field named `intro-module` with load the module file `intro-module.php`.
+A custom module loader class (`inc/Acf/AcfModules.php`) further enhances flexible content fields by mapping them by name to files within the `partials/modules` directory. So, when used, an FC field named `intro-module` with load the module file `intro-module.php`.
 
 Calling the Modules in a template
 
@@ -115,27 +127,19 @@ endwhile;
 https://gist.github.com/tdwesten/3402b2c5ef0843df6bb65afbb4835f99
 
 
-### INC
+### Inc
 
 Site functionality is generally added in the `inc` folder, as oppose to plugins and whatnot.
 
 
 ### Admin theme
 
-A custom admin theme and various admin-based functionality and utilities are housed in `inc/admin`. `admin-theme` includes the scss for our, eh, admin theme. `admin.scss` compiles out via gulp into `admin.css`.
+A custom admin theme and various admin-based functionality and utilities are housed in `inc/Admin`. `AdminTheme` includes the scss for our, eh, admin theme. `admin.scss` compiles out via gulp into `admin.css`.
 
 ### Content Types
 
-Custom Post Types are registered in `inc/post-types` and follow a simple file naming convention.
-
-### Settings
-
-Various wp and theme setting are housed in `inc/settings`. This includes stuff like the management of images settings, defining theme support, permalinks structure, some clean, a max image upload size utility, etc.
-
-### Post Helpers
-
-Post helpers, found in `inc/post-helpers` include helper functions and classes for things relating to, or called within posts and content files/templates/partials - ie; A featured image helper, a post excerpt helper, various taxonomy/categorey helpers, etc.
+Custom Post Types are registered in `inc/PostTypes` and follow a simple file naming convention.
 
 ### Utils
 
-Utility functions include path helpers, body class helpers, our ACF Module class, handy conditionals, some formatting stuff, etc.
+Post helpers, found in `inc/Utils` include utility functions for stuff like hooks, actions, formaters, helpers, etc.

@@ -27,7 +27,7 @@ $menu-width: 3.25em;
       position: absolute;
       width: 100%;
       height: $menu-lines-height;
-      background: $color-white;
+      background: $color-grey-dark;
       transform: rotate(0.01deg);
     }
 
@@ -71,6 +71,14 @@ $menu-width: 3.25em;
         transform: rotate(-45deg);
       }
     }
+  }
+}
+
+.menu-toggle.is-white {
+  .menu-toggle__bars,
+  .menu-toggle__bars:after,
+  .menu-toggle__bars:before {
+    background-color: $color-white;
   }
 }
 

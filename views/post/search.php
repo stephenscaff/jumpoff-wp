@@ -1,55 +1,72 @@
 <?php
 /**
- * Views/Post/search
- * View for displaying Search results
+ * Prfessionals Archive - now professionals search
  *
  * @author    Stephen Scaff
- * @version   1.0
+ * @package   page
+ * @version   2.0.0
  */
-
-namespace Jumpoff;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$search_query = get_search_query();
+namespace Jumpoff;
 
 get_header();
 
+global $wp_query;
+
+$search_query = get_search_query();
+$search_count = $wp_query->found_posts;
+$search_terms = $wp_query->search_terms;
+$post_type    = get_post_type( get_the_ID() );
 ?>
 
-<main role="main">
+<main class="has-header-offset">
 
-<section class="search-mast">
-  <div class="grid-sm">
-    <h1 class="search-mast__title">Search</h1>
-    <form class="search-box" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-      <i class="search-box__icon icon-search"></i>
-      <input type="hidden" name="post_type" value="<?php echo $post_type; ?>">
-      <input id="s" name="s" type="search" class="search-box__input  js-search" placeholder="Search for news and press releases">
-    </form>
+<?php get_template_part( 'views/shared/mast' ); ?>
+
+<section class="filter-bar has-search">
+  <div class="grid-lg">
+    <div class="filter-bar__grid">
+      <div class="filter-bar__search">
+        <form
+          class="search-box"
+          role="search"
+          method="get"
+          action="<?php echo esc_url( home_url( '/' ) ); ?>">
+          <i class="search-box__icon icon-search"></i>
+          <input
+            type="hidden"
+            name="post_type"
+            value="<?php echo $post_type; ?>">
+  		    <input
+            id="s"
+            class="search-box__input  js-search"
+            name="s"
+            type="search"
+            placeholder="Search for news and stuff">
+        </form>
+      </div>
   </div>
 </section>
 
-<section class="search-info">
-  <div class="grid-sm">
-    <h5 class="search-info__title">
-      <span>Seach results for </span>
-      <span class="search-info__term"><?php echo htmlspecialchars($search_query); ?></span>
-    </h5>
+<?php get_template_part( 'views/shared/search-info' ); ?>
+
+<section class="text-posts pad has-fetch-more js-results-container">
+  <div class="grid-lg">
+    <div id="js-posts" class="text-posts__grid">
+      <?php
+      if ( have_posts() ): while ( have_posts() ) : the_post();
+        get_template_part( 'views/content/post'  );
+      endwhile; else:
+        get_template_part( 'views/content/none' );
+      endif;
+      ?>
+    </div>
   </div>
 </section>
 
-<section class="search-items">
-  <div class="grid-sm">
-    <?php
-    if ( have_posts() ): while ( have_posts() ) : the_post();
-      get_template_part( 'views/post/_post'  );
-    endwhile; else:
-      get_template_part( 'views/post/_none' );
-    endif;
-    ?>
-  </div>
-</section>
+<?php include(locate_template('views/shared/fetch-more.php' ));?>
 
 </main>
 
