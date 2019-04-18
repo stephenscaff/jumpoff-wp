@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  *  Post Type Labels
  *  Utility to handle singular / plural labels of register_post_type();
- *  $labels = set_post_type_labels('Project', 'Projects');
+ *  $labels = jumpoff_post_type_labels('Project', 'Projects');
  */
 function set_post_type_labels( $singular = 'Post', $plural = 'Posts' ) {
  $p_lower = strtolower( $plural );

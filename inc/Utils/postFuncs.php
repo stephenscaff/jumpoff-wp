@@ -29,7 +29,7 @@ function text_limit($string, $length, $replacer) {
  *  @todo     change this to a return
  *  @param    int  $characters Number of chars to outputv
  *  @param    string  $rep Ellipser
- *  @example  get_excerpt(100);
+ *  @example  jumpoff_excerpt(100);
  *
  */
 

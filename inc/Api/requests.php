@@ -36,7 +36,7 @@ add_action( 'rest_api_init', function() {
 /**
  * Meta Request Params
  * Gets multipe meta_values seperated by comamas
- * @example fetch request : ?meta_key=professional_email&meta_value=ebutler@kiddermathews.com,mgardner@kiddermathews.com
+ * @example fetch request : ?meta_key=professional_email&meta_value=ebutler@kiddermathews.com,mgardner@yourmom.com
  */
 add_filter( 'rest_POSTTYPE_query', 'meta_request_params', 99, 2 );
 

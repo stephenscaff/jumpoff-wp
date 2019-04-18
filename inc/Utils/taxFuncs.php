@@ -1,8 +1,7 @@
 <?php
 
-namespace Jumpoff;
-
 if ( ! defined( 'ABSPATH' ) ) exit;
+
 
 /**
  * Jumpoff term
@@ -10,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * @return obj(name, slug, url)
  */
-function get_a_term($taxonomy, $post_id = '') {
+function jumpoff_term($taxonomy, $post_id = '') {
 
 
   if ($post_id) {
@@ -59,7 +58,7 @@ function get_a_term($taxonomy, $post_id = '') {
  *  @see
  *  @return (string) $single_cat;
  */
-function get_a_cat($type){
+function jumpoff_cat($type){
 
   global $post;
 
@@ -88,7 +87,7 @@ function get_a_cat($type){
  * Get Single Cat from slug
  * @return $categories (post_name);
  */
-function get_cat_slug($cat_id) {
+function jumpoff_get_cat_slug($cat_id) {
 	$cat_id = (int) $cat_id;
 	$category = get_category($cat_id);
 
@@ -103,7 +102,7 @@ function get_cat_slug($cat_id) {
  *  @param    string  $rep Ellipser
  *
  */
-function get_cat_link($term_field = '') {
+function jumpoff_get_cat_link($term_field = '') {
   global $post;
   $post_type = get_post_type_object(get_post_type());
   $post_type_name = $post_type->name;
@@ -120,10 +119,28 @@ function get_cat_link($term_field = '') {
 }
 
 
+/**
+  *  jumpoff_term_link()
+  *  Gets the term archive link, used with View All links
+  *
+  *  @see    index.php
+  *  @param  $term (string)
+  *  @param  $tax (string)
+  *  @return $term_link (string) the term archive link
+  */
+function jumpoff_term_link($term, $tax){
+
+ // @see https://developer.wordpress.org/reference/functions/get_term_link/
+ $term_link = get_term_link( $term, $tax );
+
+ return $term_link;
+}
+
+
  /**
   * Jumpoff tax filters
   */
-function tax_filters($tax, $class) {
+function jumpoff_tax_filters($tax, $class) {
   $args = array(
     'taxonomy'   => $tax,
     'hide_empty' => 0,

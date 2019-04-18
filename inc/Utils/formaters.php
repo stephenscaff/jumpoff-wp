@@ -9,10 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Coverts an array of style (class name) Fields
  * to a space seperated grouping.
  *
- * @example add_class($class, 'module')
+ * @example jumpoff_add_class($class, 'module')
  * @return string $group - space seperated sting of class names
  */
-function add_classes($fields){
+function chain_classes($fields){
   $group = join(' ', $fields);
 
   return $group;
@@ -20,9 +20,9 @@ function add_classes($fields){
 
 
 /**
- * Better un auto p
+ * Remove Wp's Auto P
  */
-function do_unautop($str) {
+function set_unautop($str) {
   $str = str_replace("\n", "", $str);
   $str = str_replace("<p>", "", $str);
   $str = str_replace(array("<br />", "<br>", "<br/>"), "\n", $s);
@@ -39,8 +39,8 @@ function do_unautop($str) {
  *  and converting to lowercase
  *  @return: $classes (string)
  */
-function make_a_hash($str) {
-  # Lower case everything
+function make_hash($str) {
+
   $str = strtolower($str);
 
   # Make alphanumeric (removes all other characters)
@@ -64,7 +64,7 @@ function make_a_hash($str) {
  *  @param    string $str The string / field
  *  @param    string $type Markup wrapping lines
  *  @return   string $output
- *  @example  format_lines( $fieldname,  'span' )
+ *  @example  jumpoff_format_lines( $fieldname,  'span' )
  */
 function format_lines ( $str, $type='list' ){
 

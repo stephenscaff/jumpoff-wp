@@ -1,13 +1,13 @@
 <?php
 
-namespace jumpoff;
+namespace Jumpoff;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  *  Featured Image Helper
  *
- * @example: get_ft_img('full')
+ * @example: jumpoff_ft_img('full')
  *
  * @param array/string $size  images size - ie; full, medium, small)
  * @param string $id optional image id
@@ -39,7 +39,7 @@ function get_ft_img($size, $post_id = '', $fallback = false) {
   $caption = wp_get_attachment_caption( $image_id );
 
   if ( !empty( $img ) && $fallback == true ) {
-    $img = get_random_img();
+    $img = jumpoff_random_img();
   }
 
   if ($post_id) {
@@ -56,7 +56,7 @@ function get_ft_img($size, $post_id = '', $fallback = false) {
 /**
  *  Random Image
  *  Generate a random image from predefined placeholders.
- *  Works with get_ft_img if $fallback == true.
+ *  Works with jumpoff_ft_img if $fallback == true.
  *
  *  @example: jumpoff_random_img()
  *  @param return image
