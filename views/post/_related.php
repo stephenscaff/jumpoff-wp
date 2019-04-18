@@ -13,15 +13,15 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 ?>
 
-<section class="heading">
+<section class="heading pad-t">
   <header class="grid-lg">
-    <h2 class="heading__title">Related News</h2>
+    <h4 class="heading__title">Related News</h4>
   </header>
 </section>
 
-<section class="posts pad">
-  <div class="grid-xl">
-    <div class="posts__grid">
+<section class="posts pad-b">
+  <div class="grid-lg">
+    <div class="posts__grid grid-1-2-3">
     <?php
     $id   = get_the_ID();
     $cat  = get_cat_slug($id);

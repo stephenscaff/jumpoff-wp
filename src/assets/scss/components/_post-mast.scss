@@ -1,0 +1,99 @@
+//--------------------------------------------
+// Posts Mast
+//--------------------------------------------
+.post-mast {
+  padding: $pad + $pad 0 $pad-sm;
+
+  @media (min-width: $mq-med) {
+    padding: $pad-xl + $pad 0 $pad-sm;
+  }
+
+  &.no-img {
+    padding-bottom: 0;
+  }
+
+  &__header {
+    padding-bottom: $pad-sm;
+  }
+
+  &__meta {
+    display: block;
+    @include font-meta($mb:$pad-sm);
+    color: $color-grey;
+  }
+
+  &__title {
+    //@include font-rwd($font-xl, 3em);
+  }
+
+  &__subtitle {
+    font-weight: 600;
+    font-size: $font-base;
+    color: darken($color-grey, 10);
+  }
+
+  &__byline {
+    display: block;
+    margin: $pad-xs 0 0;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: $font-header;
+  }
+
+  //--------------------------------------------
+  // Post Mast Media
+  //--------------------------------------------
+  &__figure.grid-med,
+  &__figure.grid,
+  &__figure.grid-lg {
+    text-align: center;
+    @media (max-width: $mq-med) {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+
+  &__img {
+    max-width: 100%;
+  }
+
+  &__img-caption {
+    padding: 0.1em 0 1em;
+    color: $color-grey;
+    font-size: $font-xs;
+    line-height: 1.4;
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+
+//--------------------------------------------
+// Posts Cats
+//--------------------------------------------
+.post-cats {
+  display: block;
+  margin: $pad-xs 0;
+
+  &__label {
+    color: $color-grey;
+  }
+
+  &__label, &__link {
+    @include font-meta($mb:$pad-xs);
+  }
+
+  &__link {
+    @include links($color-grey, $color-alpha);
+    font-weight: 600;
+  }
+
+  &__sep {
+    position: relative;
+    top: -1px;
+    display: inline-block;
+    margin: 0 0.1em;
+    font-size: 0.7em;
+    color: $color-grey;
+  }
+}

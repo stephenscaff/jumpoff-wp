@@ -19,7 +19,7 @@ $home_url = get_page_url('home');
 <body <?php body_class(); ?>>
 
 <header class="app-header">
-  <div class="grid-xl">
+  <div class="grid-lg">
     <a class="app-header__brand" href="<?php echo $home_url; ?>">The JumpOff</a>
     <button
       class="menu-toggle js-menu-toggle is-mobile-only"

@@ -1,0 +1,51 @@
+//----------------------------------
+// Post - single post cards
+//----------------------------------
+.post{
+  display: block;
+  position: relative;
+
+  &__link, &__img{
+    display: block;
+  }
+
+  &__figure{
+    position: relative;
+    display: block;
+    margin-bottom: $pad-xs;
+    @include aspect_ratio(1500,900);
+    background-color: $color-grey-light;
+
+    &__img {
+      display: block;
+      transform: scale(1);
+      transition: transform 1s $ease-cb-2;
+
+      .post__link:hover & {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  &__meta, &__pretitle{
+    display: block;
+    margin-bottom: $pad-xs;
+    @include font-uppercase($size: $font-xs);
+  }
+
+  &__title{
+    max-width: 90%;
+    margin-bottom: $pad-xxs;
+  }
+
+  &__excerpt, p {
+    display: block;
+    margin-bottom: $pad-xs;
+    color: $color-grey;
+    font-size: $font-sm;
+  }
+
+  &__btn {
+    margin-top: 1.5em
+  }
+}

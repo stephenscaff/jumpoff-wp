@@ -59,6 +59,10 @@
   @include flex-grid(1,$med:3,$pad-vert: $pad-col, $pad-horz: $pad-col)
 }
 
+.grid-1-2-3 {
+  @include flex-grid(1,$med:2,$lg:3, $pad-vert: $pad-col, $pad-horz: $pad-col)
+}
+
 .grid-2-3-4 {
   @include flex-grid(1,2,3,4,$pad-vert: $pad-col, $pad-horz: $pad-col)
 }

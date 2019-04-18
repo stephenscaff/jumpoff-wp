@@ -24,7 +24,7 @@ $post_excerpt = get_excerpt(150);
       <img class="post__img" src="<?php echo $post_img->url; ?>" alt="<?php echo $post_img->alt; ?>"/>
     </figure>
     <div class="post__content">
-      <span class="post__date"><?php the_time('m/d/y'); ?></span>
+      <span class="post__meta"><?php the_time('m/d/y'); ?></span>
       <h4 class="post__title"><?php echo $post_title; ?></h4>
       <p class="post__excerpt"><?php echo $post_excerpt; ?></p>
       <span class="post__btn btn-line">Read On</span>

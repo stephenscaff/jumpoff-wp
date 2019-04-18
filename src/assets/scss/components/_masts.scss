@@ -6,7 +6,7 @@
   display:block;
   width: 100%;
   margin: 0 auto;
-  //padding: $pad 0;
+  padding: $pad-lg 0 $pad-sm;
 
 
   &__title,  &__subtitle{
@@ -16,4 +16,8 @@
   &__subtitle {
     color: $color-grey;
   }
+}
+
+.mast.is-centered {
+  text-align: center;
 }

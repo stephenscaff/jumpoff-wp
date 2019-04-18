@@ -1,28 +1,11 @@
 <?php
 /**
- * Template for general posts archives.                                                                                                               n
+ * Archive Defailt
  *
  * @author    Stephen Scaff
- * @package   page
- * @version   2.0.0
+ * @package   jumpoff
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-get_header(); ?>
-
-<main role="main" class="">
-
-<!-- Mast -->
-<?php get_template_part( 'partials/partial', 'mast' );?>
-
-<!-- Posts -->
-<?php get_template_part( 'partials/partial', 'posts' ); ?>
-
-<!-- Pagination -->
-<?php get_template_part( 'partials/posts', 'fetch-more' );?>
-
-</main>
-
-<!-- Footer  -->
-<?php get_footer(); ?>
+include(locate_template( 'views/post/archive.php' ) );

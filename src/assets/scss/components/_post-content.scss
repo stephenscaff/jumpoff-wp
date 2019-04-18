@@ -1,0 +1,72 @@
+//--------------------------------------------
+// Post Content
+//--------------------------------------------
+.post-content {
+  position: relative;
+  padding: $pad-sm 0;
+
+  h2, h3 {
+    margin: 1.25em 0 0.8em;
+    font-size: $font-lg;
+  }
+
+  h4 {
+    margin: 1.25em 0 0.8em;
+  }
+
+  blockquote {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: $pad-xs;
+    text-align: center;
+
+    @media (min-width: $mq-med) {
+      max-width: 90%;
+      padding: $pad-sm 0;
+    }
+
+    p {
+      font-family: $font-header;
+      font-size: 1.25em;
+      margin-bottom: 0;
+    }
+
+    cite {
+      display: block;
+      margin-top: 1.5em;
+      font-style: normal;
+      @include font-uppercase($size: $font-xs);
+    }
+
+    &:before {
+      content: '“';
+      font-family: $font-header;
+      font-size: 2.15em;
+    }
+    &:after {
+      content: '”';
+      font-family: $font-header;
+      font-size: 2.15em;
+    }
+  }
+
+  figure {
+    display: block;
+    margin: $pad-sm auto;
+  }
+
+  figure + figure {
+    margin-top: 0.2em;
+  }
+
+  .align-center img {
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  ul {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+  }
+}

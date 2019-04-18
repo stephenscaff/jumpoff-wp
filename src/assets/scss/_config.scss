@@ -24,14 +24,14 @@ $base-lineheight: 1.6;
 //----------------------------------------------
 // Fonts: Size variables
 //----------------------------------------------
-$font-xxxl: 4em;
+$font-xxxl: 3em;
 $font-xxl: 2.5em;
 $font-xl: 2em;
 $font-lg: 1.5em;
 $font-med: 1.15em;
 $font-base: 1em;
 $font-sm: 0.85em;
-$font-xs: 0.7em;
+$font-xs: 0.65em;
 $font-xxs: 0.7rem;
 $font-scale: 0.15em;
 
@@ -98,7 +98,7 @@ $measure-med: 30em;
 // Colors
 //----------------------------------------------
 $color-blue:       #433ed7;
-$color-alpha:      $color-blue
+$color-alpha:      $color-blue;
 $color-beta:       #3da1ef;
 $color-white:      #fff;
 $color-dark:       #242424;

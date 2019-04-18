@@ -21,20 +21,20 @@ elseif ($index_title) {
   $title = get_field('mast_title', 'posts-index');
 }
 else {
-  $title = "News & press";
+  $title = "News";
 }
 
 ?>
 
 <main class="has-header-offset">
 
-  <section class="mast-title">
+  <section class="mast is-centered">
     <div class="grid-lg">
-      <h1 class="mast-title__title"><?php echo $title; ?></h1>
+      <h1 class="mast__title"><?php echo $title; ?></h1>
     </div>
   </section>
 
-  <section class="posts-cards">
+  <section class="posts-cards pad">
     <div class="grid-lg">
       <div id="js-posts" class="posts-cards__grid grid-1-2-3">
         <?php

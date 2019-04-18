@@ -1,4 +1,4 @@
-import WhoDis from '../components/WhoDis.js'
+import WhoDis from './WhoDis.js'
 
 
 const html = document.querySelector('html');

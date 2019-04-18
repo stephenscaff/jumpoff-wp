@@ -1,0 +1,25 @@
+//--------------------------------------------
+// Heading Component
+//--------------------------------------------
+.heading {
+  position: relative;
+  display: block;
+  padding-bottom: $pad-sm;
+
+  &__title {
+    margin-bottom: 0;
+  }
+
+  &.is-centered {
+    text-align: center;
+  }
+  &.is-title {
+    padding-top: $pad-sm;
+    padding-bottom: $pad-sm;
+
+    @media (min-width: $mq-med) {
+      padding-top: 0;
+      padding-bottom: $pad;
+    }
+  }
+}
