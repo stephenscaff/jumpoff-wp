@@ -76,14 +76,14 @@ function get_field_fallback ($field, $fallback) {
 
 
 /**
- * Chain Module Classes
+ * Join Fields
  * Coverts an array of style (class name) Fields
  * to a space seperated grouping.
  *
  * @example jumpoff_add_class($class, 'module')
  * @return string $group - space seperated sting of class names
  */
-function chain_module_classes($fields){
+function chain_classes($fields){
   $group = join(' ', $fields);
 
   return $group;

@@ -24,7 +24,6 @@ function handleError(err) {
 }
 
 
-
 function bundleJS(file) {
    let url = `src/assets/js/${file}.js`;
    return browserify(url).transform('babelify', {
@@ -63,18 +62,6 @@ gulp.task('build-js', () => {
 });
 
 /**
- * Jquery
- */
-gulp.task('build-jquery', () => {
-
-  return gulp.src('src/assets/js/jquery.js')
-    .pipe(uglify())
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(newer('./assets/js/'))
-    .pipe(gulp.dest('./assets/js/'));
-});
-
-/**
  * Build CSS/SCSS
  */
 gulp.task('build-css', () => {
@@ -103,7 +90,7 @@ gulp.task('build-css', () => {
  */
 gulp.task('build-admin-css', () => {
 
-  return gulp.src('inc/admin/admin-theme/assets/scss/*')
+  return gulp.src('inc/Admin/AdminTheme/assets/scss/*')
     .pipe(sass({
       outputStyle: 'compressed',
       //imagePath: 'assets/images/',
@@ -114,11 +101,11 @@ gulp.task('build-admin-css', () => {
     .on('error', handleError)
     .pipe(autoprefixer())
     .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest('inc/admin/admin-theme/assets/css/'))
+    .pipe(gulp.dest('inc/Admin/AdminTheme/assets/css/'))
 });
 
 /**
- * Compress Images
+ * Build Images
  */
 gulp.task('build-images', () => {
 
@@ -164,9 +151,8 @@ gulp.task('run', [
  */
 gulp.task('watch', () => {
   gulp.watch('src/assets/js/**/*', ['build-js']);
-  // gulp.watch('src/assets/js/**/*', ['build-jquery']);
   gulp.watch('src/assets/scss/**/*', ['build-css']);
-  gulp.watch('./inc/admin/admin-theme/assets/scss/**/*', ['build-admin-css']);
+  gulp.watch('./inc/Admin/AdminTheme/assets/scss/**/*', ['build-admin-css']);
   gulp.watch('src/assets/images/**/*', ['build-images']);
   gulp.watch('src/assets/images/**/*', ['svg2php']);
   gulp.watch('src/assets/videos/**/*', ['build-videos']);

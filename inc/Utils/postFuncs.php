@@ -32,15 +32,11 @@ function text_limit($string, $length, $replacer) {
  *  @example  jumpoff_excerpt(100);
  *
  */
-
 function get_excerpt($characters, $rep='...') {
   $excerpt = get_the_excerpt('', '', false);
   $shortened_excerpt = text_limit($excerpt, $characters, $rep);
   return $shortened_excerpt;
 }
-
-
-
 
 /**
  * Get Module Field
