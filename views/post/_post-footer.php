@@ -10,11 +10,6 @@ namespace Jumpoff;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$title   = get_the_title();
-$excerpt = get_excerpt(250);
-$url     = get_the_permalink();
-$source  = get_home_url();
-
 ?>
 
 <section class="post-footer">
