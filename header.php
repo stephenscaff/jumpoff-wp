@@ -9,5 +9,6 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-include(locate_template('views/shared/head.php'));
-include(locate_template('views/shared/header.php'));
+include(locate_template('views/shared/app-head.php'));
+include(locate_template('views/shared/app-menu.php'));
+include(locate_template('views/shared/app-header.php'));

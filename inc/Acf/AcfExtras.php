@@ -35,7 +35,7 @@ class ACFExtras {
    * Register Google Maps API Key
    */
   function gmaps_api_key() {
-    acf_update_setting('google_api_key', '[addkeyhere]');
+    acf_update_setting('google_api_key', 'AIzaSyCR1znF989WxRTbncT77BVOXyJ_dQLVztI');
   }
 
 

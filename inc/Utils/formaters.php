@@ -4,20 +4,6 @@ namespace Jumpoff;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-/**
- * Join Fields
- * Coverts an array of style (class name) Fields
- * to a space seperated grouping.
- *
- * @example jumpoff_add_class($class, 'module')
- * @return string $group - space seperated sting of class names
- */
-function chain_classes($fields){
-  $group = join(' ', $fields);
-
-  return $group;
-}
-
 
 /**
  * Remove Wp's Auto P
@@ -30,8 +16,6 @@ function set_unautop($str) {
 
   return $str;
 }
-
-
 
 /**
  *  Make Hash ID

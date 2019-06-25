@@ -21,7 +21,7 @@ elseif ($index_title) {
   $title = get_field('mast_title', 'posts-index');
 }
 else {
-  $title = "News";
+  $title = get_the_title();
 }
 
 ?>

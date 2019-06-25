@@ -14,11 +14,6 @@ class JumpoffSetup {
   /**
    * @var string
    */
-  const JQUERY = 'jquery';
-
-  /**
-   * @var string
-   */
   const JUMPOFF_JS = 'jumpoff_js';
 
   /**
@@ -83,10 +78,8 @@ class JumpoffSetup {
    */
 	public function scripts() {
     if ( !is_admin() ) {
-      wp_deregister_script( self::JQUERY );
-      //wp_register_script( self::JQUERY, get_template_directory_uri() . '/assets/js/jquery.min.js', '', false, true );
+      //wp_deregister_script( self::JQUERY );
       wp_register_script( self::JUMPOFF_JS, get_template_directory_uri() . '/assets/js/app.min.js', '', false, true );
-      //wp_enqueue_script( self::JQUERY );
       wp_enqueue_script( self::JUMPOFF_JS);
     }
   }
@@ -108,9 +101,6 @@ class JumpoffSetup {
 	function async_scripts( $tag, $handle ){
 		if ($handle === self::JUMPOFF_JS)  {
 			return str_replace( 'src', ' async="async" src', $tag );
-		}
-		elseif ($handle === self::JQUERY)  {
-			return $tag;
 		}
 		else  {
 			return $tag;

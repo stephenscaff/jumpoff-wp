@@ -1,5 +1,7 @@
 <?php
 
+namespace Jumpoff;
+
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
@@ -29,7 +31,8 @@ class AdminEditors {
     add_action( 'admin_print_footer_scripts', array( $this, 'text_editor_toolbar' ), 999 );
     add_filter( 'tiny_mce_before_init', array( $this, 'visual_editor_toolbar' ));
     add_filter('acf/fields/wysiwyg/toolbars' , array( $this, 'acf_toolbar') );
-    add_action( 'admin_init', array($this, 'hide_editor' ));
+    add_filter('acf/fields/wysiwyg/toolbars' , array( $this, 'acf_toolbar_simple') );
+    add_action('admin_head', array($this, 'hide_editor' ));
   }
 
   /**
@@ -74,21 +77,27 @@ class AdminEditors {
     return $toolbar;
   }
 
+
+  function acf_toolbar_simple( $toolbar ){
+    $toolbar['Simple'] = array();
+    $toolbar['Simple'][1] = array('bold' , 'italic' , 'underline', 'link' );
+    $toolbar['Simple'][2] = array();
+
+    // remove the 'Basic' toolbar completely (if you want)
+    unset( $toolbar['Basic' ] );
+
+    return $toolbar;
+  }
+
   /**
-   * Hide COntent Editor
+   * Hide Content Editor
    */
   function hide_editor() {
+    if (
+      is_template('templates/modules.php') OR
+      is_template('templates/home.php')
 
-    $post_id = isset($_GET['post']) ? $_GET['post'] : isset($_POST['post_ID']);
-
-    if ( !$post_id ) return;
-
-    $title = get_the_title($post_id);
-
-    if ( in_array($title, array('Home', 'Contact Us', 'About')) ) {
-      remove_post_type_support('page', 'editor');
-    }
-    if ( is_page_template('templates/modules.php')) {
+    ) {
       remove_post_type_support('page', 'editor');
     }
   }

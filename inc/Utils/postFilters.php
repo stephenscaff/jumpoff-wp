@@ -1,6 +1,5 @@
 <?php
 
-namespace Jumpoff;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 

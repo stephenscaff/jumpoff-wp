@@ -2,6 +2,8 @@
 
 namespace Jumpoff;
 
+
+
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
@@ -39,12 +41,13 @@ function get_ft_img($size, $post_id = '', $fallback = false) {
   $caption = wp_get_attachment_caption( $image_id );
 
   if ( !empty( $img ) && $fallback == true ) {
-    $img = jumpoff_random_img();
+    $img = get_random_img();
   }
 
   if ($post_id) {
     wp_reset_postdata( $post_id );
   }
+
   $img_obj = array(
     'url' => $img,
     'alt' => $alt,

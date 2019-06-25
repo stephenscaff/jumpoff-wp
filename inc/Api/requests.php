@@ -1,9 +1,9 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) exit;
-
+/**
  * API CORS / Headers
- * Whitelistrsnjd j n of allowed origins for external requests
+ * Whitlisting of allowed origins for external requests
  */
 add_action( 'rest_api_init', function() {
 

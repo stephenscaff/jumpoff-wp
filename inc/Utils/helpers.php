@@ -30,7 +30,7 @@ function get_id() {
   $id='';
 
   if (is_search() && is_post_type_archive('post')) {
-    $id = 'news-index';
+    $id = 'posts-index';
   }
   elseif (is_post_type_archive()){
     $post_type = get_queried_object();
@@ -39,7 +39,7 @@ function get_id() {
     $id = $cpt . '-index';
   }
   elseif (is_home() OR is_search()){
-    $id = 'news-index';
+    $id = 'posts-index';
   }
   elseif (is_front_page()) {
     $id = get_option('page_on_front');

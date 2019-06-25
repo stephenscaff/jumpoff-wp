@@ -13,6 +13,8 @@ $tracking
   ->addText('gtm_id',
     [ 'label' => 'Provide GTM Id <span>(ie: GTM-ABCDEFG)</span>' ]
   )
+  ->addText('google_meta')
+  ->addText('bing_meta')
   ->setLocation('options_page', '==', 'tracking');
 
 add_action('acf/init', function() use ($tracking) {

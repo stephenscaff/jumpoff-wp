@@ -6,6 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  *  Post Type: Team
+ *  Post type example with REST API support.
  *
  *  Slug :      Team
  *  Supports : 'title','thumbnail','editor'
@@ -78,20 +79,20 @@ add_action( 'init', function() {
 
 
 /**
- * Add ACF Fields to Products Endpoint
+ * Add Fields to Rest Endpoint
  */
 add_filter("rest_prepare_team", 'team_rest_prepare_post', 10, 3);
 
 function team_rest_prepare_post($data, $post, $request) {
-   $_data = $data->data;
+  $_data = $data->data;
 
-   $fields = get_fields($post->ID);
+  $fields = get_fields($post->ID);
 
-   foreach ($fields as $key => $value){
-       $_data[$key] = get_field($key, $post->ID);
-   }
+  foreach ($fields as $key => $value){
+    $_data[$key] = get_field($key, $post->ID);
+  }
 
-   $data->data = $_data;
+  $data->data = $_data;
 
-   return $data;
+  return $data;
 }

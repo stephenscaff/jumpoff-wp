@@ -5,7 +5,16 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+
 use StoutLogic\AcfBuilder\FieldsBuilder;
+
+require_once('Modules/Banners.php');
+require_once('Modules/Cards.php');
+require_once('Modules/Content.php');
+require_once('Modules/Posts.php');
+require_once('Modules/Mast.php');
+
+
 
 $modules= new FieldsBuilder('modules', [
   'key' => 'group_modules',
@@ -13,15 +22,24 @@ $modules= new FieldsBuilder('modules', [
 ]);
 
 $modules
-  ->addFlexibleContent('modules', [
-    'button_label'=> "Add Module",
-  ])
-  ->addLayout($halfs_module, [
-    'name'=> "halfs_module",
-  ])
-  ->addLayout($fulls_module, [
-    'name'=> "fulls_module",
-  ])
+  ->addFlexibleContent('modules',
+    ['button_label'=> 'Add Module']
+  )
+  ->addLayout($banners_module,
+    ['name'=> 'banners_module']
+  )
+  ->addLayout($cards_module,
+    ['name'=> 'cards_module']
+  )
+  ->addLayout($content_module,
+    ['name'=> 'content_module']
+  )
+  ->addLayout($posts_module,
+    ['name'=> 'posts_module']
+  )
+  ->addLayout($mast_module,
+    ['name'=> 'mast_module']
+  )
   ->setLocation('page_template', '==', 'templates/modules.php')
     ->or('page_template', '==', 'templates/home.php');
 

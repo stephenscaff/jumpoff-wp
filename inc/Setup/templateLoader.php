@@ -47,12 +47,3 @@ add_filter('template_include', function( $original_template ) {
     return $original_template;
   }
 });
-
-
-function get_correct_template($post_type, $template) {
-
-  if (locate_template("views/{$post_type}/{$template}.php")) {
-    return locate_template("views/{$post_type}/{$template}.php");
-  }
-  return locate_template("views/post/{$template}.php");
-}

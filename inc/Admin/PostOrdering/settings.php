@@ -115,6 +115,6 @@ $order_tags = isset($order_options['tags']) ? $order_options['tags'] : array();
     else
       $(items).prop('checked', false);
   });
-  
+
 })(jQuery)
 </script>
