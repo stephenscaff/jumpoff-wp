@@ -9,12 +9,11 @@ Additionally, the Jumpoff aims to reduce over-reliance on 3rd party plugins by b
 ### Features
 
 - Gulp for task running
-- A lightweight front-end framework of sorts, with sensible scss/js structuring.
-- Organization by partials and components
-- A php approach to field management via ACF and Stout Logic's ACF Builder
+- Organization by partials and components of scss, js and php views.
 - Custom drag and drop modules for content authorship
+- A php approach to field management via ACF and Stout Logic's ACF Builder
 - Custom Admin theme (styles and functionality)
-- A small library of useful utilities/helpers
+- A library of useful utilities/helpers
 
 ### Dependencies
 - [Node](https://nodejs.org/en/download/) : to run `gulp`.
@@ -26,14 +25,6 @@ Additionally, the Jumpoff aims to reduce over-reliance on 3rd party plugins by b
 - [StoutLogic ACF Builder](https://github.com/StoutLogic/acf-builder) : A more sane way to register ACF fields within PHP utils
 
 ### Run
-
-Install Gulp
-
-```
-npm install gulp
-```
-
-Install Gulp dependencies
 
 ```
 npm install --save-dev
@@ -82,7 +73,6 @@ Stout Logic provides a fluent API for rapidly creating and configuring ACF Field
 Here's an example of creating fields for SEO metas:
 
 ```
-
 /**
  * Fields - SEO
  * Location: Pages, posts, Team post type.
@@ -120,7 +110,8 @@ A custom module loader class (`inc/Acf/AcfModules.php`) further enhances flexibl
 
 For Example:
 
-*Define Content Module*
+**Define Content Module**  
+
 
 ```
 // inc/Fields/Modules/Content
@@ -139,7 +130,8 @@ $content_module
 
 ```
 
-*Apply Content Module to Modules Template*
+**Apply Content Module to Modules Template**  
+
 
 ```
 // inc/Fields/modules.php
@@ -170,7 +162,7 @@ $modules
   });
 ```
 
-*Content Module View*
+**Content Module View**
 
 ```
 // views/modules/content-module.php
@@ -189,11 +181,10 @@ $content = get_sub_field('content');
 
 ```
 
-Calling the Modules in a template
+**Calling the Modules in a template**  
 
 
 ```
-
 // views/shared/modules.php
 
 while (has_sub_field('modules')) :
@@ -211,10 +202,10 @@ Site functionality is generally added in the `inc` folder, as oppose to plugins 
 
 A custom admin theme and various admin-based functionality and utilities are housed in `inc/Admin`. `AdminTheme` includes the scss for our, eh, admin theme. `admin.scss` compiles out via gulp into `admin.css`.
 
-### Content Types
+### Post/Content Types
 
 Custom Post Types are registered in `inc/PostTypes` and follow a simple file naming convention.
 
 ### Utils
 
-Post helpers, found in `inc/Utils` include utility functions for stuff like hooks, actions, formaters, helpers, etc.
+Post helpers, found in `inc/Utils` include utility functions for stuff like hooks, actions, formatters, helpers, etc.
