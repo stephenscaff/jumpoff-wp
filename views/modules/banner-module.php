@@ -1,110 +1,38 @@
 <?php
 /**
- * views/modules/content-module
+ * views/modules/banner-module
  *
  * @author       Stephen Scaff
- * @package      views/modules
+ * @package      jumpoff
  */
 
 namespace Jumpoff;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$content = get_sub_field('content');
-$grid    = get_sub_field('grid_width');
-
-?>
-<?php
-/**
-* Posts module
-*
-* The module for adding posts or post type sections.
-*
-* @author       Stephen Scaff
-* @package      SandP
-* @see          kit/scss/components/_sliders.scss
-* @version      1.0
-*/
-
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-
 global $post ;
 
-//vars
-$title = get_sub_field('heading_title');
-$archive_link = get_sub_field('archive_link');
-
-
-/**
- * Latest, Cat or Selected Logic
- * Gets 3 latest posts, unless posts are manually
- * selected via posts_selector relationship field or
- * latest if nothing is selected.
- */
-$by_selected_or_cat_or_latest = "";
-$by_selected = get_sub_field('posts_selector');
-$by_cat =  get_sub_field('posts_cat');
-
-
-if ( $by_selected ) {
-
-  $by_selected_or_cat_or_latest = $by_selected;
-
-} elseif ( $by_cat ) {
-
-  $args = array(
-    'post_type'       => 'post',
-    'posts_per_page'  => 3,
-    'orderby'         => 'date',
-    'order'           => 'DESC',
-    'tax_query' => array(
-      array(
-        'taxonomy'  => 'category',
-        'field'     => 'slug',
-        'terms'     => $by_cat->slug,
-        'operator'  => 'IN',
-      ),
-    ),
-  );
-
-  $by_selected_or_cat_or_latest = get_posts( $args );
-
-} else {
-
-  $args = array(
-    'post_type'       => 'post',
-    'posts_per_page'  => 3,
-    'orderby'         => 'date',
-    'order'           => 'DESC',
-  );
-
-  $by_selected_or_cat_or_latest = get_posts( $args );
-}
+$image        = get_sub_field('image');
+$title        = get_sub_field('title');
+$content      = get_sub_field('content');
+$btn_link     = get_sub_field('button_link');
+$btn_url      = get_sub_field('button_url');
+$link_or_url  = get_field_fallback($btn_link, $btn_url);
+$btn_text     = get_sub_field('button_text');
 
 ?>
 
-<section class="cards module">
+<section class="banner module">
+  <figure class="banner__figure" style="background-image: url(<?php echo $image['url']; ?>)"></figure>
   <div class="grid-lg">
-
-    <?php if ($title) : ?>
-    <header class="heading">
-      <h2 class="heading__title"><?php echo $title; ?></h2>
-    </header>
-    <?php endif; ?>
-
-    <div class="cards__grid">
-    <?php
-    foreach ( $by_selected_or_cat_or_latest as $post ) : setup_postdata( $post );
-      include(locate_template('views/post/_post.php' ));
-    endforeach;
-    wp_reset_postdata();
-    ?>
-    </div>
-
-    <?php if ($archive_link) : ?>
-    <footer class="cards__footer">
-      <a class="btn-line btn--beta" href="<?php echo $archive_link; ?> ?>">View All</a>
-    </footer>
-    <?php endif; ?>
+    <a class="banner__link" href="<?php echo $link_or_url; ?>">
+      <header class="banner__header">
+        <h3 class="banner__title"><?php echo $title; ?></h3>
+        <?php if ($text) : ?>
+          <p class="banner__text"><?php echo $content; ?></p>
+        <?php endif; ?>
+        <span class="btn-line"><?php $btn_text; ?></span>
+      </header>
+    </a>
   </div>
 </section>

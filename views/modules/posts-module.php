@@ -1,34 +1,16 @@
 <?php
 /**
- * views/modules/content-module
+ * views/modules/posts-module
  *
  * @author       Stephen Scaff
- * @package      views/modules
+ * @package      jumpoff
  */
 
 namespace Jumpoff;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$content = get_sub_field('content');
-$grid    = get_sub_field('grid_width');
-
-?>
-<?php
-/**
-* Posts module
-*
-* The module for adding posts or post type sections.
-*
-* @author       Stephen Scaff
-* @package      SandP
-* @see          kit/scss/components/_sliders.scss
-* @version      1.0
-*/
-
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-
-global $post ;
+global $post;
 
 //vars
 $title = get_sub_field('heading_title');

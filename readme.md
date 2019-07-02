@@ -114,17 +114,92 @@ All Fields are registered in `inc/Fields/*`, generally in their own clearly name
 
 The Jumpoff uses ACF's Flexible content fields to create a drag-and-drop module system and are defined at `inc/Fields/Modules/*`
 
-A custom module loader class (`inc/Acf/AcfModules.php`) further enhances flexible content fields by mapping them by name to files within the `partials/modules` directory. So, when used, an FC field named `intro-module` with load the module file `intro-module.php`.
+The Modules are then included and added to a modules template (or whatever) at `inc/Fields/Modules.php`.
+
+A custom module loader class (`inc/Acf/AcfModules.php`) further enhances flexible content fields by mapping them by name to files within the `views/modules` directory. So, when used, a module field named `posts-module` will load and scope it's fields to a module file at `views/modules/posts-module.php`.
+
+For Example:
+
+*Define Content Module*
+
+```
+// inc/Fields/Modules/Content
+
+use StoutLogic\AcfBuilder\FieldsBuilder;
+
+/**
+ * Content Module
+ * Creates an content / wysi section
+ * @see scss/components/_content (post-content)
+ */
+$content_module = new FieldsBuilder('content_module');
+$content_module
+  ->addMessage('', 'The Content Module creates an all purpose content/wysi region.')
+  ->addWysiwyg('content');
+
+```
+
+*Apply Content Module to Modules Template*
+
+```
+// inc/Fields/modules.php
+
+use StoutLogic\AcfBuilder\FieldsBuilder;
+
+
+require_once('Modules/Content.php');
+...
+
+
+
+$modules= new FieldsBuilder('modules');
+
+$modules
+  ->addFlexibleContent('modules',
+    ['button_label'=> 'Add Module']
+  )
+  ->addLayout($cards_module,
+    ['name'=> 'cards_module']
+  )
+  ...
+  ->setLocation('page_template', '==', 'templates/modules.php')
+    ->or('page_template', '==', 'templates/home.php');
+
+  add_action('acf/init', function() use ($modules) {
+     acf_add_local_field_group($modules->build());
+  });
+```
+
+*Content Module View*
+
+```
+// views/modules/content-module.php
+
+namespace Jumpoff;
+
+$content = get_sub_field('content');
+
+?>
+
+<section class="content module">
+  <div class="grid-sm">
+    <?php echo $content; ?>
+  </div>
+</section>
+
+```
 
 Calling the Modules in a template
 
+
 ```
+
+// views/shared/modules.php
+
 while (has_sub_field('modules')) :
   ACF_Modules::render(get_row_layout());
 endwhile;
 ```
-
-https://gist.github.com/tdwesten/3402b2c5ef0843df6bb65afbb4835f99
 
 
 ### Inc

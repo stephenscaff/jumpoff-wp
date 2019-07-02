@@ -5,7 +5,6 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
 require_once('Modules/Banners.php');
@@ -13,8 +12,6 @@ require_once('Modules/Cards.php');
 require_once('Modules/Content.php');
 require_once('Modules/Posts.php');
 require_once('Modules/Mast.php');
-
-
 
 $modules= new FieldsBuilder('modules', [
   'key' => 'group_modules',
