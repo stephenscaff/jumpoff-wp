@@ -13,8 +13,8 @@ get_header(); ?>
 
 <main role="main">
 
-<section class="mast mast--page">
-  <header class="mast__header">
+<section class="mast is-page">
+  <header class="mast__header grid">
     <h1><?php the_title(); ?></h1>
   </header>
 </section>
@@ -31,5 +31,4 @@ get_header(); ?>
 
 </main>
 
-<!-- Footer -->
 <?php get_footer(); ?>

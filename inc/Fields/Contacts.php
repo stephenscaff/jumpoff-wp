@@ -15,7 +15,7 @@ use StoutLogic\AcfBuilder\FieldsBuilder;
 $contacts = new StoutLogic\AcfBuilder\FieldsBuilder('contacts');
 
 $contacts
-  ->addTextArea('contact_mail_address',
+  ->addTextArea('contact_address',
     [
       'wrapper' =>  ['width' => '100%'],
       'rows'    =>  '4',
@@ -32,11 +32,6 @@ $contacts
     ]
   )
   ->addMessage('Socials', '')
-  ->addText('contact_youtube',
-    [
-      'wrapper' =>  ['width' => '50%']
-    ]
-  )
   ->addText('contact_instagram',
     [
       'wrapper' =>  ['width' => '50%']
@@ -48,6 +43,21 @@ $contacts
     ]
   )
   ->addText('contact_facebook',
+    [
+      'wrapper' =>  ['width' => '50%']
+    ]
+  )
+  ->addText('contact_linkedin',
+    [
+      'wrapper' =>  ['width' => '50%']
+    ]
+  )
+  ->addText('contact_youtube',
+    [
+      'wrapper' =>  ['width' => '50%']
+    ]
+  )
+  ->addText('contact_vimeo',
     [
       'wrapper' =>  ['width' => '50%']
     ]

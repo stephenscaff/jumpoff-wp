@@ -14,8 +14,8 @@ namespace Jumpoff;
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 $ids            = get_id();
-$meta_author    = 'Gramercy';
-$meta_site_name = 'Gramercy';
+$meta_author    = 'Stephen Scaff';
+$meta_site_name = 'Jumpoff';
 $meta_title     = '';
 $seo_title      = get_field('seo_title', $ids);
 

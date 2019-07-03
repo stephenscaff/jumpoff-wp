@@ -12,7 +12,7 @@ namespace jumpoff;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$home_url = get_page_url('home');
+$home_url = get_home_url();
 
 ?>
 
@@ -20,11 +20,14 @@ $home_url = get_page_url('home');
 
 <header class="app-header">
   <div class="grid-lg">
-    <a class="app-header__brand" href="<?php echo $home_url; ?>">The JumpOff</a>
-    <button
-      class="menu-toggle js-menu-toggle is-mobile-only"
-      arial-label="Menu">
-      <div class="menu-toggle__bars"></div>
-    </button>
+    <div class="app-header__grid">
+      <a class="app-header__brand" href="<?php echo $home_url; ?>">The JumpOff</a>
+      <nav class="app-header__nav"></nav>
+      <button
+        class="menu-toggle js-menu-toggle is-mobile-only"
+        arial-label="Menu">
+        <div class="menu-toggle__bars"></div>
+      </button>
+    </div>
   </div>
 </header>

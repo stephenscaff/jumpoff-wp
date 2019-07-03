@@ -12,11 +12,9 @@ namespace jumpoff;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$home_url = get_page_url('home');
+$home_url = get_home_url();
 
 ?>
-
-<body <?php body_class(); ?>>
 
 <header class="app-menu-sm">
   <div class="grid-lg">
