@@ -1,47 +1,37 @@
 {
-  "name": "shine",
+  "name": "jumpoffwp",
   "version": "1.0.0",
-  "description": "A project for shine",
-  "main": "gulpfile.js",
+  "description": "A fairly opioninated wp, es6, gulp starter",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GreenRubino/shine.git"
-  },
-  "author": "stephen scaff",
+  "author": "Stephen Scaff",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/GreenRubino/shine/issues"
-  },
-  "homepage": "https://github.com/GreenRubino/shine#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.3.1",
     "babel-core": "^6.26.3",
-    "babel-eslint": "^10.0.2",
-    "babel-preset-env": "^2.0.0-beta.2",
+    "babel-eslint": "^10.0.1",
+    "babel-preset-env": "^1.7.0",
     "babelify": "^10.0.0",
     "browserify": "^16.2.2",
-    "eslint": "^5.15.1",
+    "eslint": "^5.12.1",
     "eslint-config-eslint": "^5.0.1",
     "eslint-plugin-node": "^8.0.1",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^6.1.0",
+    "del": "^4.1.1",
+    "gulp": "^4",
+    "gulp-autoprefixer": "^6.0.0",
     "gulp-newer": "^1.4.0",
+    "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-terser": "^1.1.7",
     "gulp-uglifyes": "^0.2.1",
-    "jshint": "^2.10.2",
     "postcss-assets": "^5.0.0",
     "stylelint": "^9.10.1",
-    "stylelint-config-standard": "^18.3.0",
+    "stylelint-config-standard": "^18.2.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   },
-  "dependencies": {
-    "@babel/polyfill": "^7.2.5",
-    "@babel/preset-env": "^7.3.4",
-    "gulp-rename": "^1.4.0",
-    "gulp-sourcemaps": "^2.6.5",
-    "whatwg-fetch": "^3.0.0"
-  }
+  "dependencies": {}
 }
